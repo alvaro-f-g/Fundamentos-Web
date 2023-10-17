@@ -36,3 +36,23 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+/* Estilo para los botones */
+.btn-guardar { /*para retocar el boton guardar, también se podría haber puesto button y retocarlo en general{...}*/
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.btn-salir {
+    padding: 10px 20px;
+    background-color: #E74C3C;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;;
+}
