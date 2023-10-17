@@ -1,20 +1,38 @@
+/* Título principal */
 h2{
-    color:crimson
+    font-size: 25px; /*tamaño de letra de texto*/
+    text-align: center;
+    text-decoration: underline; /*para subrayar el texto de h2 que ponía Nueva Ficha*/
+    color:crimson    
 }
-label{
+
+
+/*  Formulario  */
+form {
+    max-width: 250px; /*el formulario tendrá un máximo de 400 pixeles y con esto también se coloca el formulario en el centro*/
+    margin: 0 auto; /*con esto ponemos el formulario totalmente en el centro, ni derecha ni izquierda (que esté centrado en la página)*/
+}
+
+/* Etiquetas */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
     color: crimson /* Con esto se cambia todo los labels a color rojo(nombre, apellidos,posición,nacimiento,nacionaliadad y número de camisetas*/
-    
 }
-div{
-    color:black
+
+ /* Campo de  entrada*/
+.input-group {
+    margin-bottom: 20px;
 }
-button{
-    border: 2px  #f72004 solid;
-    height: 50;
-     width: 500px;
-     background-color: #f9fbfd;
-     border-radius: 5px;
-     margin: left;
-     border-width: 3px;
-     text-align: left;
+
+.input-group label {
+    display: block;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
