@@ -38,3 +38,14 @@ header img{
     border-radius: 25px;
 
 }
+
+.players{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 10px;
+}
+
+.players a{
+    flex: 1;
+    white-space: nowrap;
+}
