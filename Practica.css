@@ -1,6 +1,7 @@
 h1{
     color: red;
 }
+
 h3{
     color: #f30101 ;
     border: 2px  #f30101 solid;
@@ -9,18 +10,48 @@ h3{
     font-family: 'Pacifico', cursive;
     font-size: 20px;
 }
+
 div{
     border: 2px  #f72004 solid;
     height: 50;
-     width: 500px;
-     background-color: #f9fbfd;
-     border-radius: 5px;
-     margin: left;
-     border-width: 3px;
-     text-align: left
-   ;
+    width: 500px;
+    background-color: #f9fbfd;
+    border-radius: 5px;
+    margin: left;
+    border-width: 3px;
+    text-align: left;
 }
+
 img{
     height: 75px;
     margin-left: 75px;
+
+    display: block; /* Hace que la imagen se muestre como un bloque */
+    margin: 0 auto; /* Centrar la imagen horizontalmente */
+}
+
+/* Estilos CSS para centrar el h1 y la imagen debajo */
+body {
+    text-align: center; /* Centrar el texto en el cuerpo */
+}
+
+h1, h2, h3 {
+    text-align: center; /* Centrar el texto en el h1 */
+    font-family: sans-serif
+}
+
+.top{
+    min-width: 600px;
+    max-width: 600px; /* Establece un ancho máximo para el contenedor */
+    margin: 0 auto; /* Margen automático a la izquierda y derecha para centrar horizontalmente */
+
+    display: flex; /* Utiliza flexbox para centrar verticalmente el contenido */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    justify-content: center; /* Centra verticalmente el contenido */
+    align-items: center; /* Centra horizontalmente el contenido */
+
+    text-align: center; /* Centrar el contenido horizontalmente */
+    background-color: #1e3a8a; /* Cambia el color de fondo a azul oscuro */
+    color: #ffffff; /* Cambia el color del texto a blanco */
+    padding: 20px; /* Añade relleno para separar el contenido del contenedor */
 }
