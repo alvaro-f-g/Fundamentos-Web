@@ -3,7 +3,7 @@ body {
     background-color: #f0f0f0;
 }
 
-h1, h2, h3 {
+html {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -30,9 +30,9 @@ header img{
     width: fit-content;
 }
 
-.plantilla{
+.squad{
     background-color: white;
-    margin: 0 5%;
+    margin: 0 10%;
     padding: 0 20px;
     border: 1px solid #ccc;
     border-radius: 25px;
@@ -40,12 +40,32 @@ header img{
 }
 
 .players{
-    display: flex;
-    flex-flow: row wrap;
-    gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px 40px;
+    justify-items: center;
 }
 
 .players a{
-    flex: 1;
-    white-space: nowrap;
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+    min-width: 200px;
+    
+    text-decoration: none;  /* Para quitar el link */
+    color: black;
+    font-size: 20px;
+    
+    transition: box-shadow 0.2s;
+}
+
+.players img{
+    height: 250px;
+    max-width: 200px;
+}
+
+.players a:hover{
+    box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.5);
 }
