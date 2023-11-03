@@ -8,19 +8,30 @@ body {
 }
 
 header{
-    margin-bottom: 20px;
     display: flex;
+    padding: 10px 20px;
     background-color: black;
     align-items: center;
     gap: 20px;
-    padding: 20px;
     color: rgb(214, 12, 12);
+    margin-bottom: 20px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 
-header img{
+#header-img{
     height: 75px;
     border: 2px solid rgb(214, 12, 12);
     border-radius: 5px;
+}
+
+.header-fake{
+    /* Lo suyo sería obtener en una variable la altura de header e insertarla aquí */
+    height: 99px; /* = (2*10) + 75 + (2*2) = padding + img + border img */
+    margin-bottom: 20px;
 }
 
 .squad{
