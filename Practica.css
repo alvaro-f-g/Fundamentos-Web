@@ -69,3 +69,18 @@ header img{
 .players a:hover{
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.5);
 }
+
+.button{
+    text-align: center; 
+    margin: 50px auto;
+}
+
+.button a{
+    border-radius: 15px;
+    padding: 10px;
+    background-color: rgb(214, 12, 12);
+
+    text-decoration: none;  /* Para quitar el link */
+    color: white;
+    font-size: 18px;
+}
