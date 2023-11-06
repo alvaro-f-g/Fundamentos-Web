@@ -41,11 +41,6 @@ header {
         text-align: center;
 }
 
-.title{
-        margin: 0 auto;
-        width: fit-content;
-}
-
 .btn {
         margin: 20px;
         padding: 10px 0px; /* Apaño porque si podemos ajustar el width al content, pero height no*/
