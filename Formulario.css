@@ -15,13 +15,15 @@ form {
 
 /* Etiquetas */
 label {
-    display: block;
     margin-top: 10px;
     font-weight: bold;
     color: crimson /* Con esto se cambia todo los labels a color rojo(nombre, apellidos,posición,nacimiento,nacionaliadad y número de camisetas*/
 }
 
  /* Campo de  entrada*/
+.form-control {
+    word-wrap: break-word; /*para que las líneas dentro de los campos del formulario no desborden*/
+}
 .input-group {
     margin-bottom: 20px;
 }
@@ -48,6 +50,7 @@ label {
 }
 
 .btn-salir {
+    margin-top: 20px; /* para separar el botón del resto del formulario*/
     padding: 10px 20px;
     background-color: #E74C3C;
     color: #fff;

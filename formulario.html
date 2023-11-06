@@ -3,6 +3,7 @@
 
 <head>
     <title>Formulario Inscribir Jugadores</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"> <!--incluimos css de Bootstrap-->
     <link type="text/css" rel="stylesheet" href="base.css" />
     <link type="text/css" rel="stylesheet" href="Formulario.css" />
 </head>
@@ -35,26 +36,26 @@
             </div>
             <div class="form-group">
                 <label for="posicion">Posici&oacute;n </label>
-                <input type="posicion" class="form-control" id="Posicion" placeholder="Escriba la posicio&eacute;n">
+                <input type="posicion" class="form-control" id="Posición" placeholder="Escriba la posici&oacute;acute;n">
             </div>
             <div class="form-group">
                 <label for="nacimiento">Nacimiento </label>
                 <input type="nacimiento" class="form-control" id="nacimiento"
-                    placeholder="Di&eacute;game la fecha de nacimiento">
+                    placeholder="D&iacute;acute;game la fecha de nacimiento">
             </div>
             <div class="form-group">
                 <label for="nacionalidad">Nacionalidad </label>
                 <input type="nacionalidad" class="form-control" id="nacionalidad"
-                    placeholder="Di&eacute;game la nacionalidad">
+                    placeholder="D&iacute;game la nacionalidad">
             </div>
             <div class="form-group">
                 <label for="N&uacute;mero de camiseta">N&uacute;mero de camiseta </label>
                 <input type="password" class="form-control" id="pwd"
-                    placeholder=" Di&eacute;game el n&uacute;mero de camiseta">
+                    placeholder=" D&iacute;game el n&uacute;mero de camiseta">
             </div>
 
-            <button type="Guardar" class="btn btn-guardar">Guardar </button>
-            <button type="Salir" class="btn btn-salir">Salir </button>
+            <button type="Guardar" style="margin-top: 20px"class="btn btn-guardar">Guardar </button> <!-- lo de margin-top es para dejar espacio entre el botón guardar y el resto del formulario-->
+            <button type="Salir" class="btn btn-salir">Salir </button> <!--aquí no se hace lo de margin top ya que lo hicimos en el css en la parte de editar el botón salir-->
         </form>
     </div>
 
