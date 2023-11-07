@@ -2,6 +2,7 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    align-items: start;
 }
 
 .container{
@@ -19,5 +20,21 @@ p {
 }
 
 table{
-    margin: auto;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+th, td{
+    border-bottom: 1px black solid;
+    padding: 10px 20px;
+    align-items: center;
+}
+
+th {
+    background-color:  rgb(214, 12, 12);
+    color: white;
+}
+
+.item img{ /* Al parecer, si no meto la imagen en un div, height no funciona bien */
+    height: 50px;
 }
