@@ -38,7 +38,13 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
 /* Estilo para los botones */
+.btn{
+    margin:10px;
+    width: fit-content;
+}
+
 .btn-guardar { /*para retocar el boton guardar, también se podría haber puesto button y retocarlo en general{...}*/
     padding: 10px 20px;
     background-color: #007BFF;
@@ -47,6 +53,7 @@ label {
     border-radius: 5px;
     cursor: pointer;
     margin-right: 10px;
+    margin-top: 20px /*lo de margin-top es para dejar espacio entre el botón guardar y el resto del formulario*/
 }
 
 .btn-salir {
@@ -57,5 +64,9 @@ label {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-right: 10px;;
+    margin-right: 10px;
+    
+}
+.botones-container {
+    display: inline; /* Muestra los botones en línea */
 }
