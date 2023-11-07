@@ -1,7 +1,12 @@
+.data{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
 .container{
     width: 400px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 20px;
 }
 
 .container img {
