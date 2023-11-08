@@ -4,6 +4,8 @@
 <head>
     <title>Formulario Inscribir Jugadores</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"><!--incluimos css de Bootstrap-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"> </script> <!--si no incluyes esto, el botón anidado Posición no va-->
+
     <link type="text/css" rel="stylesheet" href="base.css" />
     <link type="text/css" rel="stylesheet" href="Formulario.css" />
 </head>
@@ -35,8 +37,27 @@
                 <input type="apellidos" class="form-control" id="apellidos" placeholder="Escriba los apellidos">
             </div>
             <div class="form-group">
-                <label for="posicion">Posici&oacute;n </label>
-                <input type="posicion" class="form-control" id="posicion" placeholder="Escriba la posici&oacute;n">
+                <label for="descripcion">Descripción </label>
+                <input type="descripciom" class="form-control" id="descripcion" placeholder="Escriba una descripci&oacute;n">
+            </div>
+            <div class="form-group">
+                <label for="posicion">Posición </label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected></option>
+                    <option value="1">Delantero</option>
+                    <option value="2">Medio</option>
+                    <option value="3">Defensa</option>
+                    <option value="3">Portero</option>
+                  </select>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a class="dropdown-item" href="#"> Delantero </li>
+                    <li><a class="dropdown-item" href="#">Medio </a> </li>
+                    <li><a class="dropdown-item" href="#">Defensa </a> </li>
+                    <li><a class="dropdown-item" href="#">Portero </a> </li>
+                </ul>
+                
+                
             </div>
             <div class="form-group">
                 <label for="nacimiento">Nacimiento </label>
@@ -53,11 +74,16 @@
                 <input type="password" class="form-control" id="pwd"
                     placeholder=" D&iacute;game el n&uacute;mero de camiseta">
             </div>
+           
+            
+            <form action="procesar_archivo.php" method="post" enctype="multipart/form-data">
+                <label for="archivo"> Foto Ficha</label>
+                <input type="file" name="archivo" id="archivo">
+            </form>
+               
             <div class="botones-container">
                 <button type="Guardar" class="btn btn-guardar">Guardar</button>
-                <button type="Salir" class="btn btn-salir">
-                    <a href="plantilla.html">Salir</a>
-                </button>
+                <a href="plantilla.html" class="btn btn-cancelar" role="button">Cancelar</a>
             </div>
     </div>
 
