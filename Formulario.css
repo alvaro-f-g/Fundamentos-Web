@@ -11,6 +11,7 @@ h2{
 form {
     max-width: 250px; /*el formulario tendrá un máximo de 400 pixeles y con esto también se coloca el formulario en el centro*/
     margin: 0 auto; /*con esto ponemos el formulario totalmente en el centro, ni derecha ni izquierda (que esté centrado en la página)*/
+    margin-bottom: 20px; /*para separar la foto ficha de la barra de progreso*/
 }
 
 /* Etiquetas */
@@ -24,8 +25,14 @@ label {
 .form-control {
     word-wrap: break-word; /*para que las líneas dentro de los campos del formulario no desborden*/
 }
+
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px;   
+}
+.custom-input { /*para modificar(hacer más grande el placeholder de descripción*/
+    height: 100px; /* Ajusta la altura del placeholder según sea necesario */
+    font-size: 10px; /* Ajusta el tamaño del texto según sea necesario */
+    width: 300px; /* Ajusta el ancho del placeholder según sea necesario */
 }
 
 .input-group label {
@@ -38,7 +45,40 @@ label {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+    .progress-bar { /* para que cuando pulses la barra te salga una manita encima*/
+        cursor: pointer;
+     }
 
+  .progress-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+  }
+
+
+  .progress-container { /*para poner los valores en la barra*/
+    position: relative;
+    margin-top: 20px; /* Separa el valor de los $ de la barra de progreso */
+  }
+
+  
+/*para colocar los valores en la izquierda, en el centro y en la derecha*/
+  .progress-label-start {
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  .progress-label-middle {
+    left: 50%;
+    transform: translate(-23%, -50%);
+  }
+
+  .progress-label-end {
+    right: 0;
+    transform: translate(30%, -50%);/*esto es para mover el valor de 60 millones(la primera coordenada es la X y la segunda la Y)*/
+  }
 /* Estilo para los botones */
 .btn{
     margin:10px;
