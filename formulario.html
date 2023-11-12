@@ -78,10 +78,7 @@
             <!--código para poner la barrita del precio y que el máximo sea 1000000000-->
             <input type="range" id="valor" value="0" min="0" max="1000000000" step="500000" oninput="updateRangeValue(this.value)" />
             <output id="outrange" name="outrange" for="valor">0</output>$
-            <p id=""> </p> <!--simula un espacio para que el botón guardar precio no se suba con la barra donde elijes el precio-->
-            <!--botón para guardar el valor del precio-->
-            <button onclick="guardarValor()" class="btn btn-guardarprecio">Guardar precio</button>
-               
+           
             <div class="botones-container">
                 <button type="Guardar" class="btn btn-guardar">Guardar</button>
                 <a href="plantilla.html" class="btn btn-cancelar" role="button">Cancelar</a>
@@ -91,15 +88,12 @@
     <script> 
     //aqui se hace el código relativo al precio,para que se vaya aumentando el valor a medida que avanzas con el ratón y luego se guarde este valor
       let incremento = 500000;
-      let valorGuardado = 0;
 
       function updateRangeValue(value) {
         const valorIncrementado = numberWithCommas(value);
         document.getElementById("outrange").innerHTML = valorIncrementado;
         // Muestra el valor actualizado en el párrafo
         document.getElementById("valorActualizado").innerHTML = "Valor actual: " + valorIncrementado;
-        // Actualiza la variable de valor guardado
-        valorGuardado = parseInt(value);
       }
 
      function numberWithCommas(x) {
@@ -107,10 +101,6 @@
         const valorConIncremento = Math.floor(valorNumerico / incremento) * incremento;
         return valorConIncremento.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
      }
-     function guardarValor() {
-    // Aquí puedes hacer lo que necesites con el valor guardado, por ejemplo, enviarlo a un servidor
-      alert("Valor guardado: " + valorGuardado);
-    }
   </script>
 </body>
 </html>

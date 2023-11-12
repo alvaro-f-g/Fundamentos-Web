@@ -51,17 +51,6 @@ label {
     width: fit-content;
     
 }
-.btn-guardarprecio{ /*para modificar el botón de guardar precio*/
-    padding: 3px 3px;
-    background-color: #07090b;
-    color: #e10d0d;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 20px; /*para modificar la posición del botón guardar precio*/
-    margin-top: -2%; 
-
-}
 .btn-guardar { /*para retocar el boton guardar, también se podría haber puesto button y retocarlo en general{...}*/
     padding: 10px 20px;
     background-color: #007BFF;
