@@ -1,11 +1,11 @@
-.data{
+.data {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: start;
 }
 
-.container{
+.container {
     width: 500px;
     margin: 20px;
 }
@@ -15,7 +15,7 @@
     height: 250px;
 }
 
-table{
+table {
     margin: 20px auto;
 }
 
@@ -38,7 +38,12 @@ table{
     height: 50px;
 }
 
-.player-form{
+form {
     text-align: left;
-    margin-bottom: 0px; /*No entiendo porque no se solapa con el margen del boton*/
+    margin: 20px; /*No entiendo porque no se solapa con el margen del boton*/
+}
+
+.form-group {
+    margin-top: 10px;
+    font-weight: 600;
 }
