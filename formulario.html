@@ -26,58 +26,61 @@
                 <label for="nombre">Nombre </label>
                 <input type="nombre" class="form-control" id="nombre" placeholder="Escriba el nombre">
             </div>
+
             <div class="form-group">
                 <label for="apellidos">Apellidos </label>
                 <input type="apellidos" class="form-control" id="apellidos" placeholder="Escriba los apellidos">
             </div>
+
             <div class="form-group">
                 <label for="descripcion">Descripción </label>
                 <textarea type="descripcion" class="form-control " id="descripcion" placeholder=""></textarea>
             </div>
+
             <div class="form-group">
                 <label for="posicion">Posición </label>
                 <select class="form-select" name="posicion">
-                    <option value="" disabled selected hiiden>Elige una opción</option>
+                    <option value="" disabled selected hidden>Elige una opción</option>
                     <option value="1">Delantero</option>
                     <option value="2">Medio</option>
                     <option value="3">Defensa</option>
                     <option value="3">Portero</option>
                 </select>
-                </button>
             </div>
+            
             <div class="form-group">
                 <label for="nacimiento">Nacimiento </label>
                 <input type="nacimiento" class="form-control" id="nacimiento"
                     placeholder="D&iacute;game la fecha de nacimiento">
             </div>
+
             <div class="form-group">
                 <label for="nacionalidad">Nacionalidad </label>
                 <input type="nacionalidad" class="form-control" id="nacionalidad"
                     placeholder="D&iacute;game la nacionalidad">
             </div>
+
             <div class="form-group">
                 <label for="N&uacute;mero de camiseta">N&uacute;mero de camiseta </label>
-                <input type="number" class="form-control" id="numero"
-                    placeholder=" D&iacute;game el n&uacute;mero de camiseta">
+                <input type="number" class="form-control" id="numero" placeholder=" D&iacute;game el n&uacute;mero de camiseta">
             </div>
 
-
-            <form action="procesar_archivo.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
                 <label for="archivo"> Foto Ficha</label>
-                <input type="file" name="archivo" id="archivo">
-            </form>
-
-            <div>
-                <label for="price">Precio</label>
-                <input type="range" id="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
-                <output for="price" id="outrange">0</output>
+                <input type="file" class="form-control" name="archivo" id="archivo">
             </div>
 
-            <div class="botones-container">
-                <button type="Guardar" class="btn btn-guardar">Guardar</button>
-                <a href="plantilla.html" class="btn btn-cancelar" role="button">Cancelar</a>
+            <div class="form-group">
+                <label for="price">Precio</label>
+                <input type="range" class="form-range" id="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
+                <output for="price" id="outrange">0</output>€
             </div>
         </form>
+
+        <div class="botones-container">
+            <button type="Guardar" class="btn btn-guardar">Guardar</button>
+            <a href="plantilla.html" class="btn btn-cancelar" role="button">Cancelar</a>
+        </div>
     </div>
 </body>
 
