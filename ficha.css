@@ -10,7 +10,7 @@
     margin: 20px;
 }
 
-.container img {
+#player-photo {
     margin-top: 10px;
     height: 250px;
 }
@@ -19,22 +19,12 @@ table {
     margin: 20px auto;
 }
 
-.teams{
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.teams th, .teams td{
-    border-bottom: 1px black solid;
-    padding: 10px 20px;
-}
-
-.teams th {
-    background-color:  rgb(214, 12, 12);
+.tabhead th {
+    background-color: rgb(214, 12, 12);
     color: white;
 }
 
-.item img{ /* Al parecer, si no meto la imagen en un div, height no funciona bien */
+table img {
     height: 50px;
 }
 

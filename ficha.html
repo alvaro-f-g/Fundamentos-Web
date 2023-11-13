@@ -24,7 +24,7 @@
             <div class="title">
                 <h2>Cristiano Ronaldo dos Santos Aveiro</h2>
             </div>
-            <img src="imagenes/players/CristianoRonaldo.png" alt="Cristiano Ronaldo">
+            <img id="player-photo" src="imagenes/players/CristianoRonaldo.png" alt="Cristiano Ronaldo">
             <p><strong>Posición:</strong> Delantero</p>
             <p><strong>Fecha de Nacimiento:</strong> 5 de febrero de 1985</p>
             <p><strong>Nacionalidad:</strong> Portugués</p>
@@ -39,8 +39,9 @@
             <div class="title">
                 <h2>Historial de equipos</h2>
             </div>
-            <table class="teams">
-                <thead>
+
+            <table class="table table-striped">
+                <thead class="tabhead">
                     <tr>
                         <th>Escudo</th>
                         <th>Club</th>
@@ -50,60 +51,49 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Sporting_Lisboa.png" alt="Sporting Lisboa" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Sporting_Lisboa.png" alt="Sporting Lisboa" class="tbl_img">
                         </td>
                         <td>Sporting de Lisboa</td>
                         <td>2002-03</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
                         </td>
                         <td>Manchester United</td>
                         <td>2003-09</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Real_Madrid.png" alt="Real Madrid" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Real_Madrid.png" alt="Real Madrid" class="tbl_img">
                         </td>
                         <td>Real Madrid</td>
                         <td>2009-18</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Juventus.png" alt="Juventus" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Juventus.png" alt="Juventus" class="tbl_img">
                         </td>
                         <td>Juventus</td>
                         <td>2018-22</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
                         </td>
                         <td>Manchester United</td>
                         <td>2021-22</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Al-Nassr.png" alt="Al-Nassr" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Al-Nassr.png" alt="Al-Nassr" class="tbl_img">
                         </td>
                         <td>Al-Nassr</td>
                         <td>2022-24</td>
                     </tr>
                 </tbody>
             </table>
+
             <form role="form">
                 <div class="form-group">
                     <label for="emblem">Escudo</label>
@@ -118,6 +108,7 @@
                     <input type="text" class="form-control">
                 </div>
             </form>
+
             <button type="button" class="btn">Añadir nuevo equipo</button>
         </div>
     </div>
