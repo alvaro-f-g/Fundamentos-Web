@@ -29,12 +29,6 @@ label {
 .input-group {
     margin-bottom: 20px;   
 }
-.custom-input { /*para modificar(hacer más grande el placeholder de descripción*/
-    height: 100px; /* Ajusta la altura del placeholder según sea necesario */
-    font-size: 10px; /* Ajusta el tamaño del texto según sea necesario */
-    width: 300px; /* Ajusta el ancho del placeholder según sea necesario */
-}
-
 .input-group label {
     display: block;
     font-size: 200px;
@@ -59,7 +53,7 @@ label {
     border-radius: 5px;
     cursor: pointer;
     margin-top: 20px;
-    margin-left: 35%; /*para mover los dos botones guardar y salir al centro del formulario, justo debajo del botón guardar precio*/
+    margin-left: 33%; /*para mover los dos botones guardar y salir al centro del formulario, justo debajo del botón guardar precio*/
      /*lo de margin-top es para dejar espacio entre el botón guardar y el resto del formulario*/
 }
 
