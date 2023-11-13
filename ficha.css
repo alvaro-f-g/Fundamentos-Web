@@ -26,13 +26,3 @@ table {
 table img {
     height: 50px;
 }
-
-form {
-    text-align: left;
-    margin: 20px; /*No entiendo porque no se solapa con el margen del boton*/
-}
-
-.form-group {
-    margin-top: 10px;
-    font-weight: 600;
-}

@@ -1,35 +1,3 @@
-/*  Formulario  */
-form {
-    max-width: 250px; /*el formulario tendrá un máximo de 400 pixeles y con esto también se coloca el formulario en el centro*/
-    margin: 0 auto; /*con esto ponemos el formulario totalmente en el centro, ni derecha ni izquierda (que esté centrado en la página)*/
-    margin-bottom: 20px; /*para separar la foto ficha de la barra de progreso*/
-}
-
-/* Etiquetas */
-label {
-    margin-top: 10px;
-    font-weight: bold;
-    color: crimson /* Con esto se cambia todo los labels a color rojo(nombre, apellidos,posición,nacimiento,nacionaliadad y número de camisetas*/
-}
-
- /* Campo de  entrada*/
-.form-control {
-    word-wrap: break-word; /*para que las líneas dentro de los campos del formulario no desborden*/
-}
-
-.input-group {
-    margin-bottom: 20px;   
-}
-.input-group label {
-    display: block;
-    font-size: 200px;
-}
-.input-group input {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
 /* Estilo para los botones */
 .btn{
     margin:10px;/*separación entre los botones guardar y salir*/
