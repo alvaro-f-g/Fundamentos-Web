@@ -2,8 +2,8 @@
 h2{
     font-size: 25px; /*tamaño de letra de texto*/
     text-align: center;
-    text-decoration: underline; /*para subrayar el texto de h2 que ponía Nueva Ficha*/
-    color:crimson    
+    /*text-decoration: underline; para subrayar el texto de h2 que ponía Nueva Ficha*/
+    color:rgb(18, 17, 17) ;   
 }
 
 
