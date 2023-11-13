@@ -26,6 +26,11 @@
     max-width: 250px;
 }
 
+.players p{
+    text-align: center;
+    margin: 10px;
+}
+
 .players a:hover{
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.5);
 }
