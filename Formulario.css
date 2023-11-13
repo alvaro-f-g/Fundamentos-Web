@@ -1,12 +1,3 @@
-/* Título principal */
-h2{
-    font-size: 25px; /*tamaño de letra de texto*/
-    text-align: center;
-    /*text-decoration: underline; para subrayar el texto de h2 que ponía Nueva Ficha*/
-    color:rgb(18, 17, 17) ;   
-}
-
-
 /*  Formulario  */
 form {
     max-width: 250px; /*el formulario tendrá un máximo de 400 pixeles y con esto también se coloca el formulario en el centro*/
