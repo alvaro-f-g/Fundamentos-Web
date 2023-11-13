@@ -17,9 +17,6 @@
         </div>
     </header>
 
-    <!-- Evita que el resto de contenido suba y sea tapado por la cabecera -->
-    <div class="header-fake"></div>
-
     <div class="data">
         <div class="container">
             <div class="title">
@@ -46,7 +43,7 @@
             <div class="title">
                 <h2>Historial de equipos</h2>
             </div>
-            <table>
+            <table class="teams">
                 <thead>
                     <tr>
                         <th>Escudo</th>
@@ -111,6 +108,35 @@
                     </tr>
                 </tbody>
             </table>
+            <table class="player-form">
+                <tr>
+                    <td>
+                        Escudo
+                    </td>
+                    <td>
+                        <input type="file">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Club
+                    </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Etapa
+                    </td>
+                    <td>
+                        <input type="text">
+                    </td>
+                </tr>
+            </table>
+            <button type="button" class="btn">
+                <a>Añadir nuevo equipo</a>
+            </button>
         </div>
     </div>
 </body>

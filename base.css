@@ -15,10 +15,9 @@ header {
         gap: 20px;
         color: rgb(214, 12, 12);
 
-        position: fixed;
+        position: sticky;
         top: 0;
-        left: 0;
-        right: 0;
+        z-index: 1;
 }
 
 #header-img {
@@ -27,14 +26,9 @@ header {
         border-radius: 5px;
 }
 
-.header-fake {
-        /* Lo suyo sería obtener en una variable la altura de header e insertarla aquí */
-        height: 99px; /* = (2*10) + 75 + (2*2) = padding + img + border img */
-}
-
 .container {
         background-color: white;
-        margin: 20px 15%;
+        margin: 20px 10%;
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 25px;
