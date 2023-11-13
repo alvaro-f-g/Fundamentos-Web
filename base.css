@@ -1,9 +1,8 @@
-html {
-        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+h2{
+        margin-bottom: 20px;
 }
 
 body {
-        margin: 0;
         background-color: #f0f0f0;
 }
 
@@ -15,7 +14,9 @@ p {
 
 header {
         display: flex;
-        padding: 10px 20px;
+        height: 100px;
+        padding: 20px;
+
         background-color: black;
         align-items: center;
         gap: 20px;
@@ -33,9 +34,12 @@ header {
 }
 
 .container {
-        background-color: white;
-        margin: 20px 10%;
+        margin: 20px auto;
         padding: 20px;
+        width: 80%;
+        max-width: none;
+        
+        background-color: white;
         border: 1px solid #ccc;
         border-radius: 25px;
         text-align: center;
