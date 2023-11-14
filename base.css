@@ -1,4 +1,4 @@
-*{
+* {
         font-family: 'Kanit';
 }
 
@@ -6,7 +6,12 @@ h1, h2 {
         font-family: 'Vina Sans';
 }
 
+h1 {
+        font-size: 40px;
+}
+
 h2 {
+        font-size: 30px;
         margin-bottom: 20px;
 }
 
