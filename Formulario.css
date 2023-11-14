@@ -1,33 +1,16 @@
 /* Estilo para los botones */
 .btn{
     margin:10px;/*separación entre los botones guardar y salir*/
-    width: fit-content;
-    
 }
-.btn-guardar { /*para retocar el boton guardar, también se podría haber puesto button y retocarlo en general{...}*/
-    padding: 10px 20px;
+
+.btn-guardar {
     background-color: #007BFF;
-    color: #fff;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px;
-    margin-left: 33%; /*para mover los dos botones guardar y salir al centro del formulario, justo debajo del botón guardar precio*/
-     /*lo de margin-top es para dejar espacio entre el botón guardar y el resto del formulario*/
 }
 
 .btn-cancelar {
-    margin-top: 20px; /* para separar el botón del resto del formulario*/
-    padding: 10px 20px;
     background-color: #E74C3C;
-    color: #fff;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
-}
-.botones-container  {
-    display: flex; /*para que los botones guardar y salir esten en línea*/
-    flex-direction: row;
-    align-items: center; /* Muestra los botones en línea */
-      
 }
