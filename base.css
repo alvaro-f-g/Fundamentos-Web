@@ -59,7 +59,7 @@ form {
 .btn {
         margin: 20px;
         padding: 10px;
-        min-width: 80px;
+        min-width: 110px;
 
         border: 2px solid;
         border-radius: 10px;
@@ -82,6 +82,7 @@ form {
         border-bottom-color: rgb(214, 12, 12);
         border-top-color: rgb(264, 62, 62);
         border-left-color: rgb(264, 62, 62);
+        color: white;
 }
 
 .btn:active {
@@ -89,4 +90,8 @@ form {
         border-bottom-color: rgb(264, 62, 62);
         border-top-color: rgb(214, 12, 12);
         border-left-color: rgb(214, 12, 12);
+}
+
+.bi-person-fill-add {
+        font-size: 1.1em;
 }
