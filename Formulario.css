@@ -1,16 +1,7 @@
-/* Estilo para los botones */
-.btn{
-    margin:10px;/*separación entre los botones guardar y salir*/
+.form-range::-webkit-slider-runnable-track {
+    background-color: #f0f0f0f0;
 }
 
-.btn-guardar {
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
-}
-
-.btn-cancelar {
-    background-color: #E74C3C;
-    border: none;
-    border-radius: 5px;
+.form-range::-webkit-slider-thumb{
+    background-color: rgb(214, 12, 12);
 }
