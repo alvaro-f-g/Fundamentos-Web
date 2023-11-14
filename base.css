@@ -47,13 +47,19 @@ header {
 
 form {
         text-align: left;
-        margin: 20px; /*No entiendo porque no se solapa con el margen del boton*/
+        margin: 20px;
+        margin-bottom: 0px;
 }
 
 .form-group label {
         margin-top: 15px;
         font-weight: bold;
         color: rgb(214, 12, 12);
+}
+
+.form-btn {
+        display: flex;
+        justify-content: center;
 }
 
 .btn {
