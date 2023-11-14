@@ -58,22 +58,18 @@ form {
 
 .btn {
         margin: 20px;
-        padding: 10px 0px; /* Apaño porque si podemos ajustar el width al content, pero height no*/
-        width: auto;
+        padding: 10px;
         min-width: 80px;
 
-        background-color: rgb(214, 12, 12);
         border: 2px solid;
+        border-radius: 10px;
         border-right-color: rgb(214, 12, 12);
         border-bottom-color: rgb(214, 12, 12);
         border-top-color: rgb(264, 62, 62);
         border-left-color: rgb(264, 62, 62);
-        border-radius: 15px;
+        background-color: rgb(214, 12, 12);
 
         transition: background-color 0.2s;
-
-        padding: 10px;
-        border-radius: 15px;
 
         text-decoration: none;
         color: white;
