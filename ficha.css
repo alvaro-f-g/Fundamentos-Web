@@ -1,48 +1,32 @@
-.data{
+.data {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: start;
 }
 
-.container{
-    width: 500px;
+.container {
     margin: 20px;
+    max-width: 800px;
 }
 
-.container img {
-    margin-top: 10px;
+#player-photo {
     height: 250px;
 }
 
-p {
-    text-align: left;
-}
-
-table{
+table {
     margin: 20px auto;
 }
 
-.teams{
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.teams th, .teams td{
-    border-bottom: 1px black solid;
-    padding: 10px 20px;
-}
-
-.teams th {
-    background-color:  rgb(214, 12, 12);
+.tabhead th {
+    background-color: rgb(214, 12, 12);
     color: white;
 }
 
-.item img{ /* Al parecer, si no meto la imagen en un div, height no funciona bien */
+table img {
     height: 50px;
 }
 
-.player-form{
-    text-align: left;
-    margin-bottom: 0px; /*No entiendo porque no se solapa con el margen del boton*/
+td {
+    vertical-align: middle;
 }

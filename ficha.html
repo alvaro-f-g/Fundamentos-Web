@@ -3,6 +3,11 @@
 
 <head>
     <title>Ficha de Cristiano Ronaldo</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Vina+Sans|Kanit" rel="stylesheet" type="text/css">
+
     <link type="text/css" rel="stylesheet" href="base.css" />
     <link type="text/css" rel="stylesheet" href="ficha.css" />
 </head>
@@ -19,32 +24,39 @@
 
     <div class="data">
         <div class="container">
-            <div class="title">
-                <h2>Cristiano Ronaldo dos Santos Aveiro</h2>
-            </div>
-            <img src="imagenes/players/CristianoRonaldo.png" alt="Cristiano Ronaldo">
-            <p><strong>Posición:</strong> Delantero</p>
-            <p><strong>Fecha de Nacimiento:</strong> 5 de febrero de 1985</p>
-            <p><strong>Nacionalidad:</strong> Portugués</p>
-            <p><strong>Número de Camiseta:</strong> 7</p>
+            <h2>Cristiano Ronaldo dos Santos Aveiro</h2>
 
-            <button type="button" class="btn">
-                <a>Editar</a>
-            </button>
-            <button type="button" class="btn">
-                <a>Eliminar</a>
-            </button>
-            <button type="button" class="btn">
-                <a href="plantilla.html">Volver</a>
-            </button>
+            <div class="row">
+                <div class="col-md-4">
+                    <img id="player-photo" src="imagenes/players/CristianoRonaldo.png" alt="Cristiano Ronaldo">
+                </div>
+                <div class="col-md-8">
+                    <p><strong>Posición:</strong> Delantero</p>
+                    <p><strong>Dorsal:</strong> 7</p>
+                    <p><strong>Fecha de nacimiento:</strong> 5 de febrero de 1985</p>
+                    <p><strong>Nacionalidad:</strong> Portugués</p>
+                    <p><strong>Valor de mercado:</strong> 94.000.000 €</p>
+                    <p><strong>Descripción:</strong> Cristiano Ronaldo, nacido el 5 de febrero de 1985 en Portugal, es
+                        uno de los mejores futbolistas de la historia. Destacado por su habilidad técnica, velocidad y
+                        capacidad goleadora, ha tenido exitosas etapas en clubes como el Manchester United y el Real
+                        Madrid, ganando múltiples títulos, incluidas varias Ligas de Campeones. Su carrera internacional
+                        con Portugal también ha sido destacada, culminando en la victoria en la Eurocopa 2016. Más allá
+                        del fútbol, Ronaldo es una figura globalmente reconocida y admirada.</p>
+                </div>
+            </div>
+
+            <div class="btn-cont">
+                <button type="button" class="btn"><i class="bi bi-pencil"></i> Editar</button>
+                <button type="button" class="btn"><i class="bi bi-trash"></i> Eliminar</button>
+                <a href="plantilla.html" class="btn" role="button"><i class="bi bi-box-arrow-left"></i> Volver</a>
+            </div>
         </div>
 
         <div class="container">
-            <div class="title">
-                <h2>Historial de equipos</h2>
-            </div>
-            <table class="teams">
-                <thead>
+            <h2>Historial de equipos</h2>
+
+            <table class="table table-striped">
+                <thead class="tabhead">
                     <tr>
                         <th>Escudo</th>
                         <th>Club</th>
@@ -54,89 +66,72 @@
                 <tbody>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Sporting_Lisboa.png" alt="Sporting Lisboa" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Sporting_Lisboa.png" alt="Sporting Lisboa" class="tbl_img">
                         </td>
                         <td>Sporting de Lisboa</td>
                         <td>2002-03</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
                         </td>
                         <td>Manchester United</td>
                         <td>2003-09</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Real_Madrid.png" alt="Real Madrid" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Real_Madrid.png" alt="Real Madrid" class="tbl_img">
                         </td>
                         <td>Real Madrid</td>
                         <td>2009-18</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Juventus.png" alt="Juventus" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Juventus.png" alt="Juventus" class="tbl_img">
                         </td>
                         <td>Juventus</td>
                         <td>2018-22</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
                         </td>
                         <td>Manchester United</td>
                         <td>2021-22</td>
                     </tr>
                     <tr>
                         <td>
-                            <div class="item">
-                                <img src="imagenes/teams/Al-Nassr.png" alt="Al-Nassr" class="tbl_img">
-                            </div>
+                            <img src="imagenes/teams/Al-Nassr.png" alt="Al-Nassr" class="tbl_img">
                         </td>
                         <td>Al-Nassr</td>
                         <td>2022-24</td>
                     </tr>
                 </tbody>
             </table>
-            <table class="player-form">
-                <tr>
-                    <td>
-                        Escudo
-                    </td>
-                    <td>
-                        <input type="file">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Club
-                    </td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Etapa
-                    </td>
-                    <td>
-                        <input type="text">
-                    </td>
-                </tr>
-            </table>
-            <button type="button" class="btn">
-                <a>Añadir nuevo equipo</a>
-            </button>
+
+            <form role="form">
+                <div class="form-group">
+                    <label for="emblem">Escudo</label>
+                    <input type="file" class="form-control" id="emblem">
+                </div>
+                <div class="form-group">
+                    <label for="team">Club</label>
+                    <input type="text" class="form-control" id="team" placeholder="Nombre del equipo">
+                </div>
+                <div class="form-group row">
+                    <label for="stage">Etapa</label>
+                    <div class="col-sm-6 col-xs-12">
+                        <input type="number" class="form-control" id="start-stage" placeholder="Primer año">
+                    </div>
+                    <div class="col-sm-6 col-xs-12">
+                        <input type="number" class="form-control" id="end-stage" placeholder="Último año">
+                    </div>
+                </div>
+
+                <div class="btn-cont">
+                    <button type="button" class="btn"><i class="bi bi-plus-lg"></i> Añadir nuevo equipo</button>
+                </div>
+            </form>
         </div>
     </div>
 </body>
