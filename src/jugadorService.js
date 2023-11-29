@@ -180,5 +180,12 @@ function cargarSubElementos(id) {
     
         return sub;
     }
-
-  
+export function añadirJugador(jugador){
+    let id = nextId++;
+    jugador.set('id',id.toString()); //al ser un mapa necesitamos pasarle una cadena de caracteres, si fuera id 10 necesitamos id '10'
+    jugador.id= id.toString();
+    jugadores.set(jugador.id,jugador);
+}
+export function borrarJugador(id){
+    jugadores.delete(id);
+}
