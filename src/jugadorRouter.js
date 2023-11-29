@@ -15,3 +15,25 @@ function confirmarValores(escudos,clubes,temporadas){
     return 0 //caso de no haber habido ningún error
 
 }
+//método para mostrar la pagina principal
+router.get('/', (req, res) => { 
+    res.render('plantilla', { 
+        jugadores: jugadorService.getJugadores()
+    });
+});
+//para añadir nuevos jugadores
+router.post('/jugador/new', (req, res) => {
+ 
+    let jugador = {
+        nombreApellidos: req.body.name, //es name, description,position ... por como esta en el formulario (en el id o name)
+        descripcion: req.body.description,
+        posición: req.body.position,
+        dorsal: req.body.jerseyNumber,
+        fechaNacimiento: req.body.birthday,
+        nacionalidad: req.body.nationality,
+        fotoPerfil: req.body.playerphoto,
+        valorMercado: req.body.price
+    };
+    jugadorService.añadirJugador(jugador);
+    res.render('saved_player');
+});
