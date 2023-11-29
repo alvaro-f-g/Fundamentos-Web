@@ -162,7 +162,7 @@ function cargarSubElementos(id) {
         let datosComunes = {
             escudos: ["Sporting_Lisboa.png", "Manchester_United.png", "Real_Madrid.png", " Juventus.png", "Manchester United.png","Al-Nassr.png"],
             clubes: ["Sporting de Lisboa", "Manchester United", "Real Madrid", " Juventus", "Manchester United","Al-Nassr"],
-            etapas: ["2002-03", "2003-09", "2009-18", "2018-22","2021-22","2022-24"]
+            temporadas: ["1", "6", "9", "4","1","2"]
         };
     
         if (id >= 0 && id <= 9) {
@@ -170,7 +170,7 @@ function cargarSubElementos(id) {
                 let subElemento = {
                     escudo: datosComunes.escudos[i],
                     club: datosComunes.clubes[i],
-                    etapa: datosComunes.etapas[i]
+                    temporada: datosComunes.temporadas[i]
                 };
                 sub[i] = subElemento;
             }
