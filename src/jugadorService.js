@@ -137,16 +137,16 @@ function cargarJugador(id){
             console.log("Opcion no existente");
     } 
     let jugador ={ //definir las características de un jugador para cargar porque estamos haciendo un mapa de jugadores
-        fotoPerfil: foto,
-        nombreApellidos: name,
-        posición: pos,
-        dorsal: number,
-        fechaNacimiento: date,
-        nacionalidad: nationality,
-        valorMercado: marketValue,
-        descripcion: description,
+        fotoPerfil:foto,
+        nombreApellidos:name,
+        posición:pos,
+        dorsal:number,
+        fechaNacimiento:date,
+        nacionalidad:nationality,
+        valorMercado:marketValue,
+        descripcion:description,
         subElems : subelemento,//subelementos
-        identificador: id
+        identificador:id
     }
     return jugador
 }
@@ -180,14 +180,5 @@ function cargarSubElementos(id) {
     
         return sub;
     }
-export function añadirJugador(jugador){
-    let id = nextId++;
-    jugador.set('id',id.toString()); //en los mapas las claves deben ser cadenas caracteres si el id es 10, necesitamos que sea '10'
-    jugador.id = id.toString();
-    jugadores.set(jugador.id,jugador);
 
-}
-export function borrarJugador(id){
-    jugadores.delete(id);
-}
   
