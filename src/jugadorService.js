@@ -189,3 +189,11 @@ export function añadirJugador(jugador){
 export function borrarJugador(id){
     jugadores.delete(id);
 }
+//
+export function getKeys(){
+    return Array.from(jugadores.keys()); //keys es un valor que tienen siempre los  mapas, el método keys() devuelve las claves en el objeto jugadores que es un Mapa y con Array.from hacemos que devuelva un array con las claves del mapa jugadores(foto, name...)
+}
+
+export function getJugadores(){
+    return Array.from(jugadores.values()); //values es un valor que tienen siempre los mapas,el método values() devuelve las valores en el objeto jugadores que es un Mapa y con Array.from hacemos que devuelva un array con las valores del mapa jugadores(Cristiano Ronaldo o el jugador que sea, los dorsales...)
+}
