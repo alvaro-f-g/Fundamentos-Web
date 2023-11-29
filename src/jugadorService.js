@@ -166,7 +166,7 @@ function cargarSubElementos(id) {
         };
     
         if (id >= 0 && id <= 9) {
-            for (let i = 0; i < datosComunes.noms.length; i++) { //se verifica que id esté en el rango correcto antes de ejecutar el bucle for
+            for (let i = 0; i < datosComunes.escudos.length; i++) { //se verifica que id esté en el rango correcto antes de ejecutar el bucle for
                 let subElemento = {
                     escudo: datosComunes.escudos[i],
                     club: datosComunes.clubes[i],
