@@ -197,3 +197,7 @@ export function getKeys(){
 export function getJugadores(){
     return Array.from(jugadores.values()); //values es un valor que tienen siempre los mapas,el método values() devuelve las valores en el objeto jugadores que es un Mapa y con Array.from hacemos que devuelva un array con las valores del mapa jugadores(Cristiano Ronaldo o el jugador que sea, los dorsales...)
 }
+//Para acceder a  cada jugador
+export function getJugador(id){
+    return jugadores.get(id);
+}
