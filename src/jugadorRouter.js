@@ -37,3 +37,9 @@ router.post('/jugador/new', (req, res) => {
     jugadorService.añadirJugador(jugador);
     res.render('saved_player');
 });
+router.get('/jugador/:id/borrar', (req, res) => {
+
+    jugadorService.borrarJugador(req.params.id);
+
+    res.render('deleted_player');
+});
