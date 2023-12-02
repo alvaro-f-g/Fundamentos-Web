@@ -3,7 +3,7 @@ import * as jugadorService from './jugadorService.js';
 const router = express.Router();
 
 //función que va a servir para ver si los valores que pones en los subelementos son válidos y si no son válidos se te comunicará
-function confirmarValores(escudos,clubes,temporadas){
+function confirmarValoresSub(escudos,clubes,temporadas){
     let numTemporadas=parseInt(temporadas) //esto transforma el  string temporadas(por estar en un mapa) en un número entero y si la cadena no se ha podido convertir en un número o se convirtiese en un decimal te devuelve Nan
     if(escudos=="" || clubes=="" || temporadas==""){  //si la cadena esta vacía
         return 1
@@ -14,6 +14,9 @@ function confirmarValores(escudos,clubes,temporadas){
     //Ahora comprobaremos lo de la imagen
     return 0 //caso de no haber habido ningún error
 
+}
+function confirmarValoresElem(){
+    
 }
 //método para mostrar la pagina principal
 router.get('/', (req, res) => { 
