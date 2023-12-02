@@ -1,5 +1,28 @@
 const jugadores = new Map();
 let nextId = 0;
+function cargarSubElementos(id) {
+    let sub = []; //para guardar las carácteristicas de los subelementos
+    let datosComunes = {
+        escudos: ["Sporting_Lisboa.png", "Manchester_United.png", "Real_Madrid.png", " Juventus.png", "Manchester United.png","Al-Nassr.png"],
+        clubes: ["Sporting de Lisboa", "Manchester United", "Real Madrid", " Juventus", "Manchester United","Al-Nassr"],
+        temporadas: ["1", "6", "9", "4","1","2"]
+    };
+
+    if (id >= 0 && id <= 9) {
+        for (let i = 0; i < datosComunes.escudos.length; i++) { //se verifica que id esté en el rango correcto antes de ejecutar el bucle for
+            let subElemento = {
+                escudo: datosComunes.escudos[i],
+                club: datosComunes.clubes[i],
+                temporada: datosComunes.temporadas[i]
+            };
+            sub[i] = subElemento;
+        }
+    } else {
+        console.log("Opción no existente");
+    }
+
+    return sub;
+}
 //Plantilla inicial
 function cargarJugador(id){
     let foto;
@@ -157,34 +180,11 @@ function cargarJugadores(){
         nextId+=1
     }
 }
-function cargarSubElementos(id) {
-        let sub = []; //para guardar las carácteristicas de los subelementos
-        let datosComunes = {
-            escudos: ["Sporting_Lisboa.png", "Manchester_United.png", "Real_Madrid.png", " Juventus.png", "Manchester United.png","Al-Nassr.png"],
-            clubes: ["Sporting de Lisboa", "Manchester United", "Real Madrid", " Juventus", "Manchester United","Al-Nassr"],
-            temporadas: ["1", "6", "9", "4","1","2"]
-        };
-    
-        if (id >= 0 && id <= 9) {
-            for (let i = 0; i < datosComunes.escudos.length; i++) { //se verifica que id esté en el rango correcto antes de ejecutar el bucle for
-                let subElemento = {
-                    escudo: datosComunes.escudos[i],
-                    club: datosComunes.clubes[i],
-                    temporada: datosComunes.temporadas[i]
-                };
-                sub[i] = subElemento;
-            }
-        } else {
-            console.log("Opción no existente");
-        }
-    
-        return sub;
-    }
+cargarJugadores();
 export function añadirJugador(jugador){
-    let id = nextId++;
-    jugador.set('id',id.toString()); //al ser un mapa necesitamos pasarle una cadena de caracteres, si fuera id 10 necesitamos id '10'
-    jugador.id= id.toString();
-    jugadores.set(jugador.id,jugador);
+    jugador.identificador = nextId;
+    jugadores.set(jugador.identificador,jugador);
+    nextId++;
 }
 export function borrarJugador(id){
     jugadores.delete(id);

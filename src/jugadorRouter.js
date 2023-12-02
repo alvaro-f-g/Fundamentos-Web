@@ -49,6 +49,48 @@ router.get('/', (req, res) => {
         jugadores: jugadorService.getJugadores()
     });
 });
+
+router.get('/ficha.html', (req,res) => {
+    let id = parseInt(req.query.id)
+    res.render('ficha',{
+        jugador: jugadorService.getJugador(id),
+        id:id
+    });
+});
+
+router.post("nuevoSubElemento",(req,res) => {
+    let nota="";
+    let id = parseInt(req.body.id)
+    //Añadimos nuevo subelemento(escudo,club y temporada)
+    let warning = confirmarValoresSub(req.body.escudos,req.body.clubes,req.body,temporadas);
+    if(warning==0){ //si no ha habido ningún error, se crea el nuevo subelemento
+        nota="Subelemento añadido"
+        id = parseInt(req.body.id)
+        //Guardamos las características del nuevo subelemento
+        let nuevoSubElem = { 
+            escudos : req.body.escudos,
+            clubes : req.body.clubes, 
+            temporadas : req.body.temporadas
+        }
+        let jugador = jugadorService.getJugador(id);
+        console.log(jugador);
+        jugador.subElems[jugador.subElems.length] = nuevoSubElem;
+    }
+    else if (warning == 1){
+        nota = "Complete los campos del formulario";
+    }
+    else if (warning == 2){
+        nota = "El número de temporadas debe ser un número entero"
+    }
+    /*else if(warning == 3){
+        nota = "La imagen debe ser válida"
+    }*/
+    res.render('mensajes', { //esto con render pasa las notas y el id a mensajes html
+        id: id,
+        nota: nota
+    });
+
+});
 //para añadir nuevos jugadores
 router.post('/jugador/new', (req, res) => {
  
