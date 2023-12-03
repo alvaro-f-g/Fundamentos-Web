@@ -63,7 +63,7 @@ router.post("nuevoSubElemento",(req,res) => {
     let nota="";
     let id = parseInt(req.body.id) //Obtenemos el valor del "id" del jugador desde el cuerpo de la solicitud POST (req.body.id) y se convierte a un entero utilizando parseInt.
     //Añadimos nuevo subelemento(escudo,club y temporada)
-    let warning = confirmarValoresSub(req.body.escudos,req.body.clubes,req.body,temporadas); //Llamamos a la función  confirmarValoresSub con algunos valores del cuerpo de la solicitud (req.body) para validarlos y obtener un código de advertencia (warning).
+    let warning = confirmarValoresSub(req.body.escudos,req.body.clubes,req.body.temporadas); //Llamamos a la función  confirmarValoresSub con algunos valores del cuerpo de la solicitud (req.body) para validarlos y obtener un código de advertencia (warning).
     if(warning==0){ //si no ha habido ningún error, se crea el nuevo subelemento
         nota="Subelemento añadido"
         id = parseInt(req.body.id)
@@ -105,8 +105,31 @@ router.post('/jugador/new', (req, res) => {
         fotoPerfil: req.body.playerphoto,
         valorMercado: req.body.price
     };
-    jugadorService.añadirJugador(jugador);
-    res.render('saved_player');
+    let nota="";
+    let warning = confirmarValoresElem(req.body.name,req.body.description,req.body.position,req.body.jerseyNumber,req.body.birthday,req.body.nationality,req.body.playerphoto,req.body.price); //Llamamos a la función  confirmarValoresElem con algunos valores del cuerpo de la solicitud (req.body) para validarlos y obtener un código de advertencia (warning).
+    if(warning==0){ //si no ha habido ningún error, se crea el nuevo elemento(jugador)
+        jugadorService.añadirJugador(jugador);
+        nota="Jugador añadido";
+    }
+    else if (warning == 1){
+        nota = "Rellene todos los campos del formulario";
+    }
+    else if (warning == 2){
+        nota = "El dorsal debe ser un número mayor o igual a 0 "
+    }
+    else if(warning == 3){
+        nota = "El precio/valor de jugador debe ser un número mayor que 0"
+    }
+    else if(warning == 4){
+        nota = "La fecha de nacimiento no es válida, introdúcela en formato MM/DD/YYYY"
+    }
+    /*else if(warning == 5){
+        nota = "La imagen debe ser válida"
+    }*/
+    res.render('saved_player',{
+        nota:nota
+    });
+        
 });
 router.get('/jugador/:id/borrar', (req, res) => {
 
