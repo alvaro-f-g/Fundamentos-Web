@@ -50,19 +50,20 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/ficha.html', (req,res) => {
-    let id = parseInt(req.query.id)
-    res.render('ficha',{
-        jugador: jugadorService.getJugador(id),
-        id:id
+router.get('/ficha.html', (req,res) => { //con el get hacemos que te lleve a la ruta de la url que corresponde a ficha
+    let id = parseInt(req.query.id) //utilizamos req.query para acceder al id del jugador y con parseInt  convertimos el número a un entero
+    res.render('ficha',{ //renderizamos (la vista ficha( que es ficha.html)) para construir(acceder en este caso porque ya la teníamos) una página html(ficha.html) dinamicamente incorporando datos específicos del jugador
+        // Así en la vista ficha se tendrá acceso a dos cosas: la información del jugador (que obtengo con jugadorService.getJugador(id)) y el ID del jugador (que es simplemente id)."
+        jugador: jugadorService.getJugador(id), //accedemos al id del jugador
+        id:id //Se pasa el valor de la variable id(id del jugador) a una variable id, así proporcionamos información(datos) adicional a la vista. Luego en la vista 'ficha', podremos usar <%= id %> para insertar dinámicamente el valor de id en la plantilla de la vista.
     });
 });
 
 router.post("nuevoSubElemento",(req,res) => {
     let nota="";
-    let id = parseInt(req.body.id)
+    let id = parseInt(req.body.id) //Obtenemos el valor del "id" del jugador desde el cuerpo de la solicitud POST (req.body.id) y se convierte a un entero utilizando parseInt.
     //Añadimos nuevo subelemento(escudo,club y temporada)
-    let warning = confirmarValoresSub(req.body.escudos,req.body.clubes,req.body,temporadas);
+    let warning = confirmarValoresSub(req.body.escudos,req.body.clubes,req.body,temporadas); //Llamamos a la función  confirmarValoresSub con algunos valores del cuerpo de la solicitud (req.body) para validarlos y obtener un código de advertencia (warning).
     if(warning==0){ //si no ha habido ningún error, se crea el nuevo subelemento
         nota="Subelemento añadido"
         id = parseInt(req.body.id)
@@ -72,9 +73,9 @@ router.post("nuevoSubElemento",(req,res) => {
             clubes : req.body.clubes, 
             temporadas : req.body.temporadas
         }
-        let jugador = jugadorService.getJugador(id);
+        let jugador = jugadorService.getJugador(id); //Obtenemos el jugador correspondiente al id proporcionado
         console.log(jugador);
-        jugador.subElems[jugador.subElems.length] = nuevoSubElem;
+        jugador.subElems[jugador.subElems.length] = nuevoSubElem; //añadimos el nuevosubElemento al array subElems
     }
     else if (warning == 1){
         nota = "Complete los campos del formulario";
@@ -85,7 +86,7 @@ router.post("nuevoSubElemento",(req,res) => {
     /*else if(warning == 3){
         nota = "La imagen debe ser válida"
     }*/
-    res.render('mensajes', { //esto con render pasa las notas y el id a mensajes html
+    res.render('mensajes', { //esto con render pasa las notas y el id a mensajes html, es decir se renderiza la vista 'mensajes' con el objeto que contiene el "id" y la "nota". Esto  muestra un mensaje al usuario sobre el resultado de la operación, ya sea que se haya añadido correctamente el subelemento o si ha habido algún problema.
         id: id,
         nota: nota
     });
