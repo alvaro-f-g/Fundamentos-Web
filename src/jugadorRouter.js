@@ -137,3 +137,12 @@ router.get('/jugador/:id/borrar', (req, res) => {
 
     res.render('deleted_player');
 });
+
+router.get('/editar.html', (req,res) => {  // se usa para cuando se acceda al url de la pagina de edicion, mediante el id obtenemos el jugador que posteriormente se editará
+    let id = parseInt(req.query.id)
+    res.render('editar', {
+        jugador:jugadorService.getJugador(id),
+        id:id
+    });
+});
+export default router;
