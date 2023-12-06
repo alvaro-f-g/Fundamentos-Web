@@ -26,51 +26,16 @@
         <h2>Plantilla temporada 23/24</h2>
 
         <div class="players">
+            {{#players}}
             <a href="ficha">
-                <img src="imagenes/players/CristianoRonaldo.png" alt="Cristiano Ronaldo">
-                <p>Cristiano Ronaldo</p>
+                <img src="imagenes/players/{{photo}}" alt="{{name}}">
+                <p>{{name}}</p>
             </a>
-            <a href="ficha">
-                <img src="imagenes/players/Vinicius.jpg" alt="Vinicius Junior">
-                <p>Vinicius Junior</p>
-            </a>
-            <a href="ficha">
-                <img src="imagenes/players/TheoHernandez.png" alt="Theo Hernandez">
-                <p>Theo Hern&aacute;ndez</p>
-            </a>
-            <a href="ficha">
-                <img src="imagenes/players/Isco.png" alt="Isco">
-                <p>Isco Alarc&oacute;n</p>
-            </a>
-            <a href="ficha">
-                <img src="imagenes/players/Bellingham.png" alt="Jude Bellingham">
-                <p>Jude Bellingham</p>
-            </a>
-            <a href="ficha">
-                <img src="imagenes/players/MasonMount.png" alt="Mason Mount">
-                <p>Mason Mount</p>
-            </a>
-            <a href="ficha">
-                <img src="imagenes/players/Messi.png" alt="Leo Messi">
-                <p>Leo Messi</p>
-            </a>
-            <a href="ficha">
-                <img src="imagenes/players/Vallejo.png" alt="Jesús Vallejo">
-                <p>Jes&uacute;s Vallejo</p>
-            </a>
-            <a href="ficha">
-                <img src="imagenes/players/RobertSanchez.png" alt="Robert Sanchez">
-                <p>Robert S&aacute;nchez</p>
-            </a>
-            <a href="ficha">
-                <img src="imagenes/players/Achraf.jpg" alt="Achraf">
-                <p>Achraf Hakimi</p>
-            </a>
+            {{/players}}
         </div>
 
         <div class="btn-cont">
-            <a href="formulario.html" class="btn" role="btn"><i class="bi bi-person-fill-add"></i> Inscribir nuevo
-                jugador</a>
+            <a href="formulario.html" class="btn" role="btn"><i class="bi bi-person-fill-add"></i> Inscribir nuevo jugador</a>
         </div>
     </section>
 

@@ -46,7 +46,7 @@ function confirmarValoresElem(foto, nombreApellidos, posiscion, dorsal, fechaNac
 //método para mostrar la pagina principal
 router.get('/', (req, res) => {
     res.render('plantilla', { 
-        jugadores: playerService.getPlayers(),
+        players: playerService.getPlayers(),
     });
 });
 
