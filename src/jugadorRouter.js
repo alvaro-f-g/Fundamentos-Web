@@ -50,7 +50,7 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/ficha.html', (req,res) => { //con el get hacemos que te lleve a la ruta de la url que corresponde a ficha
+router.get('/ficha', (req,res) => { //con el get hacemos que te lleve a la ruta de la url que corresponde a ficha
     let id = parseInt(req.query.id) //utilizamos req.query para acceder al id del jugador y con parseInt  convertimos el número a un entero
     res.render('ficha',{ //renderizamos (la vista ficha( que es ficha.html)) para construir(acceder en este caso porque ya la teníamos) una página html(ficha.html) dinamicamente incorporando datos específicos del jugador
         // Así en la vista ficha se tendrá acceso a dos cosas: la información del jugador (que obtengo con jugadorService.getJugador(id)) y el ID del jugador (que es simplemente id)."
@@ -59,7 +59,7 @@ router.get('/ficha.html', (req,res) => { //con el get hacemos que te lleve a la 
     });
 });
 
-router.post("nuevoSubElemento",(req,res) => {
+router.post("/nuevoSubElemento",(req,res) => {
     let nota="";
     let id = parseInt(req.body.id) //Obtenemos el valor del "id" del jugador desde el cuerpo de la solicitud POST (req.body.id) y se convierte a un entero utilizando parseInt.
     //Añadimos nuevo subelemento(escudo,club y temporada)
