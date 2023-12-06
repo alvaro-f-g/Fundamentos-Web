@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Ficha de Cristiano Ronaldo</title>
+    <title>Ficha de {{player.name}}</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -24,24 +24,19 @@
 
     <div class="data">
         <div class="container">
-            <h2>Cristiano Ronaldo dos Santos Aveiro</h2>
+            <h2>{{player.name}}</h2>
 
             <div class="row">
                 <div class="col-md-4">
-                    <img id="player-photo" src="imagenes/players/CristianoRonaldo.png" alt="Cristiano Ronaldo">
+                    <img id="player-photo" src="imagenes/players/{{player.photo}}" alt="{{player.name}}">
                 </div>
                 <div class="col-md-8">
-                    <p><strong>Posición:</strong> Delantero</p>
-                    <p><strong>Dorsal:</strong> 7</p>
-                    <p><strong>Fecha de nacimiento:</strong> 5 de febrero de 1985</p>
-                    <p><strong>Nacionalidad:</strong> Portugués</p>
-                    <p><strong>Valor de mercado:</strong> 94.000.000 €</p>
-                    <p><strong>Descripción:</strong> Cristiano Ronaldo, nacido el 5 de febrero de 1985 en Portugal, es
-                        uno de los mejores futbolistas de la historia. Destacado por su habilidad técnica, velocidad y
-                        capacidad goleadora, ha tenido exitosas etapas en clubes como el Manchester United y el Real
-                        Madrid, ganando múltiples títulos, incluidas varias Ligas de Campeones. Su carrera internacional
-                        con Portugal también ha sido destacada, culminando en la victoria en la Eurocopa 2016. Más allá
-                        del fútbol, Ronaldo es una figura globalmente reconocida y admirada.</p>
+                    <p><strong>Posición:</strong> {{player.position}}</p>
+                    <p><strong>Dorsal:</strong> {{player.number}}</p>
+                    <p><strong>Fecha de nacimiento:</strong> {{player.birth}}</p>
+                    <p><strong>Nacionalidad:</strong> {{player.nationality}}</p>
+                    <p><strong>Valor de mercado:</strong> {{player.marketValue}}</p>
+                    <p><strong>Descripción:</strong> {{player.description}}</p>
                 </div>
             </div>
 
@@ -64,48 +59,15 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{#subelems}}
                     <tr>
                         <td>
-                            <img src="imagenes/teams/Sporting_Lisboa.png" alt="Sporting Lisboa" class="tbl_img">
+                            <img src="imagenes/teams/{{emblem}}" alt="{{club}}" class="tbl_img">
                         </td>
-                        <td>Sporting de Lisboa</td>
-                        <td>2002-03</td>
+                        <td>{{club}}</td>
+                        <td>{{stage.start}}-{{stage.end}}</td>
                     </tr>
-                    <tr>
-                        <td>
-                            <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
-                        </td>
-                        <td>Manchester United</td>
-                        <td>2003-09</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="imagenes/teams/Real_Madrid.png" alt="Real Madrid" class="tbl_img">
-                        </td>
-                        <td>Real Madrid</td>
-                        <td>2009-18</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="imagenes/teams/Juventus.png" alt="Juventus" class="tbl_img">
-                        </td>
-                        <td>Juventus</td>
-                        <td>2018-22</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="imagenes/teams/Manchester_United.png" alt="Manchester United" class="tbl_img">
-                        </td>
-                        <td>Manchester United</td>
-                        <td>2021-22</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <img src="imagenes/teams/Al-Nassr.png" alt="Al-Nassr" class="tbl_img">
-                        </td>
-                        <td>Al-Nassr</td>
-                        <td>2022-24</td>
-                    </tr>
+                    {{/subelems}}
                 </tbody>
             </table>
 

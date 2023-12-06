@@ -50,12 +50,11 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/ficha', (req,res) => { //con el get hacemos que te lleve a la ruta de la url que corresponde a ficha
-    let id = parseInt(req.query.id) //utilizamos req.query para acceder al id del jugador y con parseInt  convertimos el número a un entero
-    res.render('ficha',{ //renderizamos (la vista ficha( que es ficha.html)) para construir(acceder en este caso porque ya la teníamos) una página html(ficha.html) dinamicamente incorporando datos específicos del jugador
-        // Así en la vista ficha se tendrá acceso a dos cosas: la información del jugador (que obtengo con jugadorService.getJugador(id)) y el ID del jugador (que es simplemente id)."
-        jugador: playerService.getPlayer(id), //accedemos al id del jugador
-        id:id //Se pasa el valor de la variable id(id del jugador) a una variable id, así proporcionamos información(datos) adicional a la vista. Luego en la vista 'ficha', podremos usar <%= id %> para insertar dinámicamente el valor de id en la plantilla de la vista.
+router.get('/ficha', (req,res) => {  // No sé porque pero '/ficha/:id' rompe la visualización del html (en plantilla.html habría que poner href="ficha")
+    // let id = parseInt(req.params.id);
+    res.render('ficha',{
+        player: playerService.getPlayer(0),  // .getPlayer(id),
+        subelems: playerService.getPlayer(0).subelements
     });
 });
 

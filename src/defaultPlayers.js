@@ -1,15 +1,15 @@
 export class Player {
      constructor(photo, name, position, number, birth, nationality, marketValue, description) {
-         this.photo = photo;
-         this.name = name;
-         this.position = position;
-         this.number = number;
-         this.birth = birth;
-         this.nationality = nationality;
-         this.marketValue = marketValue;
-         this.description = description;
+          this.photo = photo;
+          this.name = name;
+          this.position = position;
+          this.number = number;
+          this.birth = birth;
+          this.nationality = nationality;
+          this.marketValue = marketValue;
+          this.description = description;
      }
- }
+}
 
 export const defaultPlayers = [
      new Player(
@@ -115,7 +115,7 @@ export const defaultPlayers = [
 ];
 
 export const defaultSubelements = {
-     emblems: ["Sporting_Lisboa.png", "Manchester_United.png", "Real_Madrid.png", " Juventus.png", "Manchester United.png", "Al-Nassr.png"],
+     emblems: ["Sporting_Lisboa.png", "Manchester_United.png", "Real_Madrid.png", "Juventus.png", "Manchester_United.png", "Al-Nassr.png"],
      clubs: ["Sporting de Lisboa", "Manchester United", "Real Madrid", " Juventus", "Manchester United", "Al-Nassr"],
-     stages: [{ inicio: 2002, fin: 2003 }, { inicio: 2003, fin: 2009 }, { inicio: 2009, fin: 2018 }, { inicio: 2018, fin: 2022 }, { inicio: 2021, fin: 2022 }, { inicio: 2022, fin: 2024 }]
- };
+     stages: [{ start: 2002, end: 2003 }, { start: 2003, end: 2009 }, { start: 2009, end: 2018 }, { start: 2018, end: 2022 }, { start: 2021, end: 2022 }, { start: 2022, end: 2024 }]
+};
