@@ -44,9 +44,9 @@ function confirmarValoresElem(foto, nombreApellidos, posiscion, dorsal, fechaNac
     return 0; //si no ha habido errores 
 }
 //método para mostrar la pagina principal
-router.get('/', (req, res) => { 
+router.get('/', (req, res) => {
     res.render('plantilla', { 
-        jugadores: jugadorService.getJugadores()
+        jugadores: jugadorService.getPlayers(),
     });
 });
 
@@ -54,7 +54,7 @@ router.get('/ficha', (req,res) => { //con el get hacemos que te lleve a la ruta 
     let id = parseInt(req.query.id) //utilizamos req.query para acceder al id del jugador y con parseInt  convertimos el número a un entero
     res.render('ficha',{ //renderizamos (la vista ficha( que es ficha.html)) para construir(acceder en este caso porque ya la teníamos) una página html(ficha.html) dinamicamente incorporando datos específicos del jugador
         // Así en la vista ficha se tendrá acceso a dos cosas: la información del jugador (que obtengo con jugadorService.getJugador(id)) y el ID del jugador (que es simplemente id)."
-        jugador: jugadorService.getJugador(id), //accedemos al id del jugador
+        jugador: jugadorService.getPlayer(id), //accedemos al id del jugador
         id:id //Se pasa el valor de la variable id(id del jugador) a una variable id, así proporcionamos información(datos) adicional a la vista. Luego en la vista 'ficha', podremos usar <%= id %> para insertar dinámicamente el valor de id en la plantilla de la vista.
     });
 });
@@ -73,7 +73,7 @@ router.post("/nuevoSubElemento",(req,res) => {
             clubes : req.body.clubes, 
             temporadas : req.body.temporadas
         }
-        let jugador = jugadorService.getJugador(id); //Obtenemos el jugador correspondiente al id proporcionado
+        let jugador = jugadorService.getPlayer(id); //Obtenemos el jugador correspondiente al id proporcionado
         console.log(jugador);
         jugador.subElems[jugador.subElems.length] = nuevoSubElem; //añadimos el nuevosubElemento al array subElems
     }
@@ -108,7 +108,7 @@ router.post('/jugador/new', (req, res) => {
     let nota="";
     let warning = confirmarValoresElem(req.body.name,req.body.description,req.body.position,req.body.jerseyNumber,req.body.birthday,req.body.nationality,req.body.playerphoto,req.body.price); //Llamamos a la función  confirmarValoresElem con algunos valores del cuerpo de la solicitud (req.body) para validarlos y obtener un código de advertencia (warning).
     if(warning==0){ //si no ha habido ningún error, se crea el nuevo elemento(jugador)
-        jugadorService.añadirJugador(jugador);
+        jugadorService.addPlayer(jugador);
         nota="Jugador añadido";
     }
     else if (warning == 1){
@@ -133,7 +133,7 @@ router.post('/jugador/new', (req, res) => {
 });
 router.get('/jugador/:id/borrar', (req, res) => {
 
-    jugadorService.borrarJugador(req.params.id);
+    jugadorService.deletePlayer(req.params.id);
 
     res.render('deleted_player');
 });
@@ -141,7 +141,7 @@ router.get('/jugador/:id/borrar', (req, res) => {
 router.get('/editar.html', (req,res) => {  // se usa para cuando se acceda al url de la pagina de edicion, mediante el id obtenemos el jugador que posteriormente se editará
     let id = parseInt(req.query.id)
     res.render('editar', {
-        jugador:jugadorService.getJugador(id),
+        jugador:jugadorService.getPlayer(id),
         id:id
     });
 });

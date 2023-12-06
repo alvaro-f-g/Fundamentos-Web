@@ -2,6 +2,8 @@ import { Player, defaultPlayers, defaultSubelements } from "./defaultPlayers.js"
 
 let players = new Map();
 let nextId = 0;
+let freesIdArray = [];
+let freesIdSet = new Set();
 
 function loadDefaultSubelements(id) {
     let sub = [];
@@ -19,23 +21,24 @@ function loadDefaultSubelements(id) {
 }
 
 export function addPlayer(player) {
-    player.id = nextId++;
+    player.id = freesIdArray.length ? freesIdArray.pop() : nextId++;  // Si hay ids que han quedado libres se usará uno de ellos, sino se creará uno nuevo
     players.set(player.id, player);
 }
 
-export function borrarJugador(id){
+export function deletePlayer(id) {
+    if (id >= nextId || freesIdSet.has(id)) throw new Error("Invalid id");
+
     players.delete(id);
-}
-//
-export function getKeys(){
-    return Array.from(players.keys()); //keys es un valor que tienen siempre los  mapas, el método keys() devuelve las claves en el objeto jugadores que es un Mapa y con Array.from hacemos que devuelva un array con las claves del mapa jugadores(foto, name...)
+
+    freesIdArray.push(id);
+    freesIdSet.add(id);
 }
 
-export function getJugadores(){
-    return Array.from(players.values()); //values es un valor que tienen siempre los mapas,el método values() devuelve las valores en el objeto jugadores que es un Mapa y con Array.from hacemos que devuelva un array con las valores del mapa jugadores(Cristiano Ronaldo o el jugador que sea, los dorsales...)
+export function getPlayers() {
+    return [...players.values()]; // == Array.from(players.values())
 }
-//Para acceder a  cada jugador
-export function getJugador(id){
+
+export function getPlayer(id) {
     return players.get(id);
 }
 
