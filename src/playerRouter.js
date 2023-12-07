@@ -74,7 +74,7 @@ router.post("/nuevoSubElemento",(req,res) => {
         }
         let jugador = playerService.getPlayer(id); //Obtenemos el jugador correspondiente al id proporcionado
         console.log(jugador);
-        jugador.subElems[jugador.subElems.length] = nuevoSubElem; //añadimos el nuevosubElemento al array subElems
+        jugador.subelements[jugador.subelements.length] = nuevoSubElem; //añadimos el nuevosubElemento al array subElems
     }
     else if (warning == 1){
         nota = "Complete los campos del formulario";
@@ -143,5 +143,48 @@ router.get('/editar.html', (req,res) => {  // se usa para cuando se acceda al ur
         jugador:playerService.getPlayer(id),
         id:id
     });
+});
+router.post('player/edit',(req, res) => {
+    let jugador = {
+        id = req.body.id;
+        nombreApellidos: req.body.name, //es name, description,position ... por como esta en el formulario (en el id o name)
+        descripcion: req.body.description,
+        posición: req.body.position,
+        dorsal: req.body.jerseyNumber,
+        fechaNacimiento: req.body.birthday,
+        nacionalidad: req.body.nationality,
+        fotoPerfil: req.body.playerphoto,
+        valorMercado: req.body.price
+    };
+    id = parseInt(id);
+    let nota="";
+    let warning = confirmarValoresElem(req.body.name,req.body.description,req.body.position,req.body.jerseyNumber,req.body.birthday,req.body.nationality,req.body.playerphoto,req.body.price); 
+    if (warning == 0){
+        let player = playerService.getPlayer(parseInt(id));
+        let subelement = player.subelements;
+        player = {nombreApellidos, descripcion, posición, dorsal, fechaNacimiento, nacionalidad, fotoPerfil, valorMercado, subelement, id};
+        playerService.editPlayer(parseInt(id),player);
+        nota = "Se ha editado el jugador";
+    }
+    else if (warning == 1){
+        nota = "Rellene todos los campos del formulario";
+    }
+    else if (warning == 2){
+        nota = "El dorsal debe ser un número mayor o igual a 0 "
+    }
+    else if(warning == 3){
+        nota = "El precio/valor de jugador debe ser un número mayor que 0"
+    }
+    else if(warning == 4){
+        nota = "La fecha de nacimiento no es válida, introdúcela en formato MM/DD/YYYY"
+    }
+    /*else if(warning == 5){
+        nota = "La imagen debe ser válida"
+    }*/
+    res.render('playerEdited', {
+        nota: nota,
+        id: parseInt(id)
+    });
+
 });
 export default router;
