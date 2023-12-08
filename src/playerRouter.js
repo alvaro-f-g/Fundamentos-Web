@@ -30,12 +30,11 @@ router.post("/nuevoSubElemento",(req,res) => {
     if(playerService.correctSubvalues(sub)){
         let player = playerService.getPlayer(id);
         player.addSubelement(sub);
-        nota="Subelemento añadido";
+        res.render('mensajes', {
+            title: "Subelemento añadido",
+            message: "Subelemento añadido correctamente"
+        });
     }
-    res.render('mensajes', { //esto con render pasa las notas y el id a mensajes html, es decir se renderiza la vista 'mensajes' con el objeto que contiene el "id" y la "nota". Esto  muestra un mensaje al usuario sobre el resultado de la operación, ya sea que se haya añadido correctamente el subelemento o si ha habido algún problema.
-        id: id,
-        nota: nota
-    });
 });
 
 router.post('/jugador/new', (req, res) => {
@@ -52,18 +51,19 @@ router.post('/jugador/new', (req, res) => {
 
     if(playerService.correctValues(player)){ //si no ha habido ningún error, se crea el nuevo elemento(jugador)
         playerService.addPlayer(player);
-        nota="Jugador añadido";
+        res.render('mensajes',{
+            title: "Ficha creada",
+            message: "Jugador añadido correctamente"
+        });
     }
-res.render('saved_player',{
-        nota:nota
-    });
 });
 
 router.get('/jugador/:id/borrar', (req, res) => {
-
     playerService.deletePlayer(req.params.id);
-
-    res.render('deleted_player');
+    res.render('mensajes',{
+        title: "Ficha eliminada",
+        message: "Ficha eliminada definitivamente"
+    });
 });
 
 router.get('/editar.html', (req,res) => {  // se usa para cuando se acceda al url de la pagina de edicion, mediante el id obtenemos el jugador que posteriormente se editará
@@ -91,12 +91,11 @@ router.post('player/edit',(req, res) => {
         let subelement = player.subelements;
         player = {nombreApellidos, descripcion, posición, dorsal, fechaNacimiento, nacionalidad, fotoPerfil, valorMercado, subelement, id};
         playerService.editPlayer(parseInt(id),player);
-        nota = "Se ha editado el jugador";
+        res.render('mensajes', {
+            title: "Ficha editada",
+            message: "Ficha editada correctamente"
+        });
     }
-res.render('playerEdited', {
-        nota: nota,
-        id: parseInt(id)
-    });
 });
 
 export default router;
