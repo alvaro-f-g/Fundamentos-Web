@@ -1,3 +1,5 @@
+import { addPlayer, getPlayer } from './playerService.js';
+
 export class Player {
      constructor(photo, name, position, number, birth, nationality, marketValue, description) {
           this.photo = photo;
@@ -8,10 +10,24 @@ export class Player {
           this.nationality = nationality;
           this.marketValue = marketValue;
           this.description = description;
+          this.subelements = [];
+     }
+
+     addSubelement(subelement) {
+          this.subelements.push(subelement)
      }
 }
 
-export const defaultPlayers = [
+export class Subelement {
+     constructor(emblem, club, start, end) {
+          this.emblem = emblem,
+               this.club = club,
+               this.start = start,
+               this.end = end
+     }
+}
+
+const defaultPlayers = [
      new Player(
           "CristianoRonaldo.png",
           "Cristiano Ronaldo",
@@ -24,7 +40,7 @@ export const defaultPlayers = [
      ),
      new Player(
           "Vinicius.jpg",
-          "Vinicius Junior",
+          "Vinicius Júnior",
           "Delantero",
           "7",
           "12 de Julio de 2000",
@@ -34,7 +50,7 @@ export const defaultPlayers = [
      ),
      new Player(
           "TheoHernandez.png",
-          "Theo Hernandez",
+          "Theo Hernández",
           "Defensa",
           "19",
           "6 de Octubre de 1997",
@@ -114,8 +130,28 @@ export const defaultPlayers = [
      )
 ];
 
-export const defaultSubelements = {
+const defaultSubelements = {
      emblems: ["Sporting_Lisboa.png", "Manchester_United.png", "Real_Madrid.png", "Juventus.png", "Manchester_United.png", "Al-Nassr.png"],
      clubs: ["Sporting de Lisboa", "Manchester United", "Real Madrid", " Juventus", "Manchester United", "Al-Nassr"],
-     stages: [{ start: 2002, end: 2003 }, { start: 2003, end: 2009 }, { start: 2009, end: 2018 }, { start: 2018, end: 2022 }, { start: 2021, end: 2022 }, { start: 2022, end: 2024 }]
+     stages: [{ start: 2002, end: 2003 }, { start: 2003, end: 2009 }, { start: 2009, end: 2018 }, { start: 2018, end: 2021 }, { start: 2021, end: 2022 }, { start: 2023, end: 2024 }]
 };
+
+function loadDefaultSubelements(id) {
+     let player = getPlayer(id);
+
+     for (let i = 0; i < defaultSubelements.emblems.length; i++) {
+          let sub = new Subelement(
+               defaultSubelements.emblems[i],
+               defaultSubelements.clubs[i],
+               defaultSubelements.stages[i]
+          );
+          player.addSubelement(sub);
+     }
+}
+
+export function loadDefaultPlayers() {
+     defaultPlayers.forEach((player) => {
+          addPlayer(player);
+          loadDefaultSubelements(player.id);  // Todos tendrán los mismos subelementos
+     });
+}
