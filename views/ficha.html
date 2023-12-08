@@ -45,10 +45,7 @@
 
             <div class="btn-cont">
                 <a href="/editar.html?id={{id}}" class="btn"><i class="bi bi-pencil"></i> Editar</a>
-                <form action ="/jugador/{id}/borrar" method = 'post'>
-                    <input type="hidden" name="id" value="{{id}}">
-                    <button type="button" class="btn"><i class="bi bi-trash"></i> Eliminar</button>
-                </form>
+                <a href="/ficha/borrar?id={{player.id}}" type="button" class="btn"><i class="bi bi-trash"></i> Eliminar</a>
                 <a href="/" class="btn" role="button"><i class="bi bi-box-arrow-left"></i> Volver</a>
             </div>
         </div>
