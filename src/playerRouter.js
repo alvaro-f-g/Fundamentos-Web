@@ -10,11 +10,13 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/ficha', (req,res) => {  // No sé porque pero '/ficha/:id' rompe la visualización del html (en plantilla.html habría que poner href="ficha")
-    // let id = parseInt(req.params.id);
-        res.render('ficha',{
-        player: playerService.getPlayer(0),  // .getPlayer(id),
-        subelems: playerService.getPlayer(0).subelements
+router.get('/ficha', (req,res) => {
+    let id = parseInt(req.query.id);
+    let player = playerService.getPlayer(id);
+    res.render('ficha',{
+        player: player,
+        name: player.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),  // h2 muestra mal las tildes, así conseguimos quitarlas
+        subelems: player.subelements
     });
 });
 
