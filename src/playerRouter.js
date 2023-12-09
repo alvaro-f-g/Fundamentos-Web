@@ -61,7 +61,7 @@ router.get('/editar', (req, res) => {
     let id = parseInt(req.query.id)
     let player = playerService.getPlayer(id);
     res.render('formulario', { //condicional para ver si estamos editando una ficha o creándola
-        edit: true
+        editar: true
     });
 });
 
