@@ -28,7 +28,7 @@
     <div class="container">
         <h2>Nueva Ficha </h2>
 
-        <form role="form">
+        <form role="form" action="crear" method="post">
             <div class="form-group">
                 <label for="name">Nombre del jugador</label>
                 <input type="text" class="form-control" id="name" placeholder="Nombre y apellidos">
@@ -79,8 +79,8 @@
             </div>
 
             <div class="btn-cont">
-                <button type="Guardar" class="btn btn-guardar"><i class="bi bi-download"></i> Guardar</button>
-                <a href="/" class="btn btn-cancelar" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
+                <button type="submit" class="btn"><i class="bi bi-download"></i> Guardar</button>
+                <a href="/" class="btn" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
             </div>
         </form>
     </div>

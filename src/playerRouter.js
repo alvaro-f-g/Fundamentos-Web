@@ -14,7 +14,7 @@ router.get("/formulario", (req, res) => {
     res.render('formulario');
 });
 
-router.post('/jugador/new', (req, res) => {
+router.post('/crear', (req, res) => {
     let player = new Player(
         req.body.playerphoto,
         req.body.name,
@@ -63,7 +63,7 @@ router.get('/editar', (req, res) => {
     res.render('formulario');
 });
 
-router.post('player/edit', (req, res) => {
+router.post('/fichaEditada', (req, res) => {
     let newPlayer = new Player(
         req.body.playerphoto,
         req.body.name,
@@ -87,7 +87,7 @@ router.post('player/edit', (req, res) => {
     }
 });
 
-router.post("/nuevoSubElemento", (req, res) => {
+router.post("/subelementoCreado", (req, res) => {
     let sub = new Subelement(
         req.body.escudos,
         req.body.clubes,
