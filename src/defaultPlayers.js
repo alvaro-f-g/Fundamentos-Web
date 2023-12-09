@@ -152,6 +152,6 @@ function loadDefaultSubelements(id) {
 export function loadDefaultPlayers() {
      defaultPlayers.forEach((player) => {
           addPlayer(player);
-          loadDefaultSubelements(player.id);  // Todos tendrán los mismos subelementos
      });
+     loadDefaultSubelements(0);  // Son los subelementos del bicho
 }
