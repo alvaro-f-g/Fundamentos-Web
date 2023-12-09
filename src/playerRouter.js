@@ -60,7 +60,9 @@ router.get('/borrar', (req, res) => {
 router.get('/editar', (req, res) => {
     let id = parseInt(req.query.id)
     let player = playerService.getPlayer(id);
-    res.render('formulario');
+    res.render('formulario', { //condicional para ver si estamos editando una ficha o creándola
+        edit: true
+    });
 });
 
 router.post('/fichaEditada', (req, res) => {
