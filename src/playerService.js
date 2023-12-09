@@ -50,6 +50,7 @@ export function correctValues(player) {
 
     const day= parseInt(parts[0]);
     const month =parseInt(parts[1]);
+    const year = parseInt(parts[2]);
 
     console.log(player.birth)
 
