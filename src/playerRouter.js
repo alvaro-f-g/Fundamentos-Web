@@ -10,33 +10,8 @@ router.get('/', (req, res) => {
     });
 });
 
-router.get('/ficha', (req,res) => {
-    let id = parseInt(req.query.id);
-    let player = playerService.getPlayer(id);
-    res.render('ficha',{
-        player: player,
-        name: player.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),  // h2 muestra mal las tildes, así conseguimos quitarlas
-        subelems: player.subelements
-    });
-});
-
-router.post("/nuevoSubElemento",(req,res) => {
-    let sub = new Subelement(
-        req.body.escudos,
-        req.body.clubes,
-        req.body.temporadas
-    )
-
-    let id = parseInt(req.body.id);
-
-    if(playerService.correctSubvalues(sub)){
-        let player = playerService.getPlayer(id);
-        player.addSubelement(sub);
-        res.render('mensajes', {
-            title: "Subelemento añadido",
-            message: "Subelemento añadido correctamente"
-        });
-    }
+router.get("/formulario", (req, res) => {
+    res.render('formulario');
 });
 
 router.post('/jugador/new', (req, res) => {
@@ -51,13 +26,23 @@ router.post('/jugador/new', (req, res) => {
         req.body.description,
     )
 
-    if(playerService.correctValues(player)){ //si no ha habido ningún error, se crea el nuevo elemento(jugador)
+    if (playerService.correctValues(player)) { //si no ha habido ningún error, se crea el nuevo elemento(jugador)
         playerService.addPlayer(player);
-        res.render('mensajes',{
+        res.render('mensajes', {
             title: "Ficha creada",
             message: "Jugador añadido correctamente"
         });
     }
+});
+
+router.get('/ficha', (req, res) => {
+    let id = parseInt(req.query.id);
+    let player = playerService.getPlayer(id);
+    res.render('ficha', {
+        player: player,
+        name: player.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),  // h2 muestra mal las tildes, así conseguimos quitarlas
+        subelems: player.subelements
+    });
 });
 
 router.get('/borrar', (req, res) => {
@@ -78,7 +63,7 @@ router.get('/editar', (req, res) => {
     res.render('formulario');
 });
 
-router.post('player/edit',(req, res) => {
+router.post('player/edit', (req, res) => {
     let newPlayer = new Player(
         req.body.playerphoto,
         req.body.name,
@@ -102,8 +87,23 @@ router.post('player/edit',(req, res) => {
     }
 });
 
-router.get("/formulario", (req, res) => {
-    res.render('formulario');
+router.post("/nuevoSubElemento", (req, res) => {
+    let sub = new Subelement(
+        req.body.escudos,
+        req.body.clubes,
+        req.body.temporadas
+    )
+
+    let id = parseInt(req.body.id);
+
+    if (playerService.correctSubvalues(sub)) {
+        let player = playerService.getPlayer(id);
+        player.addSubelement(sub);
+        res.render('mensajes', {
+            title: "Subelemento añadido",
+            message: "Subelemento añadido correctamente"
+        });
+    }
 });
 
 export default router;
