@@ -89,7 +89,7 @@ export function correctSubvalues(sub) {
     } else if (start > end) {
         alert("¡Es imposible que haya dejado el club antes de haber entrado!");
     } else if (!validFormat(sub.emblem) || !hasImageExtension(sub.emblem)) {
-        alert("No es una URL de imagen válida"); 
+        alert("No es una URL de imagen válida");  
     } else {
         correct = true;
     }
