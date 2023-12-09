@@ -5,7 +5,7 @@ import { Player, Subelement } from './defaultPlayers.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('plantilla', { 
+    res.render('plantilla', {
         players: playerService.getPlayers(),
     });
 });
@@ -23,7 +23,7 @@ router.get('/ficha', (req,res) => {
 router.post("/nuevoSubElemento",(req,res) => {
     let sub = new Subelement(
         req.body.escudos,
-        req.body.clubes, 
+        req.body.clubes,
         req.body.temporadas
     )
 
@@ -60,13 +60,13 @@ router.post('/jugador/new', (req, res) => {
     }
 });
 
-router.get('/ficha/borrar', (req, res) => {
+router.get('/borrar', (req, res) => {
     let id = parseInt(req.query.id);
     let name = playerService.getPlayer(id).name;
 
     playerService.deletePlayer(id);
 
-    res.render('mensajes',{
+    res.render('mensajes', {
         title: "Ficha eliminada",
         message: "Ficha de " + name + " eliminada definitivamente"
     });
