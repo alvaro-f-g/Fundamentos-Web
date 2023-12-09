@@ -72,12 +72,10 @@ router.get('/borrar', (req, res) => {
     });
 });
 
-router.get('/editar.html', (req,res) => {  // se usa para cuando se acceda al url de la pagina de edicion, mediante el id obtenemos el jugador que posteriormente se editará
+router.get('/editar', (req, res) => {
     let id = parseInt(req.query.id)
-    res.render('editar', {
-        jugador:playerService.getPlayer(id),
-        id:id
-    });
+    let player = playerService.getPlayer(id);
+    res.render('formulario');
 });
 
 router.post('player/edit',(req, res) => {
@@ -102,6 +100,10 @@ router.post('player/edit',(req, res) => {
             message: "Ficha editada correctamente"
         });
     }
+});
+
+router.get("/formulario", (req, res) => {
+    res.render('formulario');
 });
 
 export default router;
