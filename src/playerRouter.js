@@ -16,10 +16,10 @@ router.get("/formulario", (req, res) => {
 
 router.post('/crear', (req, res) => {
     let player = new Player(
-        req.body.playerphoto,
+        req.body.photo,
         req.body.name,
         req.body.position,
-        req.body.jerseyNumber,
+        req.body.number,
         req.body.birthday,
         req.body.nationality,
         req.body.price,

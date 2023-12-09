@@ -47,17 +47,19 @@ export function correctValues(player) {
     let number = parseInt(player.number);
     let marketValue = parseInt(player.marketValue);
 
+    console.log(player.birth)
+
     let correct = false;
 
-    if (player.name == "" || player.number == "" || player.nationality == "" || descripcion == "") {
+    if (player.name == "" || player.number == "" || player.nationality == "" || player.description == "") {
         alert("Rellene todos los campos del formulario");
     } else if (isNaN(number) || !Number.isInteger(number) || number < 0) {
         alert("El dorsal debe ser un número mayor o igual a 0");
     } else if (marketValue == 0) {
         alert("Todos los jugadores valen algo");
-    } else if (!validFormat(sub.emblem) || !hasImageExtension(sub.emblem)) {
-        alert("No es una URL de imagen válida");
-    } else {
+    } /*else if (!validFormat(player.photo) || !hasImageExtension(player.photo)) {
+        alert("No es una URL de imagen válida");  //para cuando cambiemos las imágenes a urls
+    } */else {
         correct = true;
     }
 

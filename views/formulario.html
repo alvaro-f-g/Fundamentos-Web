@@ -31,12 +31,12 @@
         <form role="form" action="crear" method="post">
             <div class="form-group">
                 <label for="name">Nombre del jugador</label>
-                <input type="text" class="form-control" id="name" placeholder="Nombre y apellidos">
+                <input type="text" class="form-control" name="name" placeholder="Nombre y apellidos">
             </div>
 
             <div class="form-group">
                 <label for="description">Descripción</label>
-                <textarea type="text" class="form-control " id="description" placeholder="Detalles del jugador"></textarea>
+                <textarea type="text" class="form-control " name="description" placeholder="Detalles del jugador"></textarea>
             </div>
 
             <div class="row">
@@ -52,29 +52,29 @@
                 </div>
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="jersey-number">Dorsal</label>
-                    <input type="number" class="form-control" id="jersey-number" placeholder="0">
+                    <input type="number" class="form-control" name="number" placeholder="0">
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-md-6 col-sm-12">
                     <label for="birthday">Fecha de nacimiento</label>
-                    <input type="date" class="form-control text-uppercase" id="birthday">
+                    <input type="date" class="form-control text-uppercase" name="birthday">
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <label for="nationality">Nacionalidad</label>
-                    <input type="text" class="form-control" id="nationality" placeholder="Ej.: Española">
+                    <input type="text" class="form-control" name="nationality" placeholder="Ej.: Española">
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="player-photo">Foto de perfil</label>
-                <input type="file" class="form-control" id="player-photo">
+                <input type="file" class="form-control" name="photo">
             </div>
 
             <div class="form-group">
                 <label for="price">Valor de mercado</label>
-                <input type="range" class="form-range" id="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
+                <input type="range" class="form-range" name="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">0</output>€
             </div>
 
