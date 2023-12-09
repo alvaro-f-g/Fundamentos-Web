@@ -88,9 +88,9 @@ export function correctSubvalues(sub) {
         alert("La etapa en el club deben ser dos años, es decir, dos números enteros");
     } else if (start > end) {
         alert("¡Es imposible que haya dejado el club antes de haber entrado!");
-    } /*else if (!validFormat(sub.emblem) || !hasImageExtension(sub.emblem)) {
-        alert("No es una URL de imagen válida");  //para cuando cambiemos las imágenes a urls
-    } */else {
+    } else if (!validFormat(sub.emblem) || !hasImageExtension(sub.emblem)) {
+        alert("No es una URL de imagen válida"); 
+    } else {
         correct = true;
     }
 
