@@ -7,10 +7,14 @@ export function addPlayer(player) {
     player.id = freesIdArray.length ? freesIdArray.pop() : nextId++;  // Si hay ids que han quedado libres se usará uno de ellos, sino se creará uno nuevo
     players.set(player.id, player);
 }
-export function editPlayer(id,player){
-    player.id = id;
-    players.set(id,equipo);
+
+export function editPlayer(oldPlayer, newPlayer){
+    newPlayer.subelements = oldPlayer.subelements;
+    newPlayer.id = oldPlayer.id;
+
+    players.set(newPlayer.id, newPlayer);
 }
+
 export function deletePlayer(id) {
     if (id >= nextId || freesIdSet.has(id)) throw new Error("Invalid id");
 

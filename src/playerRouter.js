@@ -90,11 +90,11 @@ router.post('player/edit',(req, res) => {
         req.body.description,
     );
 
-    if (playerService.correctValues(newPlayer)){
+    if (playerService.correctValues(newPlayer)) {
         let player = playerService.getPlayer(parseInt(id));
-        let subelement = player.subelements;
-        player = {nombreApellidos, descripcion, posición, dorsal, fechaNacimiento, nacionalidad, fotoPerfil, valorMercado, subelement, id};
-        playerService.editPlayer(parseInt(id),player);
+
+        playerService.editPlayer(player, newPlayer);
+
         res.render('mensajes', {
             title: "Ficha editada",
             message: "Ficha editada correctamente"
