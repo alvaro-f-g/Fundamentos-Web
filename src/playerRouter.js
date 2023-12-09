@@ -89,16 +89,19 @@ router.post('/fichaEditada', (req, res) => {
 
 router.post("/subelementoCreado", (req, res) => {
     let sub = new Subelement(
-        req.body.escudos,
-        req.body.clubes,
-        req.body.temporadas
+        req.body.emblem,
+        req.body.club,
+        req.body.start,
+        req.body.end
     )
 
     let id = parseInt(req.body.id);
 
     if (playerService.correctSubvalues(sub)) {
         let player = playerService.getPlayer(id);
+
         player.addSubelement(sub);
+
         res.render('mensajes', {
             title: "Subelemento añadido",
             message: "Subelemento añadido correctamente"
