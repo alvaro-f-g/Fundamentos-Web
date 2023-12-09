@@ -21,9 +21,8 @@ export class Player {
 export class Subelement {
      constructor(emblem, club, start, end) {
           this.emblem = emblem,
-               this.club = club,
-               this.start = start,
-               this.end = end
+          this.club = club,
+          this.stage = { start: start, end: end }
      }
 }
 
@@ -143,7 +142,8 @@ function loadDefaultSubelements(id) {
           let sub = new Subelement(
                defaultSubelements.emblems[i],
                defaultSubelements.clubs[i],
-               defaultSubelements.stages[i]
+               defaultSubelements.stages[i].start,
+               defaultSubelements.stages[i].end
           );
           player.addSubelement(sub);
      }
