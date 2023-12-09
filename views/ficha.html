@@ -77,26 +77,26 @@
             <form role="form" action="subelementoCreado" method="post">
                 <div class="form-group">
                     <label for="emblem">Escudo</label>
-                    <input type="file" class="form-control" id="emblem">
+                    <input type="file" class="form-control" name="emblem">
                 </div>
 
                 <div class="form-group">
-                    <label for="team">Club</label>
-                    <input type="text" class="form-control" id="team" placeholder="Nombre del equipo">
+                    <label for="club">Club</label>
+                    <input type="text" class="form-control" name="club" placeholder="Nombre del equipo">
                 </div>
 
                 <div class="form-group row">
                     <label for="stage">Etapa</label>
                     <div class="col-sm-6 col-xs-12">
-                        <input type="number" class="form-control" id="start" placeholder="Primer año">
+                        <input type="number" class="form-control" name="start" placeholder="Primer año">
                     </div>
                     <div class="col-sm-6 col-xs-12">
-                        <input type="number" class="form-control" id="end" placeholder="Último año">
+                        <input type="number" class="form-control" name="end" placeholder="Último año">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <input type="hidden" name="id" value="{{id}}">
+                    <input type="hidden" name="id" value="{{player.id}}">
                 </div>
 
                 <div class="btn-cont">

@@ -72,13 +72,15 @@ export function correctSubvalues(sub) {
 
     let correct = false;
 
-    if (sub.emblem == "" || sub.club == "" || start == "" || end == "") {
-        alert("Complete todos slos campos del formulario");
+    if (sub.club == "" || start == "" || end == "") {
+        alert("Complete todos los campos del formulario");
     } else if (isNaN(start) || !Number.isInteger(start) || isNaN(end) || !Number.isInteger(end)) {
         alert("La etapa en el club deben ser dos años, es decir, dos números enteros");
-    } else if (!validFormat(sub.emblem) || !hasImageExtension(sub.emblem)) {
-        alert("No es una URL de imagen válida");
-    } else {
+    } else if (start > end) {
+        alert("¡Es imposible que haya dejado el club antes de haber entrado!");
+    } /*else if (!validFormat(sub.emblem) || !hasImageExtension(sub.emblem)) {
+        alert("No es una URL de imagen válida");  //para cuando cambiemos las imágenes a urls
+    } */else {
         correct = true;
     }
 
