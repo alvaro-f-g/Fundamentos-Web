@@ -67,9 +67,9 @@ export function correctValues(player) {
     }
     else if( isNaN(birthDate.getTime()) || birthDate.getFullYear() !== year || month < 1 || month > 12 || day < 1 || day > 31 ){
         alert ("Introduzca una fecha correcta");
-    } /*else if (!validFormat(player.photo) || !hasImageExtension(player.photo)) {
-        alert("No es una URL de imagen válida");  //para cuando cambiemos las imágenes a urls
-    } */else {
+    } else if (!validFormat(player.photo) || !hasImageExtension(player.photo)) {
+        alert("No es una URL de imagen válida"); 
+    } else {
         correct = true;
     }
 
