@@ -46,6 +46,7 @@ function hasImageExtension(url) {
 export function correctValues(player) {
     let number = parseInt(player.number);
     let marketValue = parseInt(player.marketValue);
+    const parts = player.birth.split('/'); //obtenemos campos de fecha
 
     console.log(player.birth)
 
