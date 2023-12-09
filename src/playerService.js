@@ -48,8 +48,9 @@ export function correctValues(player) {
     let marketValue = parseInt(player.marketValue);
     const parts = player.birth.split('/'); //obtenemos campos de fecha
 
-    const month= parseInt(parts[0]);
-    
+    const day= parseInt(parts[0]);
+    const month =parseInt(parts[1]);
+
     console.log(player.birth)
 
     let correct = false;
