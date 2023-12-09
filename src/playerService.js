@@ -52,6 +52,8 @@ export function correctValues(player) {
     const month =parseInt(parts[1]);
     const year = parseInt(parts[2]);
 
+    const birthDate = new Date(year,month -1,day);
+
     console.log(player.birth)
 
     let correct = false;
