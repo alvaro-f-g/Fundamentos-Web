@@ -102,9 +102,10 @@ router.post("/subelementoCreado", (req, res) => {
 
         player.addSubelement(sub);
 
-        res.render('mensajes', {
-            title: "Subelemento añadido",
-            message: "Subelemento añadido correctamente"
+        res.render('ficha', {
+            player: player,
+            name: player.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+            subelems: player.subelements
         });
     }
 });
