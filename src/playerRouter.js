@@ -67,6 +67,7 @@ router.get('/editar', (req, res) => {
 
 router.post('/fichaEditada', (req, res) => {
     let newPlayer = new Player(
+        req.body.id,
         req.body.playerphoto,
         req.body.name,
         req.body.position,
