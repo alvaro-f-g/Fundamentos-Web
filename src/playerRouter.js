@@ -23,7 +23,7 @@ router.post('/crear', (req, res) => {
         req.body.birthday,
         req.body.nationality,
         req.body.price,
-        req.body.description,
+        req.body.description
     )
 
     if (playerService.correctValues(player)) { //si no ha habido ningún error, se crea el nuevo elemento(jugador)
@@ -67,7 +67,6 @@ router.get('/editar', (req, res) => {
 
 router.post('/fichaEditada', (req, res) => {
     let newPlayer = new Player(
-        req.body.id,
         req.body.playerphoto,
         req.body.name,
         req.body.position,
@@ -75,8 +74,9 @@ router.post('/fichaEditada', (req, res) => {
         req.body.birthday,
         req.body.nationality,
         req.body.price,
-        req.body.description,
+        req.body.description
     );
+    let id = req.body.id;
 
     if (playerService.correctValues(newPlayer)) {
         let player = playerService.getPlayer(parseInt(id));
