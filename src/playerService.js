@@ -54,7 +54,7 @@ export function correctValues(player) {
 
     const birthDate = new Date(year,month -1,day);
 
-    console.log(player.birth)
+  
 
     let correct = false;
 

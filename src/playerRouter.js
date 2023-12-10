@@ -76,7 +76,7 @@ router.post('/fichaEditada', (req, res) => {
         req.body.price,
         req.body.description
     );
-    let id = req.body.id;
+    let id = parseInt(req.body.id);
 
     if (playerService.correctValues(newPlayer)) {
         let player = playerService.getPlayer(parseInt(id));
