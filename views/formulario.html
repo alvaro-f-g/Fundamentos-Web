@@ -32,7 +32,7 @@
 
     {{#editar}}
     <form role="form" action="/fichaEditada" method="post"> <!-- si editar es true, estamos  editando un  jugador ya existente y se lo asociamos al id( que está oculto) para "sobreescribirse"--> 
-    <input type="hidden" name="id" value="{{id}}">    
+    <input type="hidden" name="id" value="{{player.id}}">    
     {{/editar}}
     
     {{^editar}}
