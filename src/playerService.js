@@ -46,11 +46,11 @@ function hasImageExtension(url) {
 export function correctValues(player) {
     let number = parseInt(player.number);
     let marketValue = parseInt(player.marketValue);
-    const parts = player.birth.split('/'); //obtenemos campos de fecha
+    const parts = player.birth.split('-'); //obtenemos campos de fecha
 
-    const day= parseInt(parts[0]);
+    const year= parseInt(parts[0]);
     const month =parseInt(parts[1]);
-    const year = parseInt(parts[2]);
+    const day = parseInt(parts[2]);
 
     const birthDate = new Date(year,month -1,day);
 
