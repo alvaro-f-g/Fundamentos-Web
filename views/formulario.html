@@ -16,6 +16,7 @@
 </head>
 
 <body>
+
     <header>
         <div>
             <a href="/">
@@ -28,6 +29,69 @@
             </a>
         </div>
     </header>
+
+    {{#editar}}
+    <form role="form" action="/fichaEditada" method="post"> <!-- si editar es true, estamos  editando un  jugador ya existente y se lo asociamos al id( que está oculto) para "sobreescribirse"--> 
+    <input type="hidden" name="id" value="{{id}}">    
+    {{/editar}}
+    
+    {{^editar}}
+    <form role="form" action="crear" method="post"> <!-- si editar es false, estás creando un nuevo jugador y ponemos el form del botón guardar para que se guarde-->
+        <div class="form-group">
+            <label for="name">Nombre del jugador</label>
+            <input type="text" class="form-control" name="name" placeholder="Nombre y apellidos">
+        </div>
+
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <textarea type="text" class="form-control " name="description" placeholder="Detalles del jugador"></textarea>
+        </div>
+
+        <div class="row">
+            <div class="form-group col-md-6 col-sm-12">
+                <label for="position">Posición</label>
+                <select class="form-select" name="position">
+                    <option value="Banquillo" selected hidden>Banquillo</option>
+                    <option value="Delantero">Delantero</option>
+                    <option value="Medio">Medio</option>
+                    <option value="Defensa">Defensa</option>
+                    <option value="Portero">Portero</option>
+                </select>
+            </div>
+            <div class="form-group col-md-6 col-sm-12">
+                <label for="jersey-number">Dorsal</label>
+                <input type="number" class="form-control" name="number" placeholder="0">
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-md-6 col-sm-12">
+                <label for="birthday">Fecha de nacimiento</label>
+                <input type="date" class="form-control text-uppercase" name="birthday">
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label for="nationality">Nacionalidad</label>
+                <input type="text" class="form-control" name="nationality" placeholder="Ej.: Española">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="player-photo">Foto de perfil</label>
+            <input type="url" class="form-control" name="photo" placeholder="Add URL for player profile">
+        </div>
+
+        <div class="form-group">
+            <label for="price">Valor de mercado</label>
+            <input type="range" class="form-range" name="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
+            <output for="price" id="outrange">0</output>€
+        </div>
+
+        <div class="btn-cont">
+            <button type="submit" class="btn"><i class="bi bi-download"></i> Guardar</button>
+            <a href="/" class="btn" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
+        </div>
+    </form>
+    {{/editar}}
 
     <div class="container">
         <h2>Nueva Ficha </h2>
