@@ -11,7 +11,10 @@ router.get('/', (req, res) => {
 });
 
 router.get("/formulario", (req, res) => {
-    res.render('formulario');
+    res.render('formulario', {
+        title: "Nueva ficha",
+        cancel: "/"
+    });
 });
 
 router.post('/crear', (req, res) => {
@@ -38,7 +41,7 @@ router.post('/crear', (req, res) => {
 router.get('/ficha', (req, res) => {
     let id = parseInt(req.query.id);
     let player = playerService.getPlayer(id);
-    res.render('ficha', {
+        res.render('ficha', {
         player: player,
         name: player.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),  // h2 muestra mal las tildes, así conseguimos quitarlas
         subelems: player.subelements
@@ -60,8 +63,13 @@ router.get('/borrar', (req, res) => {
 router.get('/editar', (req, res) => {
     let id = parseInt(req.query.id)
     let player = playerService.getPlayer(id);
-    res.render('formulario', { //condicional para ver si estamos editando una ficha o creándola
-        editar: true
+    let title = "Editar ficha de " + player.name;
+
+    res.render('formulario', {
+        title: title.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+        edit: true,
+        player: player,
+        cancel: "/ficha?id=" + id
     });
 });
 
