@@ -54,21 +54,18 @@ export function correctValues(player) {
 
     const birthDate = new Date(year,month -1,day);
 
-  
-
     let correct = false;
 
     if (player.name == "" || player.number == "" || player.nationality == "" || player.description == "") {
-        alert("Rellene todos los campos del formulario");
+        throw new Error("Rellene todos los campos del formulario");
     } else if (isNaN(number) || !Number.isInteger(number) || number < 0) {
-        alert("El dorsal debe ser un número mayor o igual a 0");
+        throw new Error("El dorsal debe ser un número mayor o igual a 0");
     } else if (marketValue == 0) {
-        alert("Todos los jugadores valen algo");
-    }
-    else if( isNaN(birthDate.getTime()) || birthDate.getFullYear() !== year || month < 1 || month > 12 || day < 1 || day > 31 ){
-        alert ("Introduzca una fecha correcta");
+        throw new Error("Todos los jugadores valen algo");
+    } else if( isNaN(birthDate.getTime()) || birthDate.getFullYear() !== year || month < 1 || month > 12 || day < 1 || day > 31 ){
+        throw new Error("Introduzca una fecha correcta");
     } else if (!validFormat(player.photo) || !hasImageExtension(player.photo)) {
-        alert("No es una URL de imagen válida"); 
+        throw new Error("No es una URL de imagen válida"); 
     } else {
         correct = true;
     }
@@ -83,13 +80,13 @@ export function correctSubvalues(sub) {
     let correct = false;
 
     if (sub.club == "" || start == "" || end == "") {
-        alert("Complete todos los campos del formulario");
+        throw new Error("Complete todos los campos del formulario");
     } else if (isNaN(start) || !Number.isInteger(start) || isNaN(end) || !Number.isInteger(end)) {
-        alert("La etapa en el club deben ser dos años, es decir, dos números enteros");
+        throw new Error("La etapa en el club deben ser dos años, es decir, dos números enteros");
     } else if (start > end) {
-        alert("¡Es imposible que haya dejado el club antes de haber entrado!");
+        throw new Error("¡Es imposible que haya dejado el club antes de haber entrado!");
     } else if (!validFormat(sub.emblem) || !hasImageExtension(sub.emblem)) {
-        alert("No es una URL de imagen válida");  
+        throw new Error("No es una URL de imagen válida");  
     } else {
         correct = true;
     }
