@@ -1,3 +1,5 @@
+import { noAccents, withPoints, dateToString } from "./auxFunctions.js";
+
 let players = new Map();
 let nextId = 0;
 let freesIdArray = [];
@@ -42,4 +44,8 @@ export function correctSubvalues(sub) {
     if (sub.stage.start > sub.stage.end) {
         throw new Error("¡Es imposible que haya dejado el club antes de haber entrado!");
     }
+}
+
+export function formatInfo(player) {
+    return [noAccents(player.name), withPoints(player.marketValue), dateToString(new Date(player.birth))];
 }
