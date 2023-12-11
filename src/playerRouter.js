@@ -4,6 +4,10 @@ import { Player, Subelement } from './defaultPlayers.js';
 
 const router = express.Router();
 
+function noAccents(str) {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');  // h2 muestra mal las tildes, así conseguimos quitarlas
+}
+
 router.get('/', (req, res) => {
     res.render('plantilla', {
         players: playerService.getPlayers(),
@@ -41,9 +45,10 @@ router.post('/crear', (req, res) => {
 router.get('/ficha', (req, res) => {
     let id = parseInt(req.query.id);
     let player = playerService.getPlayer(id);
-        res.render('ficha', {
+    
+    res.render('ficha', {
         player: player,
-        name: player.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),  // h2 muestra mal las tildes, así conseguimos quitarlas
+        name: noAccents(player.name),
         subelems: player.subelements
     });
 });
@@ -56,17 +61,16 @@ router.get('/borrar', (req, res) => {
 
     res.render('mensajes', {
         title: "Ficha eliminada",
-        message: "Ficha de " + name + " eliminada definitivamente"
+        message: noAccents("Ficha de " + name + " eliminada definitivamente")
     });
 });
 
 router.get('/editar', (req, res) => {
     let id = parseInt(req.query.id)
     let player = playerService.getPlayer(id);
-    let title = "Editar ficha de " + player.name;
 
     res.render('formulario', {
-        title: title.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+        title: noAccents("Ficha de " + player.name),
         edit: true,
         player: player,
         cancel: "/ficha?id=" + id
@@ -92,7 +96,7 @@ router.post('/fichaEditada', (req, res) => {
         playerService.editPlayer(player, newPlayer);
 
         res.render('mensajes', {
-            title: "Ficha editada",
+            title: noAccents("Ficha de " + player.name + " editada"),
             message: "Ficha editada correctamente"
         });
     }
@@ -115,7 +119,7 @@ router.post("/subelementoCreado", (req, res) => {
 
         res.render('ficha', {
             player: player,
-            name: player.name.normalize('NFD').replace(/[\u0300-\u036f]/g, ''),
+            name: noAccents(player.name),
             subelems: player.subelements
         });
     }
