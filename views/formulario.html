@@ -33,11 +33,11 @@
         <h2>{{title}}</h2>
 
         {{^edit}}
-        <form role="form" action="crear" method="post">
+        <form role="form" action="/formulario/inscribir" method="post">
         {{/edit}}
 
         {{#edit}}
-        <form role="form" action="fichaEditada" method="post">
+        <form role="form" action="/ficha/editada" method="post">
             <input type="hidden" name="id" value="{{player.id}}">
         {{/edit}}
 
@@ -48,7 +48,7 @@
 
             <div class="form-group">
                 <label for="description">Descripción</label>
-                <textarea type="text" class="form-control " name="description" placeholder="Detalles del jugador" required>{{player.description}}</textarea>
+                <textarea type="text" class="form-control" name="description" placeholder="Detalles del jugador" required>{{player.description}}</textarea>
             </div>
 
             <div class="row">

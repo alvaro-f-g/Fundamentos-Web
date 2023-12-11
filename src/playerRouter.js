@@ -18,7 +18,7 @@ router.get("/formulario", (req, res) => {
     });
 });
 
-router.post('/crear', (req, res) => {
+router.post('/formulario/inscribir', (req, res) => {
     let player = new Player(
         req.body.photo,
         req.body.name,
@@ -64,7 +64,7 @@ router.get('/ficha', (req, res) => {
     });
 });
 
-router.get('/borrar', (req, res) => {
+router.get('/ficha/borrar', (req, res) => {
     let id = parseInt(req.query.id);
     let name = playerService.getPlayer(id).name;
 
@@ -77,7 +77,7 @@ router.get('/borrar', (req, res) => {
     });
 });
 
-router.get('/editar', (req, res) => {
+router.get('/ficha/editar', (req, res) => {
     let id = parseInt(req.query.id)
     let player = playerService.getPlayer(id);
 
@@ -89,7 +89,7 @@ router.get('/editar', (req, res) => {
     });
 });
 
-router.post('/fichaEditada', (req, res) => {
+router.post('/ficha/editada', (req, res) => {
     let newPlayer = new Player(
         req.body.photo,
         req.body.name,
@@ -124,7 +124,7 @@ router.post('/fichaEditada', (req, res) => {
     }
 });
 
-router.post("/subelementoCreado", (req, res) => {
+router.post("/ficha/agregar", (req, res) => {
     let sub = new Subelement(
         req.body.emblem,
         req.body.club,
