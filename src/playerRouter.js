@@ -89,10 +89,10 @@ router.get('/editar', (req, res) => {
 
 router.post('/fichaEditada', (req, res) => {
     let newPlayer = new Player(
-        req.body.playerphoto,
+        req.body.photo,
         req.body.name,
         req.body.position,
-        req.body.jerseyNumber,
+        req.body.number,
         req.body.birthday,
         req.body.nationality,
         req.body.price,
