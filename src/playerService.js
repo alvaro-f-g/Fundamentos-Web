@@ -1,4 +1,4 @@
-import { noAccents, withPoints, dateToString } from "./auxFunctions.js";
+import { noAccents, withPoints, dateToString, numberInRange, correctDate, validFormat } from "./auxFunctions.js";
 
 let players = new Map();
 let nextId = 0;
@@ -26,28 +26,6 @@ export function getPlayers() {
 
 export function getPlayer(id) {
     return players.get(id);
-}
-
-function numberInRange(name, number, min, max) {
-    if (!Number.isInteger(number)) throw new Error (name + " debe ser un número entero");
-    if (number < min || number > max) throw new Error (name + " debe ser un número entre " + min + " y " + max);
-}
-
-function correctDate(string) {
-    const parts = string.split('-');
-
-    const year = parseInt(parts[0]);
-    const month = parseInt(parts[1]);
-    const day = parseInt(parts[2]);
-
-    const date = new Date(year, month - 1, day);
-
-    return (isNaN(date.getTime()) || date.getFullYear() !== year || month < 1 || month > 12 || day < 1 || day > 31)
-}
-
-function validFormat(url) {
-    const regex = /^(ftp|http|https):\/\/[^ "]+$/;
-    return regex.test(url);
 }
 
 export function correctValues(player) {
