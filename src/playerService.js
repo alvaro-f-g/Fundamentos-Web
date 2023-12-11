@@ -32,64 +32,14 @@ export function getPlayer(id) {
     return players.get(id);
 }
 
-function validFormat(url) {
-    const regex = /^(ftp|http|https):\/\/[^ "]+$/;
-    return regex.test(url);
-}
-
-function hasImageExtension(url) {
-    const validExtensions = ['.jpg', '.jpeg', '.png', '.gif'];
-    const extension = url.substring(url.lastIndexOf('.')).toLowerCase();
-    return validExtensions.includes(extension);
-}
-
 export function correctValues(player) {
-    let number = parseInt(player.number);
-    let marketValue = parseInt(player.marketValue);
-    const parts = player.birth.split('-'); //obtenemos campos de fecha
-
-    const year= parseInt(parts[0]);
-    const month =parseInt(parts[1]);
-    const day = parseInt(parts[2]);
-
-    const birthDate = new Date(year,month -1,day);
-
-    let correct = false;
-
-    if (player.name == "" || player.number == "" || player.nationality == "" || player.description == "") {
-        throw new Error("Rellene todos los campos del formulario");
-    } else if (isNaN(number) || !Number.isInteger(number) || number < 0) {
-        throw new Error("El dorsal debe ser un número mayor o igual a 0");
-    } else if (marketValue == 0) {
+    if (player.marketValue == 0) {
         throw new Error("Todos los jugadores valen algo");
-    } else if( isNaN(birthDate.getTime()) || birthDate.getFullYear() !== year || month < 1 || month > 12 || day < 1 || day > 31 ){
-        throw new Error("Introduzca una fecha correcta");
-    } else if (!validFormat(player.photo) || !hasImageExtension(player.photo)) {
-        throw new Error("No es una URL de imagen válida"); 
-    } else {
-        correct = true;
     }
-
-    return correct;
 }
 
 export function correctSubvalues(sub) {
-    let start = parseInt(sub.stage.start);
-    let end = parseInt(sub.stage.end);
-
-    let correct = false;
-
-    if (sub.club == "" || start == "" || end == "") {
-        throw new Error("Complete todos los campos del formulario");
-    } else if (isNaN(start) || !Number.isInteger(start) || isNaN(end) || !Number.isInteger(end)) {
-        throw new Error("La etapa en el club deben ser dos años, es decir, dos números enteros");
-    } else if (start > end) {
+    if (sub.stage.start > sub.stage.end) {
         throw new Error("¡Es imposible que haya dejado el club antes de haber entrado!");
-    } else if (!validFormat(sub.emblem) || !hasImageExtension(sub.emblem)) {
-        throw new Error("No es una URL de imagen válida");  
-    } else {
-        correct = true;
     }
-
-    return correct;
 }

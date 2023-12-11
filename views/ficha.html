@@ -84,27 +84,25 @@
             <form role="form" action="subelementoCreado" method="post">
                 <div class="form-group">
                     <label for="emblem">Escudo</label>
-                    <input type="url" class="form-control" name="emblem" placeholder="Add URL for new emblem ">
+                    <input type="url" class="form-control" name="emblem" placeholder="URL de la imagen" required>
                 </div>
 
                 <div class="form-group">
                     <label for="club">Club</label>
-                    <input type="text" class="form-control" name="club" placeholder="Nombre del equipo">
+                    <input type="text" class="form-control" name="club" placeholder="Nombre del equipo" required>
                 </div>
 
                 <div class="form-group row">
                     <label for="stage">Etapa</label>
                     <div class="col-sm-6 col-xs-12">
-                        <input type="number" class="form-control" name="start" placeholder="Primer año">
+                        <input type="number" class="form-control" name="start" placeholder="Primer año" min="1863" max="2200" required>
                     </div>
                     <div class="col-sm-6 col-xs-12">
-                        <input type="number" class="form-control" name="end" placeholder="Último año">
+                        <input type="number" class="form-control" name="end" placeholder="Último año" min="1863" max="2200" required>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <input type="hidden" name="id" value="{{player.id}}">
-                </div>
+                <input type="hidden" name="id" value="{{player.id}}">
 
                 <div class="btn-cont">
                     <button type="submit" class="btn"><i class="bi bi-plus-lg"></i> Añadir nuevo equipo</button>
