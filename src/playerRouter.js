@@ -140,10 +140,10 @@ router.post("/ficha/agregar", (req, res) => {
 
         player.addSubelement(sub);
 
-        res.render('ficha', {
-            player: player,
-            name: noAccents(player.name),
-            subelems: player.subelements
+        res.render('mensajes', {
+            title: "Subelemento añadido",
+            message: "Subelemento añadido correctamente",
+            back: "/ficha?id=" + id
         });
     }
     catch (error) {

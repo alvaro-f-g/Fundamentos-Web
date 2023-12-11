@@ -140,7 +140,7 @@ function loadDefaultSubelements(id) {
 
      for (let i = 0; i < defaultSubelements.emblems.length; i++) {
           let sub = new Subelement(
-               "imagenes/teams/" + defaultSubelements.emblems[i],
+               "/imagenes/teams/" + defaultSubelements.emblems[i],
                defaultSubelements.clubs[i],
                defaultSubelements.stages[i].start,
                defaultSubelements.stages[i].end
@@ -152,7 +152,7 @@ function loadDefaultSubelements(id) {
 export function loadDefaultPlayers() {
      defaultPlayers.forEach((player) => {
           addPlayer(player);
-          player.photo = "imagenes/players/" + player.photo;
+          player.photo = "/imagenes/players/" + player.photo;
      });
      loadDefaultSubelements(0);  // Solo tenemos los subelementos del bicho
 }
