@@ -8,6 +8,23 @@ function noAccents(str) {
     return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');  // h2 muestra mal las tildes, así conseguimos quitarlas
 }
 
+function withPoints(number) {
+    return number.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+function dateToString(date) {
+    const monthNames = [
+         "enero", "febrero", "marzo", "abril", "mayo", "junio",
+         "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+    ];
+
+    return `${date.getDate()} de ${monthNames[date.getMonth()]} del ${date.getFullYear()}`;
+}
+
+function format(player) {
+    return [noAccents(player.name), withPoints(player.marketValue), dateToString(new Date(player.birth))];
+}
+
 router.get('/', (req, res) => {
     res.render('plantilla', {
         players: playerService.getPlayers(),
@@ -54,10 +71,13 @@ router.post('/crear', (req, res) => {
 router.get('/ficha', (req, res) => {
     let id = parseInt(req.query.id);
     let player = playerService.getPlayer(id);
-    
+    const [name, value, date] = playerService.format(player);
+
     res.render('ficha', {
         player: player,
-        name: noAccents(player.name),
+        name: name,
+        value: value + " €",
+        date: date,
         subelems: player.subelements
     });
 });
