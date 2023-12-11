@@ -38,14 +38,16 @@ router.post('/crear', (req, res) => {
     } catch (error) {
         res.render('mensajes', {
             title: "Error",
-            message: error.message
+            message: error.message,
+            back: "javascript:history.back()"
         });
     }
 
     playerService.addPlayer(player);
     res.render('mensajes', {
         title: "Ficha creada",
-        message: "Jugador añadido correctamente"
+        message: "Jugador añadido correctamente",
+        back: "/"
     });
 });
 
@@ -68,7 +70,8 @@ router.get('/borrar', (req, res) => {
 
     res.render('mensajes', {
         title: "Ficha eliminada",
-        message: noAccents("Ficha de " + name + " eliminada definitivamente")
+        message: noAccents("Ficha de " + name + " eliminada definitivamente"),
+        back: "/"
     });
 });
 
@@ -101,7 +104,8 @@ router.post('/fichaEditada', (req, res) => {
     } catch (error) {
         res.render('mensajes', {
             title: "Error",
-            message: error.message
+            message: error.message,
+            back: "javascript:history.back()"
         });
     }
 
@@ -112,7 +116,8 @@ router.post('/fichaEditada', (req, res) => {
 
     res.render('mensajes', {
         title: noAccents("Ficha de " + player.name + " editada"),
-        message: "Ficha editada correctamente"
+        message: "Ficha editada correctamente",
+        back: "/ficha?id=" + id
     });
 });
 
@@ -129,7 +134,8 @@ router.post("/subelementoCreado", (req, res) => {
     } catch (error) {
         res.render('mensajes', {
             title: "Error",
-            message: error.message
+            message: error.message,
+            back: "javascript:history.back()"
         });
     }
 
