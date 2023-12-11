@@ -54,6 +54,7 @@ export function correctValues(player) {
     let correct = false;
 
     let longFields = new Set(["description", "photo", "otherProperty"]);
+    let birthday = new Date(player.birth);
 
     for (const value in player) {
         if (player[value] === "") throw new Error("Rellene todos los campos del formulario");
