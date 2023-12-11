@@ -165,12 +165,13 @@ router.get("/formulario/ben", (req, res) => {
         "Estadounidense",
         "10000000",
         "Un trasto alienígena llegó de sopetón. Pegándosele al brazo sus secretos descubrió. Con sus superpoderes para siempre le cambió. Es Ben 10. Si un día te lo encuentras no te vaya a sorprender. Si se transforma en héroe sin cómo ni porque. Es loco, fiero, ágil o brillante de una vez. Es Ben 10. Llega al rescate sin preguntar. Contra los males de aquí o de allá. No tiene miedo y disfrutará. Aunque es un revoltoso te vendrá a salvar. Es Ben 10"
-    )
+    );
     playerService.addPlayer(ben);
-    res.render('mensajes', {
-        title: "Ficha creada",
-        message: "Jugador añadido correctamente",
-        back: "/"
+    res.render('formulario', {
+        title: "Ficha de " + ben.name,
+        edit: true,
+        player: ben,
+        cancel: "/"
     });
 });
 
