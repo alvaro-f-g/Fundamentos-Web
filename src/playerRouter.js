@@ -32,20 +32,22 @@ router.post('/crear', (req, res) => {
 
     try {
         playerService.correctValues(player);
-    } catch (error) {
+
+        playerService.addPlayer(player);
+
+        res.render('mensajes', {
+            title: "Ficha creada",
+            message: "Jugador añadido correctamente",
+            back: "/"
+        });
+    }
+    catch (error) {
         res.render('mensajes', {
             title: "Error",
             message: error.message,
             back: "javascript:history.back()"
         });
     }
-
-    playerService.addPlayer(player);
-    res.render('mensajes', {
-        title: "Ficha creada",
-        message: "Jugador añadido correctamente",
-        back: "/"
-    });
 });
 
 router.get('/ficha', (req, res) => {
@@ -101,24 +103,25 @@ router.post('/fichaEditada', (req, res) => {
 
     try {
         playerService.correctValues(newPlayer);
-    } catch (error) {
+
+        let id = req.body.id;
+        let player = playerService.getPlayer(parseInt(id));
+
+        playerService.editPlayer(player, newPlayer);
+
+        res.render('mensajes', {
+            title: noAccents("Ficha de " + player.name + " editada"),
+            message: "Ficha editada correctamente",
+            back: "/ficha?id=" + id
+        });
+    }
+    catch (error) {
         res.render('mensajes', {
             title: "Error",
             message: error.message,
             back: "javascript:history.back()"
         });
     }
-
-    let id = req.body.id;
-    let player = playerService.getPlayer(parseInt(id));
-
-    playerService.editPlayer(player, newPlayer);
-
-    res.render('mensajes', {
-        title: noAccents("Ficha de " + player.name + " editada"),
-        message: "Ficha editada correctamente",
-        back: "/ficha?id=" + id
-    });
 });
 
 router.post("/subelementoCreado", (req, res) => {
@@ -131,24 +134,25 @@ router.post("/subelementoCreado", (req, res) => {
 
     try {
         playerService.correctSubvalues(sub);
-    } catch (error) {
+
+        let id = parseInt(req.body.id);
+        let player = playerService.getPlayer(id);
+
+        player.addSubelement(sub);
+
+        res.render('ficha', {
+            player: player,
+            name: noAccents(player.name),
+            subelems: player.subelements
+        });
+    }
+    catch (error) {
         res.render('mensajes', {
             title: "Error",
             message: error.message,
             back: "javascript:history.back()"
         });
     }
-
-    let id = parseInt(req.body.id);
-    let player = playerService.getPlayer(id);
-
-    player.addSubelement(sub);
-
-    res.render('ficha', {
-        player: player,
-        name: noAccents(player.name),
-        subelems: player.subelements
-    });
 });
 
 export default router;
