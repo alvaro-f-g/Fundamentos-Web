@@ -3,7 +3,6 @@ import { noAccents, withPoints, dateToString } from "./auxFunctions.js";
 let players = new Map();
 let nextId = 0;
 let freesIdArray = [];
-let freesIdSet = new Set();
 
 export function addPlayer(player) {
     player.id = freesIdArray.length ? freesIdArray.pop() : nextId++;  // Si hay ids que han quedado libres se usará uno de ellos, sino se creará uno nuevo
@@ -18,12 +17,7 @@ export function editPlayer(oldPlayer, newPlayer){
 }
 
 export function deletePlayer(id) {
-    if (id >= nextId || freesIdSet.has(id)) throw new Error("Invalid id");
-
-    players.delete(id);
-
-    freesIdArray.push(id);
-    freesIdSet.add(id);
+    players.delete(id) && freesIdArray.push(id);
 }
 
 export function getPlayers() {
