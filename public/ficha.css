@@ -12,6 +12,8 @@
 
 #player-photo {
     height: 250px;
+    max-width: 200px;
+    margin-bottom: 20px;
 }
 
 table {

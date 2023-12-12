@@ -1,0 +1,67 @@
+import { noAccents, withPoints, dateToString, numberInRange, correctDate, validFormat } from "./auxFunctions.js";
+
+let players = new Map();
+let nextId = 0;
+let freesIdArray = [];
+
+export function addPlayer(player) {
+    player.id = freesIdArray.length ? freesIdArray.pop() : nextId++;  // Si hay ids que han quedado libres se usará uno de ellos, sino se creará uno nuevo
+    players.set(player.id, player);
+}
+
+export function editPlayer(oldPlayer, newPlayer) {
+    newPlayer.subelements = oldPlayer.subelements;
+    newPlayer.id = oldPlayer.id;
+
+    players.set(newPlayer.id, newPlayer);
+}
+
+export function deletePlayer(id) {
+    players.delete(id) && freesIdArray.push(id);
+}
+
+export function getPlayers() {
+    return [...players.values()]; // == Array.from(players.values())
+}
+
+export function getPlayer(id) {
+    return players.get(id);
+}
+
+export function correctValues(player) {
+    let longFields = new Set(["description", "photo"]);
+    let positions = new Set(["Banquillo", "Portero", "Defensa", "Centrocampista", "Delantero"]);
+    let birthday = new Date(player.birth);
+
+    for (const value in player) {
+        if (player[value] === "") throw new Error("Rellene todos los campos del formulario");
+        if (player[value].length > 20 && !longFields.has(value)) throw new Error("La longitud del campo " + value + " es demasiado larga");
+        if (player[value].length > 2000 && longFields.has(value)) throw new Error("La longitud del campo " + value + " es demasiado larga");
+    }
+    if (!validFormat(player.photo)) throw new Error("No es una URL de imagen válida");
+    if (!positions.has(player.position)) throw new Error("Introduzca una posición válida");
+    numberInRange("El dorsal", parseInt(player.number), 0, 99);
+    if (correctDate(player.birth)) throw new Error("Introduzca una fecha correcta");
+    if (birthday.getTime() > Date.now()) throw new Error("¿Ha nacido en el futuro?");
+    numberInRange("El valor de mercado", parseInt(player.marketValue), 0, 100000000);
+    if (player.marketValue == 0) throw new Error("Todos los jugadores valen algo");
+
+    return true;
+}
+
+export function correctSubvalues(sub) {
+    for (const value in sub) {
+        if (sub[value] === "") throw new Error("Rellene todos los campos");
+    }
+    if (!validFormat(sub.emblem)) throw new Error("No es una URL de imagen válida");
+    if (sub.club.length > 20) throw new Error("El nombre del club es demasiado largo");
+    numberInRange("El año de entrada", parseInt(sub.stage.start), 1863, 2222);
+    numberInRange("El año de salida", parseInt(sub.stage.end), 1863, 2222);
+    if (sub.stage.start > sub.stage.end) throw new Error("¡Es imposible que haya dejado el club antes de haber entrado!");
+
+    return true;
+}
+
+export function formatInfo(player) {
+    return [noAccents(player.name), withPoints(player.marketValue), dateToString(new Date(player.birth))];
+}

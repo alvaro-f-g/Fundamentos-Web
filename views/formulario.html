@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Formulario nuevos jugadores</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css?family=Vina+Sans|Kanit" rel="stylesheet" type="text/css">
+
+    <link type="text/css" rel="stylesheet" href="/base.css" />
+    <link type="text/css" rel="stylesheet" href="/formulario.css" />
+</head>
+
+<body>
+    <header>
+        <div>
+            <a href="/">
+                <img id="header-img" src="/imagenes/Escudo.jpeg" alt="Escudo del Triplano FC">
+            </a>
+        </div>
+        <div>
+            <a href="/" style="color: inherit; text-decoration: none">
+                <h1>Triplano FC</h1>
+            </a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h2>{{title}}</h2>
+
+        {{^edit}}
+        <form role="form" action="/formulario/inscribir" method="post">
+        {{/edit}}
+
+        {{#edit}}
+        <form role="form" action="/ficha/editada" method="post">
+            <input type="hidden" name="id" value="{{player.id}}">
+        {{/edit}}
+
+            <div class="form-group">
+                <label for="name">Nombre del jugador</label>
+                <input type="text" class="form-control" name="name" placeholder="Nombre y apellidos" value="{{player.name}}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="description">Descripción</label>
+                <textarea type="text" class="form-control" name="description" placeholder="Detalles del jugador" required>{{player.description}}</textarea>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6 col-sm-12">
+                    <label for="position">Posición</label>
+                    <select class="form-select" name="position">
+                        {{#edit}}
+                        <option value="{{player.position}}" selected hidden>{{player.position}}</option>
+                        {{/edit}}
+                        {{^edit}}
+                        <option value="Banquillo" selected hidden>Banquillo</option>
+                        {{/edit}}
+                        <option value="Delantero">Delantero</option>
+                        <option value="Medio">Medio</option>
+                        <option value="Defensa">Defensa</option>
+                        <option value="Portero">Portero</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6 col-sm-12">
+                    <label for="jersey-number">Dorsal</label>
+                    <input type="number" class="form-control" name="number" placeholder="0" value="{{player.number}}" required min="0" max="99">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-md-6 col-sm-12">
+                    <label for="birthday">Fecha de nacimiento</label>
+                    <input type="date" class="form-control text-uppercase" name="birthday" value="{{player.birth}}" required>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <label for="nationality">Nacionalidad</label>
+                    <input type="text" class="form-control" name="nationality" placeholder="Ej.: Española" value="{{player.nationality}}" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="player-photo">Foto de perfil</label>
+                <input type="url" class="form-control" name="photo" placeholder="URL de la imagen" value="{{player.photo}}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="price">Valor de mercado</label>
+                {{#edit}}
+                <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
+                <output for="price" id="outrange">{{player.marketValue}}</output>€
+                {{/edit}}
+                {{^edit}}
+                <input type="range" class="form-range" name="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
+                <output for="price" id="outrange">0</output>€
+                {{/edit}}
+            </div>
+
+            <div class="btn-cont">
+                <button type="submit" class="btn"><i class="bi bi-download"></i> Guardar</button>
+                <a href="{{cancel}}" class="btn" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
