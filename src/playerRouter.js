@@ -110,8 +110,8 @@ router.post('/ficha/editada', (req, res) => {
         playerService.editPlayer(player, newPlayer);
 
         res.render('mensajes', {
-            title: noAccents("Ficha de " + player.name + " editada"),
-            message: "Ficha editada correctamente",
+            title: "Ficha editada",
+            message: noAccents("Ficha de " + player.name + " editada correctamente"),
             back: "/ficha?id=" + id
         });
     }
