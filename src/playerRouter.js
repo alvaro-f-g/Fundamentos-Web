@@ -1,7 +1,7 @@
 import express from 'express';
 import * as playerService from './playerService.js';
 import { Player, Subelement } from './defaultPlayers.js';
-import { noAccents } from './auxFunctions.js';
+import { noAccents, formatInfo } from './auxFunctions.js';
 
 const router = express.Router();
 
@@ -53,7 +53,7 @@ router.post('/formulario/inscribir', (req, res) => {
 router.get('/ficha', (req, res) => {
     let id = parseInt(req.query.id);
     let player = playerService.getPlayer(id);
-    const [name, value, date] = playerService.formatInfo(player);
+    const [name, value, date] = formatInfo(player);
 
     res.render('ficha', {
         player: player,

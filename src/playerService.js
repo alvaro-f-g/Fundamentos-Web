@@ -1,4 +1,4 @@
-import { noAccents, withPoints, dateToString, numberInRange, correctDate, validFormat } from "./auxFunctions.js";
+import { numberInRange, correctDate, validFormat } from "./auxFunctions.js";
 
 let players = new Map();
 let nextId = 0;
@@ -60,8 +60,4 @@ export function correctSubvalues(sub) {
     if (sub.stage.start > sub.stage.end) throw new Error("¡Es imposible que haya dejado el club antes de haber entrado!");
 
     return true;
-}
-
-export function formatInfo(player) {
-    return [noAccents(player.name), withPoints(player.marketValue), dateToString(new Date(player.birth))];
 }

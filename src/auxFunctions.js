@@ -2,17 +2,21 @@ export function noAccents(str) {
      return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');  // h2 muestra mal las tildes, así conseguimos quitarlas
 }
 
-export function withPoints(number) {
+function withPoints(number) {
      return number.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
 
-export function dateToString(date) {
+function dateToString(date) {
      const monthNames = [
           "enero", "febrero", "marzo", "abril", "mayo", "junio",
           "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
      ];
 
      return `${date.getDate()} de ${monthNames[date.getMonth()]} del ${date.getFullYear()}`;
+}
+
+export function formatInfo(player) {
+     return [noAccents(player.name), withPoints(player.marketValue), dateToString(new Date(player.birth))];
 }
 
 export function numberInRange(name, number, min, max) {
