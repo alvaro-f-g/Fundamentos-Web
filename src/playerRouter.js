@@ -28,11 +28,9 @@ router.post('/formulario/inscribir', (req, res) => {
         req.body.nationality,
         req.body.price,
         req.body.description
-    )
+    );
 
     try {
-        playerService.correctValues(player);
-
         playerService.addPlayer(player);
 
         res.render('mensajes', {
@@ -102,8 +100,6 @@ router.post('/ficha/editada', (req, res) => {
     );
 
     try {
-        playerService.correctValues(newPlayer);
-
         let id = req.body.id;
         let player = playerService.getPlayer(parseInt(id));
 
@@ -133,12 +129,10 @@ router.post("/ficha/agregar", (req, res) => {
     );
 
     try {
-        playerService.correctSubvalues(sub);
-
         let id = parseInt(req.body.id);
         let player = playerService.getPlayer(id);
 
-        player.addSubelement(sub);
+        playerService.addSubelement(player, sub);
 
         res.render('mensajes', {
             title: "Subelemento añadido",
