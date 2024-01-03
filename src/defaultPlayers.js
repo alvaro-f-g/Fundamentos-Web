@@ -29,7 +29,7 @@ export class Player {
           numberInRange("El dorsal", parseInt(this.number), 0, 99);
           if (correctDate(this.birth)) throw new Error("Introduzca una fecha correcta");
           if (birthday.getTime() > Date.now()) throw new Error("¿Ha nacido en el futuro?");
-          numberInRange("El valor de mercado", parseInt(this.marketValue), 0, 100000000);
+          numberInRange("El valor de mercado", parseInt(this.marketValue), 0, 200000000);
           if (this.marketValue == 0) throw new Error("Todos los jugadores valen algo");
 
           return true;
@@ -91,7 +91,7 @@ const defaultPlayers = [
      new Player(
           "Isco.png",
           "Isco Alarcón",
-          "Medio",
+          "Centrocampista",
           "22",
           "1992-04-21",
           "Español",
@@ -101,7 +101,7 @@ const defaultPlayers = [
      new Player(
           "Bellingham.png",
           "Jude Bellingham",
-          "Medio",
+          "Centrocampista",
           "5",
           "2003-06-29",
           "Inglés",
@@ -111,7 +111,7 @@ const defaultPlayers = [
      new Player(
           "MasonMount.png",
           "Mason Mount",
-          "Delantero",
+          "Centrocampista",
           "7",
           "1999-01-10",
           "Inglés",
@@ -182,8 +182,8 @@ function loadDefaultSubelements(id) {
 
 export function loadDefaultPlayers() {
      defaultPlayers.forEach((player) => {
-          addPlayer(player);
           player.photo = "/images/players/" + player.photo;
+          addPlayer(player);
      });
      loadDefaultSubelements(0);  // Solo tenemos los subelementos del bicho
 }

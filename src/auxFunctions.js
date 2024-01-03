@@ -38,5 +38,5 @@ export function correctDate(string) {
 
 export function validFormat(url) {
      const regex = /^(ftp|http|https):\/\/[^ "]+$/;
-     return regex.test(url);
+     return regex.test(url) || url.startsWith("/images/");  // Válido si es una URL o una de las imágenes ya guardadas en el servidor
 }

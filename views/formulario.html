@@ -62,7 +62,7 @@
                         <option value="Banquillo" selected hidden>Banquillo</option>
                         {{/player}}
                         <option value="Delantero">Delantero</option>
-                        <option value="Medio">Medio</option>
+                        <option value="Centrocampista">Centrocampista</option>
                         <option value="Defensa">Defensa</option>
                         <option value="Portero">Portero</option>
                     </select>
@@ -92,7 +92,7 @@
             <div class="form-group">
                 <label for="price">Valor de mercado</label>
                 {{#player}}
-                <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
+                <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="200000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">{{player.marketValue}}</output>€
                 {{/player}}
                 {{^player}}
