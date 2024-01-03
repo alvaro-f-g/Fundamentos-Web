@@ -1,6 +1,6 @@
 import express from 'express';
 import * as playerService from './playerService.js';
-import { Player, Subelement } from './defaultPlayers.js';
+import { Player, Subelement } from './player.js';
 import { noAccents, formatInfo } from './auxFunctions.js';
 
 const router = express.Router();
