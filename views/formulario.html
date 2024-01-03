@@ -55,12 +55,12 @@
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="position">Posición</label>
                     <select class="form-select" name="position">
-                        {{#edit}}
+                        {{#player}}
                         <option value="{{player.position}}" selected hidden>{{player.position}}</option>
-                        {{/edit}}
-                        {{^edit}}
+                        {{/player}}
+                        {{^player}}
                         <option value="Banquillo" selected hidden>Banquillo</option>
-                        {{/edit}}
+                        {{/player}}
                         <option value="Delantero">Delantero</option>
                         <option value="Medio">Medio</option>
                         <option value="Defensa">Defensa</option>
@@ -91,14 +91,14 @@
 
             <div class="form-group">
                 <label for="price">Valor de mercado</label>
-                {{#edit}}
+                {{#player}}
                 <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">{{player.marketValue}}</output>€
-                {{/edit}}
-                {{^edit}}
+                {{/player}}
+                {{^player}}
                 <input type="range" class="form-range" name="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">0</output>€
-                {{/edit}}
+                {{/player}}
             </div>
 
             <div class="btn-cont">
