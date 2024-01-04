@@ -32,16 +32,19 @@ router.post('/formulario/inscribir', (req, res) => {
 
     try {
         playerService.addPlayer(player);
-
-        res.render('mensajes', {
-            title: "Ficha creada",
-            message: "Jugador añadido correctamente",
-            back: "/"
-        });
+        res.redirect('/formulario/inscrito');
     }
     catch (error) {
         showError(res, error);
     }
+});
+
+router.get('/formulario/inscrito', (req, res) => {
+    res.render('mensajes', {
+        title: "Ficha creada",
+        message: "Jugador añadido correctamente",
+        back: "/"
+    });
 });
 
 router.get('/ficha', (req, res) => {
@@ -65,18 +68,23 @@ router.get('/ficha/borrar', (req, res) => {
     try {
         playerService.deletePlayer(player);
 
-        res.render('mensajes', {
-            title: "Ficha eliminada",
-            message: noAccents("Ficha de " + player.name + " eliminada definitivamente"),
-            back: "/"
-        });
+        req.session.playerName = player.name;
+        res.redirect('/ficha/borrada');
     }
     catch (error) {
         showError(res, error);
     }
 });
 
-router.get('/ficha/editar', (req, res) => {
+router.get('/ficha/borrada', (req, res) => {
+    res.render('mensajes', {
+        title: "Ficha eliminada",
+        message: noAccents("Ficha de " + req.session.playerName + " eliminada definitivamente"),
+        back: "/"
+    });
+});
+
+router.get('/ficha/formulario', (req, res) => {
     let id = parseInt(req.query.id)
     let player = playerService.getPlayer(id);
 
@@ -88,7 +96,7 @@ router.get('/ficha/editar', (req, res) => {
     });
 });
 
-router.post('/ficha/editada', (req, res) => {
+router.post('/ficha/editar', (req, res) => {
     let newPlayer = new Player(
         req.body.photo,
         req.body.name,
@@ -106,15 +114,21 @@ router.post('/ficha/editada', (req, res) => {
     try {
         playerService.editPlayer(player, newPlayer);
 
-        res.render('mensajes', {
-            title: "Ficha editada",
-            message: noAccents("Ficha de " + player.name + " editada correctamente"),
-            back: "/ficha?id=" + id
-        });
+        req.session.playerName = player.name;
+        req.session.playerId = player.id;
+        res.redirect('/ficha/editada');
     }
     catch (error) {
         showError(res, error);
     }
+});
+
+router.get('/ficha/editada', (req, res) => {
+    res.render('mensajes', {
+        title: "Ficha editada",
+        message: noAccents("Ficha de " + req.session.playerName + " editada correctamente"),
+        back: "/ficha?id=" + req.session.playerId
+    });
 });
 
 router.post("/ficha/agregar", (req, res) => {
@@ -131,15 +145,20 @@ router.post("/ficha/agregar", (req, res) => {
     try {
         playerService.addSubelement(player, sub);
 
-        res.render('mensajes', {
-            title: "Subelemento añadido",
-            message: "Subelemento añadido correctamente",
-            back: "/ficha?id=" + id
-        });
+        req.session.playerId = player.id;
+        res.redirect('/ficha/agregado');
     }
     catch (error) {
         showError(res, error);
     }
+});
+
+router.get("/ficha/agregado", (req, res) => {
+    res.render('mensajes', {
+        title: "Subelemento añadido",
+        message: "Subelemento añadido correctamente",
+        back: "/ficha?id=" + req.session.playerId
+    });
 });
 
 router.get("/formulario/ben", (req, res) => {

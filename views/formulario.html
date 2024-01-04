@@ -37,7 +37,7 @@
         {{/edit}}
 
         {{#edit}}
-        <form role="form" action="/ficha/editada" method="post">
+        <form role="form" action="/ficha/editar" method="post">
             <input type="hidden" name="id" value="{{player.id}}">
         {{/edit}}
 
@@ -92,7 +92,7 @@
             <div class="form-group">
                 <label for="price">Valor de mercado</label>
                 {{#player}}
-                <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="200000000" step="10000" oninput="this.nextElementSibling.value = this.value">
+                <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">{{player.marketValue}}</output>€
                 {{/player}}
                 {{^player}}
