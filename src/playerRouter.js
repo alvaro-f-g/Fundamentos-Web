@@ -40,11 +40,7 @@ router.post('/formulario/inscribir', (req, res) => {
         });
     }
     catch (error) {
-        res.render('mensajes', {
-            title: "Error",
-            message: error.message,
-            back: "javascript:history.back()"
-        });
+        showError(res, error);
     }
 });
 
@@ -76,11 +72,7 @@ router.get('/ficha/borrar', (req, res) => {
         });
     }
     catch (error) {
-        res.render('mensajes', {
-            title: "Error",
-            message: error.message,
-            back: "javascript:history.back()"
-        });
+        showError(res, error);
     }
 });
 
@@ -108,10 +100,10 @@ router.post('/ficha/editada', (req, res) => {
         req.body.description
     );
 
-    try {
-        let id = req.body.id;
-        let player = playerService.getPlayer(parseInt(id));
+    let id = parseInt(req.body.id);
+    let player = playerService.getPlayer(id);
 
+    try {
         playerService.editPlayer(player, newPlayer);
 
         res.render('mensajes', {
@@ -121,11 +113,7 @@ router.post('/ficha/editada', (req, res) => {
         });
     }
     catch (error) {
-        res.render('mensajes', {
-            title: "Error",
-            message: error.message,
-            back: "javascript:history.back()"
-        });
+        showError(res, error);
     }
 });
 
@@ -137,10 +125,10 @@ router.post("/ficha/agregar", (req, res) => {
         req.body.end
     );
 
-    try {
-        let id = parseInt(req.body.id);
-        let player = playerService.getPlayer(id);
+    let id = parseInt(req.body.id);
+    let player = playerService.getPlayer(id);
 
+    try {
         playerService.addSubelement(player, sub);
 
         res.render('mensajes', {
@@ -150,11 +138,7 @@ router.post("/ficha/agregar", (req, res) => {
         });
     }
     catch (error) {
-        res.render('mensajes', {
-            title: "Error",
-            message: error.message,
-            back: "javascript:history.back()"
-        });
+        showError(res, error);
     }
 });
 
@@ -178,3 +162,11 @@ router.get("/formulario/ben", (req, res) => {
 });
 
 export default router;
+
+function showError(res, error) {
+    res.render('mensajes', {
+        title: "Error",
+        message: error.message,
+        back: "javascript:history.back()"
+    });
+}
