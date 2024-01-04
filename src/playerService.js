@@ -30,8 +30,13 @@ export function editPlayer(oldPlayer, newPlayer) {
     players.set(newPlayer.id, newPlayer);
 }
 
-export function deletePlayer(id) {
-    players.delete(id) && freesIdArray.push(id);
+export function deletePlayer(player) {
+    exists(player);
+
+    let id = player.id;
+    let name = player.name;
+
+    players.delete(id) && freesIdArray.push(id) && playersNames.delete(name);
 }
 
 export function getPlayers() {
@@ -44,4 +49,8 @@ export function getPlayer(id) {
 
 function isNew(name) {
     if (playersNames.has(name)) throw new Error("Ya existe un jugador con ese nombre");
+}
+
+function exists(player){
+    if (!player) throw new Error("No existe un jugador con ese id");
 }

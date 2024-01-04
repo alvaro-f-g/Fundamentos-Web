@@ -64,15 +64,24 @@ router.get('/ficha', (req, res) => {
 
 router.get('/ficha/borrar', (req, res) => {
     let id = parseInt(req.query.id);
-    let name = playerService.getPlayer(id).name;
+    let player = playerService.getPlayer(id);
 
-    playerService.deletePlayer(id);
+    try {
+        playerService.deletePlayer(player);
 
-    res.render('mensajes', {
-        title: "Ficha eliminada",
-        message: noAccents("Ficha de " + name + " eliminada definitivamente"),
-        back: "/"
-    });
+        res.render('mensajes', {
+            title: "Ficha eliminada",
+            message: noAccents("Ficha de " + player.name + " eliminada definitivamente"),
+            back: "/"
+        });
+    }
+    catch (error) {
+        res.render('mensajes', {
+            title: "Error",
+            message: error.message,
+            back: "javascript:history.back()"
+        });
+    }
 });
 
 router.get('/ficha/editar', (req, res) => {
