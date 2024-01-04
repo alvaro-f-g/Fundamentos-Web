@@ -1,30 +1,5 @@
-import { addPlayer, getPlayer } from './playerService.js';
-
-export class Player {
-     constructor(photo, name, position, number, birth, nationality, marketValue, description) {
-          this.photo = photo;
-          this.name = name;
-          this.position = position;
-          this.number = number;
-          this.birth = birth;
-          this.nationality = nationality;
-          this.marketValue = marketValue;
-          this.description = description;
-          this.subelements = [];
-     }
-
-     addSubelement(subelement) {
-          this.subelements.push(subelement)
-     }
-}
-
-export class Subelement {
-     constructor(emblem, club, start, end) {
-          this.emblem = emblem,
-          this.club = club,
-          this.stage = { start: start, end: end }
-     }
-}
+import { addPlayer, getPlayer, addSubelement } from './playerService.js';
+import { Player, Subelement } from './player.js';
 
 const defaultPlayers = [
      new Player(
@@ -60,7 +35,7 @@ const defaultPlayers = [
      new Player(
           "Isco.png",
           "Isco Alarcón",
-          "Medio",
+          "Centrocampista",
           "22",
           "1992-04-21",
           "Español",
@@ -70,7 +45,7 @@ const defaultPlayers = [
      new Player(
           "Bellingham.png",
           "Jude Bellingham",
-          "Medio",
+          "Centrocampista",
           "5",
           "2003-06-29",
           "Inglés",
@@ -80,7 +55,7 @@ const defaultPlayers = [
      new Player(
           "MasonMount.png",
           "Mason Mount",
-          "Delantero",
+          "Centrocampista",
           "7",
           "1999-01-10",
           "Inglés",
@@ -140,19 +115,19 @@ function loadDefaultSubelements(id) {
 
      for (let i = 0; i < defaultSubelements.emblems.length; i++) {
           let sub = new Subelement(
-               "/imagenes/teams/" + defaultSubelements.emblems[i],
+               "/images/teams/" + defaultSubelements.emblems[i],
                defaultSubelements.clubs[i],
                defaultSubelements.stages[i].start,
                defaultSubelements.stages[i].end
           );
-          player.addSubelement(sub);
+          addSubelement(player, sub);
      }
 }
 
 export function loadDefaultPlayers() {
      defaultPlayers.forEach((player) => {
+          player.photo = "/images/players/" + player.photo;
           addPlayer(player);
-          player.photo = "/imagenes/players/" + player.photo;
      });
      loadDefaultSubelements(0);  // Solo tenemos los subelementos del bicho
 }

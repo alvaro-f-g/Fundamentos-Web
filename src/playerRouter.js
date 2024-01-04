@@ -1,7 +1,7 @@
 import express from 'express';
 import * as playerService from './playerService.js';
-import { Player, Subelement } from './defaultPlayers.js';
-import { noAccents } from './auxFunctions.js';
+import { Player, Subelement } from './player.js';
+import { noAccents, formatInfo } from './auxFunctions.js';
 
 const router = express.Router();
 
@@ -28,32 +28,29 @@ router.post('/formulario/inscribir', (req, res) => {
         req.body.nationality,
         req.body.price,
         req.body.description
-    )
+    );
 
     try {
-        playerService.correctValues(player);
-
         playerService.addPlayer(player);
-
-        res.render('mensajes', {
-            title: "Ficha creada",
-            message: "Jugador añadido correctamente",
-            back: "/"
-        });
+        res.redirect('/formulario/inscrito');
     }
     catch (error) {
-        res.render('mensajes', {
-            title: "Error",
-            message: error.message,
-            back: "javascript:history.back()"
-        });
+        showError(res, error);
     }
+});
+
+router.get('/formulario/inscrito', (req, res) => {
+    res.render('mensajes', {
+        title: "Ficha creada",
+        message: "Jugador añadido correctamente",
+        back: "/"
+    });
 });
 
 router.get('/ficha', (req, res) => {
     let id = parseInt(req.query.id);
     let player = playerService.getPlayer(id);
-    const [name, value, date] = playerService.formatInfo(player);
+    const [name, value, date] = formatInfo(player);
 
     res.render('ficha', {
         player: player,
@@ -66,18 +63,28 @@ router.get('/ficha', (req, res) => {
 
 router.get('/ficha/borrar', (req, res) => {
     let id = parseInt(req.query.id);
-    let name = playerService.getPlayer(id).name;
+    let player = playerService.getPlayer(id);
 
-    playerService.deletePlayer(id);
+    try {
+        playerService.deletePlayer(player);
 
+        req.session.playerName = player.name;
+        res.redirect('/ficha/borrada');
+    }
+    catch (error) {
+        showError(res, error);
+    }
+});
+
+router.get('/ficha/borrada', (req, res) => {
     res.render('mensajes', {
         title: "Ficha eliminada",
-        message: noAccents("Ficha de " + name + " eliminada definitivamente"),
+        message: noAccents("Ficha de " + req.session.playerName + " eliminada definitivamente"),
         back: "/"
     });
 });
 
-router.get('/ficha/editar', (req, res) => {
+router.get('/ficha/formulario', (req, res) => {
     let id = parseInt(req.query.id)
     let player = playerService.getPlayer(id);
 
@@ -89,7 +96,7 @@ router.get('/ficha/editar', (req, res) => {
     });
 });
 
-router.post('/ficha/editada', (req, res) => {
+router.post('/ficha/editar', (req, res) => {
     let newPlayer = new Player(
         req.body.photo,
         req.body.name,
@@ -101,27 +108,27 @@ router.post('/ficha/editada', (req, res) => {
         req.body.description
     );
 
+    let id = parseInt(req.body.id);
+    let player = playerService.getPlayer(id);
+
     try {
-        playerService.correctValues(newPlayer);
-
-        let id = req.body.id;
-        let player = playerService.getPlayer(parseInt(id));
-
         playerService.editPlayer(player, newPlayer);
 
-        res.render('mensajes', {
-            title: noAccents("Ficha de " + player.name + " editada"),
-            message: "Ficha editada correctamente",
-            back: "/ficha?id=" + id
-        });
+        req.session.playerName = player.name;
+        req.session.playerId = player.id;
+        res.redirect('/ficha/editada');
     }
     catch (error) {
-        res.render('mensajes', {
-            title: "Error",
-            message: error.message,
-            back: "javascript:history.back()"
-        });
+        showError(res, error);
     }
+});
+
+router.get('/ficha/editada', (req, res) => {
+    res.render('mensajes', {
+        title: "Ficha editada",
+        message: noAccents("Ficha de " + req.session.playerName + " editada correctamente"),
+        back: "/ficha?id=" + req.session.playerId
+    });
 });
 
 router.post("/ficha/agregar", (req, res) => {
@@ -132,27 +139,26 @@ router.post("/ficha/agregar", (req, res) => {
         req.body.end
     );
 
+    let id = parseInt(req.body.id);
+    let player = playerService.getPlayer(id);
+
     try {
-        playerService.correctSubvalues(sub);
+        playerService.addSubelement(player, sub);
 
-        let id = parseInt(req.body.id);
-        let player = playerService.getPlayer(id);
-
-        player.addSubelement(sub);
-
-        res.render('mensajes', {
-            title: "Subelemento añadido",
-            message: "Subelemento añadido correctamente",
-            back: "/ficha?id=" + id
-        });
+        req.session.playerId = player.id;
+        res.redirect('/ficha/agregado');
     }
     catch (error) {
-        res.render('mensajes', {
-            title: "Error",
-            message: error.message,
-            back: "javascript:history.back()"
-        });
+        showError(res, error);
     }
+});
+
+router.get("/ficha/agregado", (req, res) => {
+    res.render('mensajes', {
+        title: "Subelemento añadido",
+        message: "Subelemento añadido correctamente",
+        back: "/ficha?id=" + req.session.playerId
+    });
 });
 
 router.get("/formulario/ben", (req, res) => {
@@ -166,13 +172,20 @@ router.get("/formulario/ben", (req, res) => {
         "10000000",
         "Un trasto alienígena llegó de sopetón. Pegándosele al brazo sus secretos descubrió. Con sus superpoderes para siempre le cambió. Es Ben 10. Si un día te lo encuentras no te vaya a sorprender. Si se transforma en héroe sin cómo ni porque. Es loco, fiero, ágil o brillante de una vez. Es Ben 10. Llega al rescate sin preguntar. Contra los males de aquí o de allá. No tiene miedo y disfrutará. Aunque es un revoltoso te vendrá a salvar. Es Ben 10"
     );
-    playerService.addPlayer(ben);
+
     res.render('formulario', {
         title: "Ficha de " + ben.name,
-        edit: true,
         player: ben,
         cancel: "/"
     });
 });
 
 export default router;
+
+function showError(res, error) {
+    res.render('mensajes', {
+        title: "Error",
+        message: error.message,
+        back: "javascript:history.back()"
+    });
+}

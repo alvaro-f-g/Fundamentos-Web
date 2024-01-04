@@ -19,7 +19,7 @@
     <header>
         <div>
             <a href="/">
-                <img id="header-img" src="/imagenes/Escudo.jpeg" alt="Escudo del Triplano FC">
+                <img id="header-img" src="/images/Escudo.jpeg" alt="Escudo del Triplano FC">
             </a>
         </div>
         <div>
@@ -37,7 +37,7 @@
         {{/edit}}
 
         {{#edit}}
-        <form role="form" action="/ficha/editada" method="post">
+        <form role="form" action="/ficha/editar" method="post">
             <input type="hidden" name="id" value="{{player.id}}">
         {{/edit}}
 
@@ -55,14 +55,14 @@
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="position">Posición</label>
                     <select class="form-select" name="position">
-                        {{#edit}}
+                        {{#player}}
                         <option value="{{player.position}}" selected hidden>{{player.position}}</option>
-                        {{/edit}}
-                        {{^edit}}
+                        {{/player}}
+                        {{^player}}
                         <option value="Banquillo" selected hidden>Banquillo</option>
-                        {{/edit}}
+                        {{/player}}
                         <option value="Delantero">Delantero</option>
-                        <option value="Medio">Medio</option>
+                        <option value="Centrocampista">Centrocampista</option>
                         <option value="Defensa">Defensa</option>
                         <option value="Portero">Portero</option>
                     </select>
@@ -91,14 +91,14 @@
 
             <div class="form-group">
                 <label for="price">Valor de mercado</label>
-                {{#edit}}
+                {{#player}}
                 <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">{{player.marketValue}}</output>€
-                {{/edit}}
-                {{^edit}}
+                {{/player}}
+                {{^player}}
                 <input type="range" class="form-range" name="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">0</output>€
-                {{/edit}}
+                {{/player}}
             </div>
 
             <div class="btn-cont">
