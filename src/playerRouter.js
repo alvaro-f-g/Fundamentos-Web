@@ -13,6 +13,19 @@ router.get('/', (req, res) => {
       });
 });
 
+router.get('/players', (req, res) => {
+
+    const from = parseInt(req.query.from) ;
+
+    const to = parseInt(req.query.to) ;
+
+    const players= getPlayers(from,to);
+
+    res.render('players', {
+        players: players});
+});
+
+
 router.get("/formulario", (req, res) => {
     res.render('formulario', {
         title: "Nueva ficha",
