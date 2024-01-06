@@ -6,9 +6,10 @@ import { noAccents, formatInfo } from './auxFunctions.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
+    const players= getPlayers(0,5); 
     res.render('plantilla', {
-        players: playerService.getPlayers(),
-    });
+       players: players  
+      });
 });
 
 router.get("/formulario", (req, res) => {
