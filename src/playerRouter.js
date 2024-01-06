@@ -2,6 +2,7 @@ import express from 'express';
 import * as playerService from './playerService.js';
 import { Player, Subelement } from './player.js';
 import { noAccents, formatInfo } from './auxFunctions.js';
+import { getPlayers } from './playerService.js';
 
 const router = express.Router();
 

@@ -2,7 +2,7 @@ const NUM_RESULTS = 5;
 
 let loadMoreRequest = 0;
 
-async function loadMore() {
+async function loadMorePlayers() {
 
     const from = (loadMoreRequest+1) * NUM_RESULTS;
     const to = from + NUM_RESULTS;
