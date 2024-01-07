@@ -13,6 +13,7 @@
 
     <link type="text/css" rel="stylesheet" href="/base.css" />
     <link type="text/css" rel="stylesheet" href="/plantilla.css" />
+    <script src="app.js"></script> 
 </head>
 
 <body>
@@ -44,9 +45,11 @@
             {{/players}}
         </div>
 
-        <button onclick="loadMorePlayers()">Cargar más jugadores</button>
 
         <div class="btn-cont">
+            <div class = "btn" onclick = "loadMorePlayers()">
+                <i class="bi bi-arrow-down-circle-fill"></i> Cargar más
+            </div>
             <a href="/formulario" class="btn" role="btn"><i class="bi bi-person-fill-add"></i> Inscribir nuevo jugador</a>
         </div>
     </section>
