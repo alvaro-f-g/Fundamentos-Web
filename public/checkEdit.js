@@ -2,7 +2,7 @@ const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
 formulario.setAttribute('validate', 'true');
 
-const expresiones = {
+const expresiones = {   
     name: /^[A-Z].*$/, 
     dorsal: /^[0-9]{1,2}$/, //2 digitos,cada uno de un num del 0 al 9
     date: /^(?:19|20)\d{2},(0[1-9]|1[0-2]),(0[1-9]|[12]\d|3[01])$/, //formato fecha
@@ -46,6 +46,7 @@ const checkForm = (event) => {
             break;
     }
 }
+
 const checkInput = (expresion, input, campo) => {
  if(expresion.test(input.value)){
      document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
@@ -54,17 +55,15 @@ const checkInput = (expresion, input, campo) => {
      //document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
      document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
      campos[campo] = true;
-}else{
+ }else{
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
         //document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
         //document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
         document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
         campos[campo] = false;
-    }
-    document.getElementById('name').oninput /*= function(event){
-        checkInput(expresiones.name, event.target, 'name');
-    }*/
+ }
+ document.getElementById('name').oninput
 }
 
 inputs.forEach((input) => {
@@ -72,12 +71,11 @@ inputs.forEach((input) => {
     input.addEventListener('blur', checkForm);
 });
 
-function submitFormulario(event){
-    event.preventDefault();
-    checkForm(event);
-    if(campos.name && campos.dorsal && campos.date && campos.nacionalidad && campos.marketValue && campos.descripcion && (formulario.getAttribute('validate') === 'true')){ 
-        formulario.submit(); //si los campos son correctos se envia el formulario
+formulario.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if(campos.name && campos.dorsal && campos.date && campos.nacionalidad && campos.marketValue && campos.descripcion && (formulario.getAttribute('validate') === 'true')){
+        formulario.submit();
     }else{
-        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo')
+        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
     }
-};
+});
