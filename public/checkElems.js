@@ -47,37 +47,36 @@ const checkForm = (event) => {
     }
 }
 const checkInput = (expresion, input, campo) => {
- if(expresion.test(input.value)){
-     document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
-     document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
-     //document.querySelector(`#grupo__${campo} i`).classList.remove('fa-times-circle');
-     //document.querySelector(`#grupo__${campo} i`).classList.add('fa-check-circle');
-     document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
-     campos[campo] = true;
-}else{
+    if (expresion.test(input.value)) {
+        document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
+        document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
+        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
+        campos[campo] = true;
+    } else {
         document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
         document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
-        //document.querySelector(`#grupo__${campo} i`).classList.add('fa-times-circle');
-        //document.querySelector(`#grupo__${campo} i`).classList.remove('fa-check-circle');
         document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
         campos[campo] = false;
     }
-    document.getElementById('name').oninput /*= function(event){
-        checkInput(expresiones.name, event.target, 'name');
-    }*/
 }
+
 
 inputs.forEach((input) => {
     input.addEventListener('keyup', checkForm);
     input.addEventListener('blur', checkForm);
 });
 
-function submitFormulario(event){
+function submitFormulario(event) {
     event.preventDefault();
-    checkForm(event);
-    if(campos.name && campos.dorsal && campos.date && campos.nacionalidad && campos.marketValue && campos.descripcion && (formulario.getAttribute('validate') === 'true')){ 
-        formulario.submit(); //si los campos son correctos se envia el formulario
-    }else{
-        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo')
+    for (const campo in campos) {
+        const inputElement = document.getElementById(campo);
+        inputElement.addEventListener('input', () => {
+            checkInput(expresiones[campo], inputElement, campo);
+        });
+    }
+    if (Object.values(campos).every((campo) => campo)) {
+        formulario.submit();
+    } else {
+        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
     }
 };
