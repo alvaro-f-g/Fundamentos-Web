@@ -10,9 +10,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css?family=Vina+Sans|Kanit" rel="stylesheet" type="text/css">
-
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     <link type="text/css" rel="stylesheet" href="/base.css" />
     <link type="text/css" rel="stylesheet" href="/formulario.css" />
+    <script src="app.js"></script>
 </head>
 
 <body>
@@ -43,12 +44,14 @@
 
             <div class="form-group">
                 <label for="name">Nombre del jugador</label>
-                <input type="text" class="form-control" name="name" placeholder="Nombre y apellidos" value="{{player.name}}" required>
+                <input type="text" class="formulario__input" name="name" placeholder="Nombre y apellidos" value="{{player.name}}" required>
+                <p class = "formulario__input-error">El nombre debe comenzar por una letra mayúscula</p>
             </div>
 
             <div class="form-group">
                 <label for="description">Descripción</label>
-                <textarea type="text" class="form-control" name="description" placeholder="Detalles del jugador" required>{{player.description}}</textarea>
+                <textarea type="text" class="formulario__input" name="description" placeholder="Detalles del jugador" required>{{player.description}}</textarea>
+                <p class = "formulario__input-error">La descripción debe contener entre 50 y 500 carácteres</p>
             </div>
 
             <div class="row">
@@ -69,31 +72,36 @@
                 </div>
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="jersey-number">Dorsal</label>
-                    <input type="number" class="form-control" name="number" placeholder="0" value="{{player.number}}" required min="0" max="99">
+                    <input type="number" class="formulario__input" name="number" placeholder="0" value="{{player.number}}" required min="0" max="99">
+                    <p class = "formulario__input-error">El dorsal debe ser un número entre 0 y 99</p>
                 </div>
             </div>
 
             <div class="form-group row">
                 <div class="col-md-6 col-sm-12">
                     <label for="birthday">Fecha de nacimiento</label>
-                    <input type="date" class="form-control text-uppercase" name="birthday" value="{{player.birth}}" required>
+                    <input type="date" class="formulario__input text-uppercase" name="birthday" value="{{player.birth}}" required>
+                    <p class = "formulario__input-error">La fecha de nacimiento debe estar en formato americano</p>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <label for="nationality">Nacionalidad</label>
-                    <input type="text" class="form-control" name="nationality" placeholder="Ej.: Española" value="{{player.nationality}}" required>
+                    <input type="text" class="formulario__input" name="nationality" placeholder="Ej.: Española" value="{{player.nationality}}" required>
+                    <p class = "formulario__input-error">La nacionalidad debe comenzar por una letra mayúscula</p>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="player-photo">Foto de perfil</label>
-                <input type="url" class="form-control" name="photo" placeholder="URL de la imagen" value="{{player.photo}}" required>
+                <input type="url" class="formulario__input" name="photo" placeholder="URL de la imagen" value="{{player.photo}}" required>
+                <p class = "formulario__input-error">La URL debe comenzar por http:// o https:// o ftp://</p>
             </div>
 
             <div class="form-group">
                 <label for="price">Valor de mercado</label>
                 {{#player}}
-                <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
+                <input type="range" class="formulario__input" name="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">{{player.marketValue}}</output>€
+                <p class = "formulario__input-error">El valor de mercado debe ser un número entre 0 y 100000000</p>
                 {{/player}}
                 {{^player}}
                 <input type="range" class="form-range" name="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
@@ -107,6 +115,7 @@
             </div>
         </form>
     </div>
+    <script type="module" src="checkElems.js"></script>
 </body>
 
 </html>
