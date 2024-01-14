@@ -4,7 +4,7 @@ import mustacheExpress from 'mustache-express';
 import bodyParser from 'body-parser';
 import { __dirname } from './dirname.js';
 import playerRouter from './playerRouter.js';
-import { loadDefaultPlayers } from './playerService.js';
+import { loadDefaultPlayers } from './defaultPlayers.js';
 
 const app = express();
 
