@@ -2,29 +2,25 @@ import express from 'express';
 import * as playerService from './playerService.js';
 import { Player, Subelement } from './player.js';
 import { noAccents, formatInfo } from './auxFunctions.js';
-import { getPlayers } from './playerService.js';
 
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const players= getPlayers(0,5); 
+    const players = playerService.getPlayers();
+
     res.render('plantilla', {
-       players: players  
-      });
+        players: players
+    });
 });
 
-router.get('/players', (req, res) => {
-
-    const from = parseInt(req.query.from) ;
-
-    const to = parseInt(req.query.to) ;
-
-    const players= getPlayers(from,to);
+router.get('/loadMore', (req, res) => {
+    const amount = parseInt(req.query.amount);
+    const players = playerService.getPlayers(amount);
 
     res.render('players', {
-        players: players});
+        players: players,
+    });
 });
-
 
 router.get("/formulario", (req, res) => {
     res.render('formulario', {

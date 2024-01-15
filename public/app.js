@@ -1,19 +1,32 @@
-const NUM_RESULTS = 5;
+let playersContainer;
+let playerWidth;
 
-let loadMoreRequest = 0;
+document.addEventListener('DOMContentLoaded', function () {
+    playersContainer = document.getElementById("players");
+    playerWidth = 250 + 2*20; // Ancho máximo de cada jugador + márgenes
 
-async function loadMorePlayers() {
+    if (!sessionStorage.getItem('initialLoad')) {
+        loadPlayers()
+        sessionStorage.setItem('initialLoad', 'true');
+    }
+});
 
-    const from = (loadMoreRequest+1) * NUM_RESULTS;
-    const to = from + NUM_RESULTS;
+function calculateColumns() {
+    const containerWidth = playersContainer.offsetWidth;
+    const columns = Math.floor(containerWidth / playerWidth);
 
-    const response = await fetch(`/players?from=${from}&to=${to}`);
+    return columns;
+}
 
-    const newPlayers = await response.json();
+async function loadPlayers() {
+    const amount = Math.max(2, Math.min(5, calculateColumns()));  // Entre 2 y 5 jugadores
 
-    const playersContainer = document.getElementById("players-container");
+    const response = await fetch(`/loadMore?amount=${amount}`);
+    const newPlayers = await response.text();
 
-    playersContainer.innerHTML += newPlayers;
+    const playersContainer = document.getElementById("players");
+    const empty = (playersContainer.innerHTML.includes("<p>No hay jugadores fichados aún</p>"));
 
-    loadMoreRequest++;
+    if (empty) {playersContainer.innerHTML = newPlayers}
+    else {playersContainer.innerHTML += newPlayers}
 }

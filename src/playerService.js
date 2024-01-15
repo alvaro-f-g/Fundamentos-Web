@@ -2,6 +2,7 @@ let players = new Map();
 let playersNames = new Set();
 let nextId = 0;
 let freesIdArray = [];
+let loadedUntil = 0;
 
 export function addPlayer(player) {
     isNew(player.name);
@@ -36,15 +37,22 @@ export function deletePlayer(player) {
     let id = player.id;
     let name = player.name;
 
-    players.delete(id) && freesIdArray.push(id) && playersNames.delete(name);
+    players.delete(id) && freesIdArray.push(id) && playersNames.delete(name) && loadedUntil--;
 }
-//para devolver una lista de jugadores, usaremos el from to para mostrar solo el rango que queremos mostrar 
-export function getPlayers(from, to) {
+
+export function getPlayers(amount) {
     let values = [...players.values()]; // == Array.from(players.values())
-    if (from !== undefined){
-        return values.slice(from, to);
-    } else{
-        return values;
+    if (isNaN(amount)){
+        return values.slice(0, loadedUntil);
+    } else {
+        let from = loadedUntil;
+        let to = loadedUntil + amount;
+
+        if (to > values.length) to = values.length;
+        loadedUntil = to;
+
+        if (from > to) return [];
+        return values.slice(from, to);  // [from, ..., to-1]
     }
 }
 

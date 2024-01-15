@@ -13,6 +13,7 @@
 
     <link type="text/css" rel="stylesheet" href="/base.css" />
     <link type="text/css" rel="stylesheet" href="/plantilla.css" />
+
     <script src="app.js"></script> 
 </head>
 
@@ -33,7 +34,7 @@
     <section class="container">
         <h2>Plantilla temporada 23/24</h2>
 
-        <div class="players">
+        <div class="players" id="players">
             {{#players}}
             <a href="/ficha?id={{id}}">
                 <img src="{{photo}}" alt="{{name}}">
@@ -47,9 +48,9 @@
 
 
         <div class="btn-cont">
-            <div class = "btn" onclick = "loadMorePlayers()">
-                <i class="bi bi-arrow-down-circle-fill"></i> Cargar más
-            </div>
+            <button class="btn" onclick='loadPlayers()'>
+                <i class="bi bi-chevron-double-down"></i> Cargar más
+            </button>
             <a href="/formulario" class="btn" role="btn"><i class="bi bi-person-fill-add"></i> Inscribir nuevo jugador</a>
         </div>
     </section>
