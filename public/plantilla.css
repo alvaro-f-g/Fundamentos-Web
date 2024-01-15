@@ -34,3 +34,14 @@
 .players a:hover{
     box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.5);
 }
+
+.bottom-right-button {
+    position: fixed;
+    bottom: 1%;
+    right: 2%;
+}
+
+.bottom-right-button > .btn {
+    min-width: 50px;
+    border-radius: 10px;
+}
