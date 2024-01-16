@@ -6,20 +6,22 @@ import { noAccents, formatInfo } from './auxFunctions.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    const players = playerService.getPlayers();
+    res.render('plantilla');
+});
 
-    res.render('plantilla', {
+router.get('/loadPlayers', (req, res) => {
+    const from = parseInt(req.query.from);
+    const amount = parseInt(req.query.amount);
+
+    const players = playerService.getPlayers(from, amount);
+
+    res.render('players', {
         players: players
     });
 });
 
-router.get('/loadMore', (req, res) => {
-    const amount = parseInt(req.query.amount);
-    const players = playerService.getPlayers(amount);
-
-    res.render('players', {
-        players: players,
-    });
+router.get('/allPlayersLoaded', (req, res) => {
+    res.send({value: playerService.allPlayersLoaded()});
 });
 
 router.get("/formulario", (req, res) => {

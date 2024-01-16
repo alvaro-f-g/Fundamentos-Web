@@ -40,24 +40,22 @@ export function deletePlayer(player) {
     players.delete(id) && freesIdArray.push(id) && playersNames.delete(name) && loadedUntil--;
 }
 
-export function getPlayers(amount) {
-    let values = [...players.values()]; // == Array.from(players.values())
-    if (isNaN(amount)){
-        return values.slice(0, loadedUntil);
-    } else {
-        let from = loadedUntil;
-        let to = loadedUntil + amount;
-
-        if (to > values.length) to = values.length;
-        loadedUntil = to;
-
-        if (from > to) return [];
-        return values.slice(from, to);  // [from, ..., to-1]
-    }
-}
-
 export function getPlayer(id) {
     return players.get(id);
+}
+
+export function getPlayers(from, amount) {
+    const values = [...players.values()]; // == Array.from(players.values())
+    let to = from + amount;
+
+    if (to > values.length) to = values.length;
+    loadedUntil = to;
+
+    return values.slice(from, to);  // [from, ..., to-1]
+}
+
+export function allPlayersLoaded() {
+    return (loadedUntil == players.size);
 }
 
 function isNew(name) {
