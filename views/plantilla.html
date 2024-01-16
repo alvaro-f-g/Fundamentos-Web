@@ -14,7 +14,7 @@
     <link type="text/css" rel="stylesheet" href="/base.css" />
     <link type="text/css" rel="stylesheet" href="/plantilla.css" />
 
-    <script src="app.js"></script> 
+    <script src="app.js"></script>
 </head>
 
 <body>
@@ -29,24 +29,22 @@
                 <h1>Triplano FC</h1>
             </a>
         </div>
+        <nav class="search">
+            <form class="form-inline">
+                <input class="form-control" type="search" id="searchPlayer" placeholder="Search...">
+                <button type="submit" onclick='search()' class="btn bg-light"><i class="bi bi-search"></i></button>
+            </form>
+        </nav>
     </header>
 
     <section class="container">
-        <h2>Plantilla temporada 23/24</h2>
+        <h2 id="title">Plantilla temporada 23/24</h2>
 
         <div class="players" id="players">
-            {{#players}}
-            <a href="/ficha?id={{id}}">
-                <img src="{{photo}}" alt="{{name}}">
-                <p>{{name}}</p>
-            </a>
-            {{/players}}
-            {{^players}}
             <p>No hay jugadores fichados aún</p>
-            {{/players}}
         </div>
 
-        <div class="btn-cont">
+        <div class="btn-cont" id="loadPlayers">
             <button class="btn" onclick='loadPlayers()'>
                 <i class="bi bi-chevron-double-down"></i> Cargar más
             </button>
@@ -56,7 +54,6 @@
     <div class="btn-cont bottom-right-button">
         <a href="/formulario" class="btn" role="btn"><i class="bi bi-person-fill-add"></i></a>
     </div>
-
 </body>
 
 </html>

@@ -1,3 +1,30 @@
+.search {
+    margin-left: auto;
+}
+
+form {
+    display: flex;
+    margin: 0;
+}
+
+.form-control {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    font: inherit;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: var(--bs-border-color);
+}
+
+
+form .btn {
+    width: fit-content;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
 .players{
     display: grid;
     padding: 20px;

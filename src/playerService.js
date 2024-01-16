@@ -40,24 +40,35 @@ export function deletePlayer(player) {
     players.delete(id) && freesIdArray.push(id) && playersNames.delete(name) && loadedUntil--;
 }
 
-export function getPlayers(amount) {
+export function getPlayers(from, amount) {
     let values = [...players.values()]; // == Array.from(players.values())
-    if (isNaN(amount)){
-        return values.slice(0, loadedUntil);
-    } else {
-        let from = loadedUntil;
-        let to = loadedUntil + amount;
+    let to = from + amount;
 
-        if (to > values.length) to = values.length;
-        loadedUntil = to;
+    console.log("get "+values[0]);
 
-        if (from > to) return [];
-        return values.slice(from, to);  // [from, ..., to-1]
-    }
+    if (to > values.length) to = values.length;
+    loadedUntil = to;
+
+    return values.slice(from, to);  // [from, ..., to-1]
+}
+
+export function hasMorePlayersToLoad() {
+    return (loadedUntil != players.size);
 }
 
 export function getPlayer(id) {
     return players.get(id);
+}
+
+export function searchPlayers(info) {
+    let results = [];
+    console.log("search");
+
+    players.forEach(player => {
+        if (player.name.toLowerCase().includes(info.toLowerCase())) results.push(player);
+    });
+
+    return results;
 }
 
 function isNew(name) {

@@ -10,8 +10,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css?family=Vina+Sans|Kanit" rel="stylesheet" type="text/css">
+
     <link type="text/css" rel="stylesheet" href="/base.css" />
     <link type="text/css" rel="stylesheet" href="/formulario.css" />
+
     <script type="module" src="/checkElems.js"></script>
 </head>
 
@@ -43,18 +45,15 @@
 
             <div class="form-group">
                 <label for="name">Nombre del jugador</label>
-                <input type="text" class="form-control" name="name" placeholder="Nombre y apellidos" value="{{player.name}}" required>
-                <div id="grupo__name" class="formulario__grupo">
-                    <p class="formulario__input-error">El nombre debe empezar por mayúscula.</p>
+                <input type="text" class="form-control is-invalid" name="name" placeholder="Nombre y apellidos" value="{{player.name}}" required>
+                <div class="invalid-feedback">
+                    Este campo es obligatorio y debe comenzar con una letra mayúscula.
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="description">Descripción</label>
                 <textarea type="text" class="form-control" name="description" placeholder="Detalles del jugador" required>{{player.description}}</textarea>
-                <div id="grupo__description" class="formulario__grupo">
-                    <p class="formulario__input-error">La descripción debe tener entre 50 y 500 caracteres.</p>
-                </div>
             </div>
 
             <div class="row">
@@ -76,9 +75,6 @@
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="jersey-number">Dorsal</label>
                     <input type="number" class="form-control" name="number" placeholder="0" value="{{player.number}}" required min="0" max="99">
-                    <div id="grupo__number" class="formulario__grupo">
-                        <p class="formulario__input-error">El dorsal debe ser un número entre 0 y 99.</p>
-                    </div>
                 </div>
             </div>
 
@@ -86,25 +82,16 @@
                 <div class="col-md-6 col-sm-12">
                     <label for="birthday">Fecha de nacimiento</label>
                     <input type="date" class="form-control text-uppercase" name="birthday" value="{{player.birth}}" required>
-                    <div id="grupo__birthday" class="formulario__grupo">
-                        <p class="formulario__input-error">La fecha de nacimiento debe tener el formato correcto.</p>
-                    </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <label for="nationality">Nacionalidad</label>
                     <input type="text" class="form-control" name="nationality" placeholder="Ej.: Española" value="{{player.nationality}}" required>
-                    <div id="grupo__nationality" class="formulario__grupo">
-                        <p class="formulario__input-error">La nacionalidad debe empezar por mayúscula.</p>
-                    </div>
                 </div>
             </div>
 
             <div class="form-group">
                 <label for="player-photo">Foto de perfil</label>
                 <input type="url" class="form-control" name="photo" placeholder="URL de la imagen" value="{{player.photo}}" required>
-                <div id="grupo__photo" class="formulario__grupo">
-                    <p class="formulario__input-error">Debe introducir una URL válida.</p>
-                </div>
             </div>
 
             <div class="form-group">
@@ -112,9 +99,6 @@
                 {{#player}}
                 <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">{{player.marketValue}}</output>€
-                <div id="grupo__price" class="formulario__grupo">
-                    <p class="formulario__input-error">El valor de mercado debe estar entre 0 y 100,000,000.</p>
-                </div>
                 {{/player}}
                 {{^player}}
                 <input type="range" class="form-range" name="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
