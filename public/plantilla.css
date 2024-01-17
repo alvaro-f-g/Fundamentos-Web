@@ -80,3 +80,19 @@ input[type="search"]::-webkit-search-cancel-button {
     min-width: 50px;
     border-radius: 10px;
 }
+
+.bi-person-fill-add {
+    font-size: 1.25em;
+}
+
+@media (max-width: 600px) {
+    .search form {
+            max-width: 250px;
+    }
+}
+
+@media (max-width: 500px) {
+    .search form {
+            max-width: 200px;
+    }
+}

@@ -20,7 +20,7 @@ body {
 }
 
 p {
-        text-align: justify;
+        text-align: left;
         margin-right: 20px;
         margin-left: 20px;
 }
@@ -32,12 +32,17 @@ header {
 
         background-color: black;
         align-items: center;
-        gap: 20px;
         color: rgb(214, 12, 12);
 
         position: sticky;
         top: 0;
         z-index: 1;
+}
+
+header a {
+        display: flex;
+        align-items: center;
+        gap: 20px;
 }
 
 #header-img {
@@ -111,6 +116,43 @@ form {
         color: white;
 }
 
-.bi-person-fill-add {
-        font-size: 1.1em;
+@media (max-width: 600px) {
+        header {
+                height: 90px;
+                padding: 15px;
+        }
+        header a {
+                gap: 15px;
+                margin-right: 15px;
+        }
+        #header-img {
+                height: 70px;
+        }
+        h1 {
+                font-size: 40px;
+                line-height: 1;
+        }
+}
+
+@media (max-width: 500px) {
+        header {
+                height: 80px;
+                padding: 10px;
+        }
+        header a {
+                gap: 10px;
+                margin-right: 10px;
+        }
+        #header-img {
+                height: 60px;
+        }
+        h1 {
+                font-size: 35px;
+        }
+}
+
+@media (max-width: 415px) {  /*(250 + 2*20 + 2*20 + 2*1)/80 = max-width/100 */
+        .container {
+                min-width: fit-content;
+        }
 }

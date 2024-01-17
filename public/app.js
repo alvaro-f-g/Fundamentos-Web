@@ -1,5 +1,5 @@
 let players;
-const playerWidth = 250 + 2*20; // Ancho máximo de cada jugador + márgenes
+const playerWidth = 250 + 2*20 + 2*1; // Ancho máximo de cada jugador + márgenes + bordes
 
 document.addEventListener('DOMContentLoaded', function () {
     players = document.getElementById("players");
