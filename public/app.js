@@ -1,10 +1,11 @@
 const playerWidth = 250 + 2*20 + 2*1; // Ancho máximo de cada jugador + márgenes + bordes
-let isGridColumns = true;
+let isGridColumns = localStorage.getItem('isGridColumns') ? localStorage.getItem('isGridColumns') === "true" : true;
 let players;
 
 document.addEventListener('DOMContentLoaded', function () {
     players = document.getElementById("players");
 
+    setFormat();
     loadPlayers();
 });
 
@@ -32,7 +33,7 @@ async function loadPlayers() {
     const newPlayers = await response.text();
 
     if (from == 0) {players.innerHTML = newPlayers}
-    else {players.innerHTML += newPlayers}
+    else {players.insertAdjacentHTML("beforeend", newPlayers)}
 
     checkLoadMore();
 }
@@ -53,16 +54,20 @@ async function search(event) {
     loadMore && loadMore.remove();
 }
 
-function changeGrid() {
+function setFormat() {
     const container = document.querySelector(".container");
 
     if (isGridColumns) {
-        players.style.gridTemplateColumns = "1fr";
-        container.style.width = "fit-content";
-    } else {
         players.style.gridTemplateColumns = "repeat(auto-fit, minmax(250px, 1fr))";
         container.style.width = "80%";
+    } else {
+        players.style.gridTemplateColumns = "1fr";
+        container.style.width = "fit-content";
     }
+}
 
+function changeGrid() {
     isGridColumns = !isGridColumns;
+    localStorage.setItem('isGridColumns', isGridColumns);
+    setFormat();
 }

@@ -38,7 +38,7 @@ router.get('/search', (req, res) => {
 router.get("/formulario", (req, res) => {
     res.render('formulario', {
         title: "Nueva ficha",
-        cancel: "/"
+        cancel: "javascript:history.back()"
     });
 });
 
@@ -200,7 +200,7 @@ router.get("/formulario/ben", (req, res) => {
     res.render('formulario', {
         title: "Ficha de " + ben.name,
         player: ben,
-        cancel: "/"
+        cancel: "javascript:history.back()"
     });
 });
 
