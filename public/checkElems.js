@@ -3,7 +3,7 @@ const inputs = document.querySelectorAll('#formulario input');
 const textareas = document.querySelector('#formulario textarea');
 
 const expressions = {
-    name: /^[A-Z].*$/, 
+    name: /^[A-Z].*$/,
     number: /^[0-9]{1,2}$/, //2 digitos,cada uno de un num del 0 al 9
     nationality: /^[A-Z].*$/, //empieza por mayuscula y despues puede ir cualquier cantidad de carácteres
     description: /^.{50,500}$/, //entre 50 y 500 carácteres
@@ -19,21 +19,9 @@ const fields = {
     photo: false
 }
 
-
-const elementos = new Map([
-    ['name', undefined],
-    ['number', undefined],
-    ['birthday', undefined],
-    ['nationality', undefined],
-    ['description', undefined],
-    ['photo', undefined]
-]);
-
 const checkForm = (event) => {
     const { name, value } = event.target;
     let expression = null;
-
-    elementos.set(name, value);
 
     switch (name) {
         case "name":
@@ -59,7 +47,6 @@ const checkForm = (event) => {
     correctValue(expression.test(value), name);
 }
 
-
 const correctValue = (condition, field) => {
     if (condition) {
         document.getElementById(`grupo__${field}`).classList.remove('form-group-incorrect');
@@ -84,12 +71,7 @@ inputs.forEach((input) => {
 });
 
 formulario.addEventListener('submit', (event) => {
-    
-    for (const [key, value] of elementos) {
-        checkForm({ target: { name: key, value: value } });
-    }
-    
-    if(!(fields.name && fields.number && fields.nationality && fields.description && fields.photo)){
+    if (!(fields.name && fields.number && fields.nationality && fields.description && fields.photo)) {
         event.preventDefault();
         document.getElementById('form-error-message').classList.add('form-error-message-active');
         setTimeout(() => {
