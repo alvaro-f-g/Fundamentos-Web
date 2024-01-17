@@ -58,6 +58,18 @@ export function allPlayersLoaded() {
     return (loadedUntil == players.size);
 }
 
+export function searchPlayers(info) {
+    let results = [];
+
+    if (info.length < 2) return results;
+
+    players.forEach(player => {
+        if (player.name.toLowerCase().includes(info.toLowerCase())) results.push(player);
+    });
+
+    return results;
+}
+
 function isNew(name) {
     if (playersNames.has(name)) throw new Error("Ya existe un jugador con ese nombre");
 }

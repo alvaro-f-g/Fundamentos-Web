@@ -35,3 +35,19 @@ async function loadPlayers() {
 
     checkLoadMore();
 }
+
+async function search(event) {
+    event.preventDefault();
+
+    const info = document.getElementById('searchPlayer').value;
+    const title = document.getElementById("title");
+
+    const response = await fetch(`/search?info=${info}`);
+    const results = await response.text();
+
+    title.innerHTML = "<h2>Resultados de la busqueda: " + info + "</h2>";
+    players.innerHTML = results;
+
+    const loadMore = document.getElementById("loadPlayers");
+    loadMore && loadMore.remove();
+}

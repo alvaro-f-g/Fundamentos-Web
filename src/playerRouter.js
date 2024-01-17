@@ -16,12 +16,23 @@ router.get('/loadPlayers', (req, res) => {
     const players = playerService.getPlayers(from, amount);
 
     res.render('players', {
-        players: players
+        players: players,
+        alternative: "No hay jugadores fichados aún"
     });
 });
 
 router.get('/allPlayersLoaded', (req, res) => {
     res.send({value: playerService.allPlayersLoaded()});
+});
+
+router.get('/search', (req, res) => {
+    const info = req.query.info;
+    const players = playerService.searchPlayers(info);
+
+    res.render('players', {
+        players: players,
+        alternative: "No hay resultados"
+    });
 });
 
 router.get("/formulario", (req, res) => {
