@@ -37,8 +37,7 @@ router.get('/search', (req, res) => {
 
 router.get("/formulario", (req, res) => {
     res.render('formulario', {
-        title: "Nueva ficha",
-        cancel: "javascript:history.back()"
+        title: "Nueva ficha"
     });
 });
 
@@ -115,8 +114,7 @@ router.get('/ficha/formulario', (req, res) => {
     res.render('formulario', {
         title: noAccents("Ficha de " + player.name),
         edit: true,
-        player: player,
-        cancel: "/ficha?id=" + id
+        player: player
     });
 });
 
@@ -199,8 +197,7 @@ router.get("/formulario/ben", (req, res) => {
 
     res.render('formulario', {
         title: "Ficha de " + ben.name,
-        player: ben,
-        cancel: "javascript:history.back()"
+        player: ben
     });
 });
 
