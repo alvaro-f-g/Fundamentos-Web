@@ -1,5 +1,6 @@
-let players;
 const playerWidth = 250 + 2*20 + 2*1; // Ancho máximo de cada jugador + márgenes + bordes
+let isGridColumns = true;
+let players;
 
 document.addEventListener('DOMContentLoaded', function () {
     players = document.getElementById("players");
@@ -50,4 +51,18 @@ async function search(event) {
 
     const loadMore = document.getElementById("loadPlayers");
     loadMore && loadMore.remove();
+}
+
+function changeGrid() {
+    const container = document.querySelector(".container");
+
+    if (isGridColumns) {
+        players.style.gridTemplateColumns = "1fr";
+        container.style.width = "fit-content";
+    } else {
+        players.style.gridTemplateColumns = "repeat(auto-fit, minmax(250px, 1fr))";
+        container.style.width = "80%";
+    }
+
+    isGridColumns = !isGridColumns;
 }
