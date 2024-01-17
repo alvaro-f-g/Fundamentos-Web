@@ -19,9 +19,20 @@ const fields = {
     photo: false
 }
 
+const elementos = new Map([
+    ['name', document.getElementById(`name`).getAttribute(`value`)],
+    ['number', document.getElementById(`number`).getAttribute(`value`)],
+    ['birthday', document.getElementById(`birthday`).getAttribute(`value`)],
+    ['nationality', document.getElementById(`nationality`).getAttribute(`value`)],
+    ['description', document.getElementById(`description`).getAttribute(`value`)],
+    ['photo', document.getElementById(`photo`).getAttribute(`value`)]
+]);
+
 const checkForm = (event) => {
     const { name, value } = event.target;
     let expression = null;
+
+    elementos.set(name, value);
 
     switch (name) {
         case "name":
@@ -71,6 +82,10 @@ inputs.forEach((input) => {
 });
 
 formulario.addEventListener('submit', (event) => {
+    for (const [key, value] of elementos) {
+        checkForm({ target: { name: key, value: value } });
+    }
+
     if (!(fields.name && fields.number && fields.nationality && fields.description && fields.photo)) {
         event.preventDefault();
         document.getElementById('form-error-message').classList.add('form-error-message-active');
@@ -82,6 +97,7 @@ formulario.addEventListener('submit', (event) => {
 
 // Copiada de auxFunctions.js ya que no se puede importar
 function correctDate(string) {
+    if (!string) return false;
     const parts = string.split('-');
 
     const year = parseInt(parts[0]);

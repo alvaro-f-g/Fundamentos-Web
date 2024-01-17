@@ -15,6 +15,7 @@
     <link type="text/css" rel="stylesheet" href="/formulario.css" />
 
     <script type="module" src="/checkElems.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -33,7 +34,7 @@
         {{/edit}}
 
         {{#edit}}
-        <form role="form" action="/ficha/editar" method="post">
+        <form role="form" action="/ficha/editar" id="formulario" method="post">
             <input type="hidden" name="id" value="{{player.id}}">
         {{/edit}}
 
@@ -128,7 +129,7 @@
             </div>
 
             <div class="btn-cont">
-                <button type="submit" class="btn" id="formulario__btn"><i class="bi bi-download"></i> Guardar</button>
+                <button type="submit" class="btn"><i class="bi bi-download"></i> Guardar</button>
                 <a href="javascript:history.back()" class="btn" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
             </div>
         </form>

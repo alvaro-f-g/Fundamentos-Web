@@ -32,6 +32,10 @@
 	opacity: 0;
 }
 
+.form-group-input {
+	position: relative;
+}
+
 .form-error-message {
 	grid-column: span 2;
 	height: 45px;
