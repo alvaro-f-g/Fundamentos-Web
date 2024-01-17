@@ -72,7 +72,28 @@ input[type="search"]::-webkit-search-cancel-button {
 
 .top-container {
     display: flex;
+    align-items: center;
     margin-bottom: 20px;
+}
+
+.top-container .btn {
+    background-color: #fff;
+    color: #212529;
+    border: transparent;
+}
+
+.top-container .btn:hover{
+    background-color: rgb(214, 12, 12);
+    color: #fff;
+}
+
+.top-container .btn:active{
+    background-color: rgb(214, 12, 12);
+    color: #212529;
+}
+
+.dropdown button {
+    width: 56px;
 }
 
 .bi-grid-1x2-fill {
@@ -83,7 +104,7 @@ input[type="search"]::-webkit-search-cancel-button {
     text-align: center;
     flex-grow: 1;
     margin: 0 10px;
-    margin-left: 56px;
+    margin-right: 20px;  /* ((56 + 10) - 46) */
 }
 
 .bottom-right-button {
