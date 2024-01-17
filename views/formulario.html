@@ -13,8 +13,6 @@
 
     <link type="text/css" rel="stylesheet" href="/base.css" />
     <link type="text/css" rel="stylesheet" href="/formulario.css" />
-
-    <script type="module" src="/checkElems.js"></script>
 </head>
 
 <body>
@@ -29,32 +27,34 @@
         <h2>{{title}}</h2>
 
         {{^edit}}
-        <form role="form" action="/formulario/inscribir" method="post">
+        <form role="form" action="/formulario/inscribir"  id="formulario" method="post">
         {{/edit}}
 
         {{#edit}}
-        <form role="form" action="/ficha/editar" method="post">
+        <form role="form" action="/ficha/editar" id="formulario" method="post">
             <input type="hidden" name="id" value="{{player.id}}">
         {{/edit}}
 
-            <div class="form-group">
+           <div class="formulario__grupo" id="grupo__name">
                 <label for="name">Nombre del jugador</label>
-                <input type="text" class="form-control" name="name" placeholder="Nombre y apellidos" value="{{player.name}}" required>
-                <div id="grupo__name" class="formulario__grupo">
-                    <p class="formulario__input-error">El nombre debe empezar por mayúscula.</p>
+                <div class = "formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="name" id="name" placeholder="Nombre y apellidos" value="{{player.name}}" required>
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
+                <p class="formulario__input-error">El nombre debe empezar por mayúscula.</p>
             </div>
 
-            <div class="form-group">
+            <div class="formulario__grupo" id="grupo__description">
                 <label for="description">Descripción</label>
-                <textarea type="text" class="form-control" name="description" placeholder="Detalles del jugador" required>{{player.description}}</textarea>
-                <div id="grupo__description" class="formulario__grupo">
-                    <p class="formulario__input-error">La descripción debe tener entre 50 y 500 caracteres.</p>
+                <div class="formulario__grupo-input">
+                    <input type="text" class="formulario__input" name="description" id="description" placeholder="Detalles del jugador" required>{{player.description}}</textarea>
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
+                <p class="formulario__input-error"> .La descripción debe tener entre 50 y 500 caracteres.</p>
             </div>
 
             <div class="row">
-                <div class="form-group col-md-6 col-sm-12">
+                <div class="formulario__grupo col-md-6 col-sm-12">
                     <label for="position">Posición</label>
                     <select class="form-select" name="position">
                         {{#player}}
@@ -69,61 +69,80 @@
                         <option value="Portero">Portero</option>
                     </select>
                 </div>
-                <div class="form-group col-md-6 col-sm-12">
-                    <label for="jersey-number">Dorsal</label>
-                    <input type="number" class="form-control" name="number" placeholder="0" value="{{player.number}}" required min="0" max="99">
-                    <div id="grupo__number" class="formulario__grupo">
-                        <p class="formulario__input-error">El dorsal debe ser un número entre 0 y 99.</p>
+                <div class="formulario__grupo col-md-6 col-sm-12" >
+                    <div class="formulario__grupo" id="grupo__number">
+                        <label for="jersey-number">Dorsal</label>
+                        <div class="formulario__grupo-input">
+                            <input type="number" class="formulario__input" name="number" id="number" placeholder="0" value="{{player.number}}" required min="0" max="99">
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>   
+                        </div>
+                        <p class="formulario__input-error">El dorsal debe estar entre 0 y 99.</p>
+                    </div>    
+                </div>
+            </div>
+
+            <div class="formulario__grupo row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="formulario__grupo" id="grupo__birthday">
+                        <label for="birthday">Fecha de nacimiento</label>
+                        <div class="formulario__grupo-input">
+                            <input type="date" class="formulario__input text-uppercase" name="birthday" id="birthday" value="{{player.birth}}" required>
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error">La fecha debe ser válida.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="formulario__grupo" id="grupo__nationality">
+                        <label for="nationality">Nacionalidad</label>
+                        <div class="formulario__grupo-input">
+                            <input type="text" class="formulario__input" name="nationality" id="nationality" placeholder="Ej.: Española" value="{{player.nationality}}" required>
+                            <i class="formulario__validacion-estado fas fa-times-circle"></i>
+                        </div>
+                        <p class="formulario__input-error"> La nacionalidad debe empezar por mayúscula.</p>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group row">
-                <div class="col-md-6 col-sm-12">
-                    <label for="birthday">Fecha de nacimiento</label>
-                    <input type="date" class="form-control text-uppercase" name="birthday" value="{{player.birth}}" required>
-                    <div id="grupo__birthday" class="formulario__grupo">
-                        <p class="formulario__input-error">La fecha de nacimiento debe tener el formato correcto.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <label for="nationality">Nacionalidad</label>
-                    <input type="text" class="form-control" name="nationality" placeholder="Ej.: Española" value="{{player.nationality}}" required>
-                    <div id="grupo__nationality" class="formulario__grupo">
-                        <p class="formulario__input-error">La nacionalidad debe empezar por mayúscula.</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
+            <div class="formulario__grupo" id="grupo__photo">
                 <label for="player-photo">Foto de perfil</label>
-                <input type="url" class="form-control" name="photo" placeholder="URL de la imagen" value="{{player.photo}}" required>
-                <div id="grupo__photo" class="formulario__grupo">
-                    <p class="formulario__input-error">Debe introducir una URL válida.</p>
+                <div class="formulario__grupo-input" >
+                    <input type="url" class="formulario__input" name="photo" id="photo" placeholder="URL de la imagen" value="{{player.photo}}" required>
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
+                    <p class="formulario__input-error">Debe introducir una URL válida.</p>
             </div>
 
-            <div class="form-group">
+            <div class="formulario__grupo" id="grupo__price">
                 <label for="price">Valor de mercado</label>
                 {{#player}}
-                <input type="range" class="form-range" name="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
-                <output for="price" id="outrange">{{player.marketValue}}</output>€
-                <div id="grupo__price" class="formulario__grupo">
-                    <p class="formulario__input-error">El valor de mercado debe estar entre 0 y 100,000,000.</p>
+                <div class="formulario__grupo-input" >
+                    <input type="range" class="form-range" name="price" id="price" value="{{player.marketValue}}" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
+                    <output for="price" id="outrange">{{player.marketValue}}</output>€
+                    <i class="formulario__validacion-estado fas fa-times-circle"></i>
                 </div>
+                    <p class="formulario__input-error"> El valor de mercado debe estar entre 0 y 100.000.000€.</p>
                 {{/player}}
                 {{^player}}
                 <input type="range" class="form-range" name="price" value="0" min="0" max="100000000" step="10000" oninput="this.nextElementSibling.value = this.value">
                 <output for="price" id="outrange">0</output>€
                 {{/player}}
+            </div> 
+            <div class="formulario__mensaje" id="formulario__mensaje">
+                <p><i class="bi bi-exclamation-triangle-fill"></i> <b>Error:</b> Por favor rellene el formulario correctamente.</p>
             </div>
 
             <div class="btn-cont">
-                <button type="submit" onclick="submitFormulario(event)" class="btn"><i class="bi bi-download"></i> Guardar</button>
+                <div class = "formulario__grupo formulario__grupo-btn-enviar">
+                <button type="submit" class="formulario__btn" id="formulario__btn"><i class="bi bi-download"></i> Guardar</button>
+                <p class="formulario__mensaje-exito" id="formulario__mensaje-exito">Formulario enviado exitosamente!</p>
+                </div>
                 <a href="javascript:history.back()" class="btn" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
             </div>
         </form>
     </div>
+    <script type="module" src="/checkElems.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
