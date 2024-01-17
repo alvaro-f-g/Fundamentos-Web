@@ -1,82 +1,112 @@
 const formulario = document.getElementById('formulario');
 const inputs = document.querySelectorAll('#formulario input');
-formulario.setAttribute('validate', 'true');
+const textareas = document.querySelector('#formulario textarea');
 
-const expresiones = {
+const expressions = {
     name: /^[A-Z].*$/, 
-    dorsal: /^[0-9]{1,2}$/, //2 digitos,cada uno de un num del 0 al 9
-    date: /^(?:19|20)\d{2},(0[1-9]|1[0-2]),(0[1-9]|[12]\d|3[01])$/, //formato fecha
-    nacionalidad: /^[A-Z].*$/, //empieza por mayuscula y despues puede ir cualquier cantidad de carácteres
-    marketValue: /^(?:[1-9]\d{0,7}|100000000)$/, //entre 1 y 100000000
-    descripcion: /^.{50,500}$/, //entre 50 y 500 carácteres
-    image: /^(ftp|http|https):\/\/[^ "]+$/ //formato url
+    number: /^[0-9]{1,2}$/, //2 digitos,cada uno de un num del 0 al 9
+    nationality: /^[A-Z].*$/, //empieza por mayuscula y despues puede ir cualquier cantidad de carácteres
+    description: /^.{50,500}$/, //entre 50 y 500 carácteres
+    photo: /^(ftp|http|https):\/\/[^ "]+$/ //formato url
 }
 
-const campos = {
+const fields = {
     name: false,
-    dorsal: false,
-    date: false,
-    nacionalidad: false,
-    marketValue: false,
-    descripcion: false
+    number: false,
+    birthday: false,
+    nationality: false,
+    description: false,
+    photo: false
 }
+
+
+const elementos = new Map([
+    ['name', undefined],
+    ['number', undefined],
+    ['birthday', undefined],
+    ['nationality', undefined],
+    ['description', undefined],
+    ['photo', undefined]
+]);
 
 const checkForm = (event) => {
-    switch (event.target.name) {
+    const { name, value } = event.target;
+    let expression = null;
+
+    elementos.set(name, value);
+
+    switch (name) {
         case "name":
-            checkInput(expresiones.name, event.target, 'name');
+            expression = expressions.name;
             break;
-        case "dorsal":
-            checkInput(expresiones.dorsal, event.target, 'dorsal');
+        case "number":
+            expression = expressions.number;
             break;
-        case "date":
-            checkInput(expresiones.date, event.target, 'date');
+        case "birthday":
+            correctValue(correctDate(value), 'birthday');
+            return;
+        case "nationality":
+            expression = expressions.nationality;
             break;
-        case "nacionalidad":
-            checkInput(expresiones.nacionalidad, event.target, 'nacionalidad');
+        case "description":
+            expression = expressions.description;
             break;
-        case "marketValue":
-            checkInput(expresiones.marketValue, event.target, 'marketValue');
-            break;
-        case "descripcion":
-            checkInput(expresiones.descripcion, event.target, 'descripcion');
-            break;
-        case "image":
-            checkInput(expresiones.image, event.target, 'image');
+        case "photo":
+            expression = expressions.photo;
             break;
     }
-}
-const checkInput = (expresion, input, campo) => {
-    if (expresion.test(input.value)) {
-        document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-incorrecto');
-        document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-correcto');
-        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.remove('formulario__input-error-activo');
-        campos[campo] = true;
-    } else {
-        document.getElementById(`grupo__${campo}`).classList.add('formulario__grupo-incorrecto');
-        document.getElementById(`grupo__${campo}`).classList.remove('formulario__grupo-correcto');
-        document.querySelector(`#grupo__${campo} .formulario__input-error`).classList.add('formulario__input-error-activo');
-        campos[campo] = false;
-    }
+
+    correctValue(expression.test(value), name);
 }
 
+
+const correctValue = (condition, field) => {
+    if (condition) {
+        document.getElementById(`grupo__${field}`).classList.remove('form-group-incorrect');
+        document.getElementById(`grupo__${field}`).classList.add('form-group-correct');
+        document.querySelector(`#grupo__${field} i`).classList.add('fa-check-circle');
+        document.querySelector(`#grupo__${field} i`).classList.remove('fa-times-circle');
+        document.querySelector(`#grupo__${field} .form-control-error`).classList.remove('form-control-error-active');
+        fields[field] = true;
+    } else {
+        document.getElementById(`grupo__${field}`).classList.add('form-group-incorrect');
+        document.getElementById(`grupo__${field}`).classList.remove('form-group-correct');
+        document.querySelector(`#grupo__${field} i`).classList.add('fa-times-circle');
+        document.querySelector(`#grupo__${field} i`).classList.remove('fa-check-circle');
+        document.querySelector(`#grupo__${field} .form-control-error`).classList.add('form-control-error-active');
+        fields[field] = false;
+    }
+}
 
 inputs.forEach((input) => {
     input.addEventListener('keyup', checkForm);
     input.addEventListener('blur', checkForm);
 });
 
-function submitFormulario(event) {
-    event.preventDefault();
-    for (const campo in campos) {
-        const inputElement = document.getElementById(campo);
-        inputElement.addEventListener('input', () => {
-            checkInput(expresiones[campo], inputElement, campo);
-        });
+formulario.addEventListener('submit', (event) => {
+    
+    for (const [key, value] of elementos) {
+        checkForm({ target: { name: key, value: value } });
     }
-    if (Object.values(campos).every((campo) => campo)) {
-        formulario.submit();
-    } else {
-        document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo');
+    
+    if(!(fields.name && fields.number && fields.nationality && fields.description && fields.photo)){
+        event.preventDefault();
+        document.getElementById('form-error-message').classList.add('form-error-message-active');
+        setTimeout(() => {
+            document.getElementById('form-error-message').classList.remove('form-error-message-active');
+        }, 5000);
     }
-};
+});
+
+// Copiada de auxFunctions.js ya que no se puede importar
+function correctDate(string) {
+    const parts = string.split('-');
+
+    const year = parseInt(parts[0]);
+    const month = parseInt(parts[1]);
+    const day = parseInt(parts[2]);
+
+    const date = new Date(year, month - 1, day);
+
+    return !(isNaN(date.getTime()) || date.getFullYear() !== year || month < 1 || month > 12 || day < 1 || day > 31)
+}

@@ -26,7 +26,7 @@ export class Player {
           if (!validFormat(this.photo)) throw new Error("No es una URL de imagen válida");
           if (!positions.has(this.position)) throw new Error("Introduzca una posición válida");
           numberInRange("El dorsal", parseInt(this.number), 0, 99);
-          if (correctDate(this.birth)) throw new Error("Introduzca una fecha correcta");
+          if (!correctDate(this.birth)) throw new Error("Introduzca una fecha correcta");
           if (birthday.getTime() > Date.now()) throw new Error("¿Ha nacido en el futuro?");
           numberInRange("El valor de mercado", parseInt(this.marketValue), 0, 200000000);
           if (this.marketValue == 0) throw new Error("Todos los jugadores valen algo");

@@ -5,3 +5,62 @@
 .form-range::-webkit-slider-thumb{
     background-color: rgb(214, 12, 12);
 }
+
+.form-control:focus {
+	border: 3px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+.form-control-error {
+	color:rgb(202, 0, 0);
+	font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+}
+
+.form-control-error-active {
+	display: block;
+}
+
+.form-validate-state {
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	z-index: 100;
+	font-size: 16px;
+	opacity: 0;
+}
+
+.form-error-message {
+	grid-column: span 2;
+	height: 45px;
+	line-height: 45px;
+	background: #F66060;
+	padding: 0 15px;
+	border-radius: 3px;
+	display: none;
+}
+
+.form-error-message p {
+	margin: 0;
+}
+
+.form-error-message-active {
+	display: block;
+}
+
+/* ----- -----  Estilos para Validacion ----- ----- */
+.form-group-correct .form-validate-state {
+	color: #1ed12d;
+	opacity: 1;
+}
+
+.form-group-incorrect .form-validate-state {
+	color: #bb2929;
+	opacity: 1;
+}
+
+.form-group-incorrect .form-control {
+	border: 3px solid #bb2929;
+}

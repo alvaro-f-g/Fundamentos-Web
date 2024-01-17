@@ -33,7 +33,7 @@ export function correctDate(string) {
 
      const date = new Date(year, month - 1, day);
 
-     return (isNaN(date.getTime()) || date.getFullYear() !== year || month < 1 || month > 12 || day < 1 || day > 31)
+     return !(isNaN(date.getTime()) || date.getFullYear() !== year || month < 1 || month > 12 || day < 1 || day > 31)
 }
 
 export function validFormat(url) {
