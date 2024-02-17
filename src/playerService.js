@@ -2,6 +2,7 @@ let players = new Map();
 let playersNames = new Set();
 let nextId = 0;
 let freesIdArray = [];
+let loadedUntil = 0;
 
 export function addPlayer(player) {
     isNew(player.name);
@@ -36,15 +37,37 @@ export function deletePlayer(player) {
     let id = player.id;
     let name = player.name;
 
-    players.delete(id) && freesIdArray.push(id) && playersNames.delete(name);
-}
-
-export function getPlayers() {
-    return [...players.values()]; // == Array.from(players.values())
+    players.delete(id) && freesIdArray.push(id) && playersNames.delete(name) && loadedUntil--;
 }
 
 export function getPlayer(id) {
     return players.get(id);
+}
+
+export function getPlayers(from, amount) {
+    const values = [...players.values()]; // == Array.from(players.values())
+    let to = from + amount;
+
+    if (to > values.length) to = values.length;
+    loadedUntil = to;
+
+    return values.slice(from, to);  // [from, ..., to-1]
+}
+
+export function allPlayersLoaded() {
+    return (loadedUntil == players.size);
+}
+
+export function searchPlayers(info) {
+    let results = [];
+
+    if (info.length < 2) return results;
+
+    players.forEach(player => {
+        if (player.name.toLowerCase().includes(info.toLowerCase())) results.push(player);
+    });
+
+    return results;
 }
 
 function isNew(name) {

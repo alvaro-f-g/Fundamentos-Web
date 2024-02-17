@@ -6,15 +6,38 @@ import { noAccents, formatInfo } from './auxFunctions.js';
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.render('plantilla', {
-        players: playerService.getPlayers(),
+    res.render('plantilla');
+});
+
+router.get('/loadPlayers', (req, res) => {
+    const from = parseInt(req.query.from);
+    const amount = parseInt(req.query.amount);
+
+    const players = playerService.getPlayers(from, amount);
+
+    res.render('players', {
+        players: players,
+        alternative: "No hay jugadores fichados aún"
+    });
+});
+
+router.get('/allPlayersLoaded', (req, res) => {
+    res.send({value: playerService.allPlayersLoaded()});
+});
+
+router.get('/search', (req, res) => {
+    const info = req.query.info;
+    const players = playerService.searchPlayers(info);
+
+    res.render('players', {
+        players: players,
+        alternative: "No hay resultados"
     });
 });
 
 router.get("/formulario", (req, res) => {
     res.render('formulario', {
-        title: "Nueva ficha",
-        cancel: "/"
+        title: "Nueva ficha"
     });
 });
 
@@ -91,8 +114,7 @@ router.get('/ficha/formulario', (req, res) => {
     res.render('formulario', {
         title: noAccents("Ficha de " + player.name),
         edit: true,
-        player: player,
-        cancel: "/ficha?id=" + id
+        player: player
     });
 });
 
@@ -175,8 +197,7 @@ router.get("/formulario/ben", (req, res) => {
 
     res.render('formulario', {
         title: "Ficha de " + ben.name,
-        player: ben,
-        cancel: "/"
+        player: ben
     });
 });
 

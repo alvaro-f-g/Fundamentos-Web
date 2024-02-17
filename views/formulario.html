@@ -13,42 +13,47 @@
 
     <link type="text/css" rel="stylesheet" href="/base.css" />
     <link type="text/css" rel="stylesheet" href="/formulario.css" />
+
+    <script type="module" src="/checkElems.js"></script>
+    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <header>
-        <div>
-            <a href="/">
-                <img id="header-img" src="/images/Escudo.jpeg" alt="Escudo del Triplano FC">
-            </a>
-        </div>
-        <div>
-            <a href="/" style="color: inherit; text-decoration: none">
-                <h1>Triplano FC</h1>
-            </a>
-        </div>
+        <a href="/" style="color: inherit; text-decoration: none">
+            <img id="header-img" src="/images/Escudo.jpeg" alt="Escudo del Triplano FC">
+            <h1>Triplano FC</h1>
+        </a>
     </header>
 
     <div class="container">
         <h2>{{title}}</h2>
 
         {{^edit}}
-        <form role="form" action="/formulario/inscribir" method="post">
+        <form role="form" action="/formulario/inscribir" id="formulario" method="post">
         {{/edit}}
 
         {{#edit}}
-        <form role="form" action="/ficha/editar" method="post">
+        <form role="form" action="/ficha/editar" id="formulario" method="post">
             <input type="hidden" name="id" value="{{player.id}}">
         {{/edit}}
 
-            <div class="form-group">
+           <div class="form-group" id="grupo__name">
                 <label for="name">Nombre del jugador</label>
-                <input type="text" class="form-control" name="name" placeholder="Nombre y apellidos" value="{{player.name}}" required>
+                <div class="form-group-input">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Nombre y apellidos" value="{{player.name}}">
+                    <i class="form-validate-state fas fa-times-circle"></i>
+                </div>
+                <p class="form-control-error">El nombre debe empezar por mayúscula.</p>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="grupo__description">
                 <label for="description">Descripción</label>
-                <textarea type="text" class="form-control" name="description" placeholder="Detalles del jugador" required>{{player.description}}</textarea>
+                <div class="form-group-input">
+                    <input type="text" class="form-control" name="description" id="description" placeholder="Detalles del jugador" value="{{player.description}}">
+                    <i class="form-validate-state fas fa-times-circle"></i>
+                </div>
+                <p class="form-control-error">La descripción debe tener entre 50 y 500 caracteres.</p>
             </div>
 
             <div class="row">
@@ -67,26 +72,44 @@
                         <option value="Portero">Portero</option>
                     </select>
                 </div>
-                <div class="form-group col-md-6 col-sm-12">
+                <div class="form-group col-md-6 col-sm-12" id="grupo__number">
                     <label for="jersey-number">Dorsal</label>
-                    <input type="number" class="form-control" name="number" placeholder="0" value="{{player.number}}" required min="0" max="99">
+                    <div class="form-group-input">
+                        <input type="number" class="form-control" name="number" id="number" placeholder="0" value="{{player.number}}">
+                        <i class="form-validate-state fas fa-times-circle"></i>
+                    </div>
+                    <p class="form-control-error">El dorsal debe estar entre 0 y 99.</p>
                 </div>
             </div>
 
             <div class="form-group row">
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12" id="grupo__birthday">
                     <label for="birthday">Fecha de nacimiento</label>
-                    <input type="date" class="form-control text-uppercase" name="birthday" value="{{player.birth}}" required>
+                    <div class="form-group-input">
+                        <input type="date" class="form-control text-uppercase" name="birthday" id="birthday" value="{{player.birth}}">
+                        <i class="form-validate-state fas fa-times-circle"></i>
+                    </div>
+                    <p class="form-control-error">La fecha debe ser válida.</p>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <label for="nationality">Nacionalidad</label>
-                    <input type="text" class="form-control" name="nationality" placeholder="Ej.: Española" value="{{player.nationality}}" required>
+                    <div class="form-group" id="grupo__nationality">
+                        <label for="nationality">Nacionalidad</label>
+                        <div class="form-group-input">
+                            <input type="text" class="form-control" name="nationality" id="nationality" placeholder="Ej.: Española" value="{{player.nationality}}">
+                            <i class="form-validate-state fas fa-times-circle"></i>
+                        </div>
+                        <p class="form-control-error">La nacionalidad debe empezar por mayúscula.</p>
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="grupo__photo">
                 <label for="player-photo">Foto de perfil</label>
-                <input type="url" class="form-control" name="photo" placeholder="URL de la imagen" value="{{player.photo}}" required>
+                <div class="form-group-input" >
+                    <input type="text" class="form-control" name="photo" id="photo" placeholder="URL de la imagen" value="{{player.photo}}">
+                    <i class="form-validate-state fas fa-times-circle"></i>
+                </div>
+                <p class="form-control-error">Debe introducir una URL válida.</p>
             </div>
 
             <div class="form-group">
@@ -101,9 +124,13 @@
                 {{/player}}
             </div>
 
+            <div class="form-error-message" id="form-error-message">
+                <p><i class="bi bi-exclamation-triangle-fill"></i> <b>Error:</b> Por favor rellene el formulario correctamente.</p>
+            </div>
+
             <div class="btn-cont">
                 <button type="submit" class="btn"><i class="bi bi-download"></i> Guardar</button>
-                <a href="{{cancel}}" class="btn" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
+                <a href="javascript:history.back()" class="btn" role="button"><i class="bi bi-x-lg"></i> Cancelar</a>
             </div>
         </form>
     </div>
